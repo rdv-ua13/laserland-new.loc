@@ -26,8 +26,6 @@
     <script defer src="js/swiper-bundle.js"></script>    <!-- swiper -->
     <script defer src="js/tippy-bundle.umd.js"></script>    <!-- tippy -->
     <script defer src="js/fancybox.umd.js"></script>    <!-- fancybox -->
-    <script defer src="js/select2.js"></script>    <!-- select2 -->
-    <script defer src="js/readmore.js"></script>    <!-- readmore -->
 
 	<?/* Подключение библиотек (объединённо)
     <script defer src="js/libs.min.js"></script> */?>
@@ -44,14 +42,19 @@
                     <div class="ui-color">
                         <span class="ui-color__item tooltip" data-tippy-content="--black-color" style="background-color: var(--black-color);"></span>
                         <span class="ui-color__item light tooltip" data-tippy-content="--white-color" style="background-color: var(--white-color);"></span>
+                        <span class="ui-color__item tooltip" data-tippy-content="--gray1-color" style="background-color: var(--gray1-color);"></span>
                         <span class="ui-color__item tooltip" data-tippy-content="--gray2-color" style="background-color: var(--gray2-color);"></span>
                         <span class="ui-color__item tooltip" data-tippy-content="--gray3-color" style="background-color: var(--gray3-color);"></span>
                         <span class="ui-color__item tooltip" data-tippy-content="--gray4-color" style="background-color: var(--gray4-color);"></span>
-                        <span class="ui-color__item light tooltip" data-tippy-content="--gray5-color" style="background-color: var(--gray5-color);"></span>
-                        <span class="ui-color__item tooltip" data-tippy-content="--yellow-color" style="background-color: var(--yellow-color);"></span>
+                        <span class="ui-color__item tooltip" data-tippy-content="--gray5-color" style="background-color: var(--gray5-color);"></span>
+                        <span class="ui-color__item tooltip" data-tippy-content="--gray6-color" style="background-color: var(--gray6-color);"></span>
+                        <span class="ui-color__item light tooltip" data-tippy-content="--gray7-color" style="background-color: var(--gray7-color);"></span>
+                        <span class="ui-color__item tooltip" data-tippy-content="--cyan1-color" style="background-color: var(--cyan1-color);"></span>
+                        <span class="ui-color__item tooltip" data-tippy-content="--cyan2-color" style="background-color: var(--cyan2-color);"></span>
+                        <span class="ui-color__item tooltip" data-tippy-content="--cyan3-color" style="background-color: var(--cyan3-color);"></span>
                         <span class="ui-color__item tooltip" data-tippy-content="--orange-color" style="background-color: var(--orange-color);"></span>
-                        <span class="ui-color__item tooltip" data-tippy-content="--beige-color" style="background-color: var(--beige-color);"></span>
                         <span class="ui-color__item tooltip" data-tippy-content="--red-color" style="background-color: var(--red-color);"></span>
+                        <span class="ui-color__item tooltip" data-tippy-content="--green-color" style="background-color: var(--green-color);"></span>
                     </div>
                 </div>
             </div>
@@ -241,7 +244,7 @@
 
                 <div class="ui-row">
                     <div class="ui-title">
-                        <div class="fz-subtitle">size L (default)</div>
+                        <div class="fz-subtitle">default</div>
                     </div>
                     <div class="ui-tooltip-set">
                         <span class="tooltip" data-tippy-content="class='btn-reset btn btn-primary'">
@@ -270,113 +273,6 @@
                             </button>
                             <!--end ui content-->
                         </span>
-                        <span class="tooltip" data-tippy-content="class='btn-reset btn btn-light'">
-                            <!--start ui content-->
-                            <button class="btn-reset btn btn-light">
-                                <svg class="icon icon-fill btn__icon">
-                                    <use href="img/sprite.svg#arrow-right"></use>
-                                </svg>
-                                <span class="btn__text">Кнопка</span>
-                                <svg class="icon icon-fill btn__icon">
-                                    <use href="img/sprite.svg#arrow-right"></use>
-                                </svg>
-                            </button>
-                            <!--end ui content-->
-                        </span>
-                    </div>
-                </div>
-
-                <div class="ui-row">
-                    <div class="ui-title">
-                        <div class="fz-subtitle">size M</div>
-                    </div>
-                    <div class="ui-tooltip-set">
-                        <span class="tooltip" data-tippy-content="class='btn-reset btn btn-md btn-primary'">
-                            <!--start ui content-->
-                            <button class="btn-reset btn btn-md btn-primary">
-                                <svg class="icon icon-fill btn__icon">
-                                    <use href="img/sprite.svg#arrow-right"></use>
-                                </svg>
-                                <span class="btn__text">Кнопка</span>
-                                <svg class="icon icon-fill btn__icon">
-                                    <use href="img/sprite.svg#arrow-right"></use>
-                                </svg>
-                            </button>
-                            <!--end ui content-->
-                        </span>
-                        <span class="tooltip" data-tippy-content="class='btn-reset btn btn-md btn-secondary'">
-                            <!--start ui content-->
-                            <button class="btn-reset btn btn-md btn-secondary">
-                                <svg class="icon icon-fill btn__icon">
-                                    <use href="img/sprite.svg#arrow-right"></use>
-                                </svg>
-                                <span class="btn__text">Кнопка</span>
-                                <svg class="icon icon-fill btn__icon">
-                                    <use href="img/sprite.svg#arrow-right"></use>
-                                </svg>
-                            </button>
-                            <!--end ui content-->
-                        </span>
-                        <span class="tooltip" data-tippy-content="class='btn-reset btn btn-md btn-light'">
-                            <!--start ui content-->
-                            <button class="btn-reset btn btn-md btn-light">
-                                <svg class="icon icon-fill btn__icon">
-                                    <use href="img/sprite.svg#arrow-right"></use>
-                                </svg>
-                                <span class="btn__text">Кнопка</span>
-                                <svg class="icon icon-fill btn__icon">
-                                    <use href="img/sprite.svg#arrow-right"></use>
-                                </svg>
-                            </button>
-                            <!--end ui content-->
-                        </span>
-                    </div>
-                </div>
-
-                <div class="ui-row">
-                    <div class="ui-title">
-                        <div class="fz-subtitle">size S</div>
-                    </div>
-                    <div class="ui-tooltip-set">
-                        <span class="tooltip" data-tippy-content="class='btn-reset btn btn-sm btn-primary'">
-                            <!--start ui content-->
-                            <button class="btn-reset btn btn-sm btn-primary">
-                                <svg class="icon icon-fill btn__icon">
-                                    <use href="img/sprite.svg#arrow-right"></use>
-                                </svg>
-                                <span class="btn__text">Кнопка</span>
-                                <svg class="icon icon-fill btn__icon">
-                                    <use href="img/sprite.svg#arrow-right"></use>
-                                </svg>
-                            </button>
-                            <!--end ui content-->
-                        </span>
-                        <span class="tooltip" data-tippy-content="class='btn-reset btn btn-sm btn-secondary'">
-                            <!--start ui content-->
-                            <button class="btn-reset btn btn-sm btn-secondary">
-                                <svg class="icon icon-fill btn__icon">
-                                    <use href="img/sprite.svg#arrow-right"></use>
-                                </svg>
-                                <span class="btn__text">Кнопка</span>
-                                <svg class="icon icon-fill btn__icon">
-                                    <use href="img/sprite.svg#arrow-right"></use>
-                                </svg>
-                            </button>
-                            <!--end ui content-->
-                        </span>
-                        <span class="tooltip" data-tippy-content="class='btn-reset btn btn-sm btn-light'">
-                            <!--start ui content-->
-                            <button class="btn-reset btn btn-sm btn-light">
-                                <svg class="icon icon-fill btn__icon">
-                                    <use href="img/sprite.svg#arrow-right"></use>
-                                </svg>
-                                <span class="btn__text">Кнопка</span>
-                                <svg class="icon icon-fill btn__icon">
-                                    <use href="img/sprite.svg#arrow-right"></use>
-                                </svg>
-                            </button>
-                            <!--end ui content-->
-                        </span>
                     </div>
                 </div>
 
@@ -385,16 +281,6 @@
                         <div class="fz-subtitle">alternative buttons</div>
                     </div>
                     <div class="ui-tooltip-set">
-                        <span class="tooltip" data-tippy-content="class='btn-reset btn btn-header'">
-                            <!--start ui content-->
-                            <button class="btn-reset btn btn-header">
-                                <svg class="icon icon-fill btn__icon">
-                                    <use href="img/sprite.svg#filled-user-octagon"></use>
-                                </svg>
-                                <span class="btn__text">Кабинет</span>
-                            </button>
-                            <!--end ui content-->
-                        </span>
                         <span class="tooltip" data-tippy-content="class='btn-reset btn btn-square'">
                             <!--start ui content-->
                             <button class="btn-reset btn btn-square">
@@ -404,11 +290,11 @@
                             </button>
                             <!--end ui content-->
                         </span>
-                        <span class="tooltip" data-tippy-content="class='btn-reset btn btn-cart'">
+                        <span class="tooltip" data-tippy-content="class='btn-reset btn btn-nav'">
                             <!--start ui content-->
-                            <button class="btn-reset btn btn-cart">
+                            <button class="btn-reset btn btn-nav">
                                 <svg class="icon icon-fill btn__icon">
-                                    <use href="img/sprite.svg#cart-add"></use>
+                                    <use href="img/sprite.svg#nav-arrow"></use>
                                 </svg>
                             </button>
                             <!--end ui content-->
@@ -443,34 +329,14 @@
                         <div class="fz-subtitle">chip</div>
                     </div>
                     <div class="ui-tooltip-set">
-                        <span class="tooltip" data-tippy-content="class='chip chip-gray'">
+                        <span class="tooltip" data-tippy-content="class='chip chip-cyan'">
                             <!--start ui content-->
-                            <span class="chip chip-gray">Витамины</span>
-                            <!--end ui content-->
-                        </span>
-                        <span class="tooltip" data-tippy-content="class='chip chip-black'">
-                            <!--start ui content-->
-                            <span class="chip chip-black">Витамины</span>
-                            <!--end ui content-->
-                        </span>
-                        <span class="tooltip" data-tippy-content="class='chip chip-red'">
-                            <!--start ui content-->
-                            <span class="chip chip-red">Витамины</span>
+                            <span class="chip chip-cyan">Light</span>
                             <!--end ui content-->
                         </span>
                         <span class="tooltip" data-tippy-content="class='chip chip-orange'">
                             <!--start ui content-->
-                            <span class="chip chip-orange">Витамины</span>
-                            <!--end ui content-->
-                        </span>
-                        <span class="tooltip" data-tippy-content="class='chip chip-green'">
-                            <!--start ui content-->
-                            <span class="chip chip-green">Витамины</span>
-                            <!--end ui content-->
-                        </span>
-                        <span class="tooltip" data-tippy-content="class='chip chip-blue'">
-                            <!--start ui content-->
-                            <span class="chip chip-blue">Витамины</span>
+                            <span class="chip chip-orange">Max</span>
                             <!--end ui content-->
                         </span>
                     </div>
