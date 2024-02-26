@@ -8,58 +8,26 @@ function application() {
     //this.myMap;
 }
 application.prototype.init = function () {
-    /*this.initHeaderScroll();
+    this.initTouch();
+    this.initHeaderScroll();
     this.initBurger();
-    this.initPopupMenuMobile();
-    this.initHeaderActionsMobile();
     this.initOverlay();
-    this.initTabs();
-    this.initNotice();
-    this.initRegStepper();
-    this.initValidationNumCode();
-    this.initNavTabs();
-    this.initPageContentTabs();
-    this.initInnerPageTabs();
-    this.initTooltips();
-    this.initProgressBar();
-    this.initFormProcessing();
-    this.initCardFavorite();
-    this.initMainscreenSlider();
-    this.initTagbarSlider();
+    /*this.initMenu();*/
+    /*this.setMenuHeightOverflow();*/
+    /*this.initMenuCatalogSubmenu();*/
     this.initBasicSlider();
-    this.initMobileSlider();
-    this.initResponsiveCardSlider();
-    this.initHandlerCurrentUser();
-    this.initPasswordSwitcher();
-    this.initSelect2();
-    this.initTagSelected();
-    this.initMaskedInput();
-    this.initAddList();
-    this.initDropfiles();
+    this.initSliders();
     this.initReadmore();
-    this.initAccordion();
-    this.initCheckall();
-    this.setSettingsBarHeight();
-    this.setStaticStarRating();*/
-
-    /*-----------------------*/
+    this.initTooltips();
     this.initInputSearch();
-};
-
-// Initialization header scroll
-application.prototype.initHeaderScroll = function () {
-    $(window).scroll(function () {
-        setHeaderScroll();
-    });
-    setHeaderScroll();
-
-    function setHeaderScroll() {
-        if ($(window).scrollTop() > 25) {
-            $('.header').addClass("scrolled");
-        } else {
-            $('.header').removeClass("scrolled");
-        }
-    }
+    this.initTagbarSlider();
+    this.initMaskedInput();
+    this.initSwitchContent();
+    this.initNotification();
+    this.initCatalogPriceSlider();
+    this.initCatalogSidebarFilter();
+    this.initCatalogSidebarApplyFilter();
+    this.initCatalogContentSort();
 };
 
 // Initialization disable scroll
@@ -83,17 +51,41 @@ application.prototype.enableScroll = function () {
     body.classList.remove('dis-scroll');
 };
 
+// Initialization device check
+application.prototype.initTouch = function () {
+    if ('ontouchstart' in document.documentElement) {
+        $('html').addClass('touch');
+    }
+};
+
+// Initialization header scroll
+application.prototype.initHeaderScroll = function () {
+    $(window).scroll(function () {
+        setHeaderScroll();
+    });
+    setHeaderScroll();
+
+    function setHeaderScroll() {
+        if ($(window).scrollTop() > 120) {
+            $('.header').addClass('scrolled');
+        } else {
+            $('.header').removeClass('scrolled');
+        }
+    }
+};
+
 // Initialization burger-menu
 application.prototype.initBurger = function () {
-    const burger = document?.querySelector('[data-burger]');
+    const body = document?.querySelector('body');
+    const burger = document?.querySelector('[data-menu-spoiler]');
     const menu = document?.querySelector('[data-menu]');
     const menuClose = document?.querySelector('[data-menu-close]');
 
     burger?.addEventListener('click', (e) => {
-        burger?.classList.toggle('burger--active');
-        menu?.classList.toggle('burger-menu--active');
+        burger?.classList.toggle('active');
+        menu?.classList.toggle('active');
 
-        if (menu?.classList.contains('burger-menu--active')) {
+        if (menu?.classList.contains('active')) {
             burger?.setAttribute('aria-expanded', 'true');
             burger?.setAttribute('aria-label', 'Закрыть меню');
             this.disableScroll();
@@ -106,296 +98,363 @@ application.prototype.initBurger = function () {
 
     menuClose?.addEventListener('click', () => {
         setMenuClose();
-        $(".overlay").remove();
+        $('.overlay').remove();
+    });
+
+    $(window).on('resize', function () {
+        setMenuClose();
+    });
+
+    $(document).on('keyup', function (e) {
+        if (e.key == 'Escape') {
+            setMenuClose();
+        }
+    });
+
+    $(document).on('click', function (e) {
+        if ($('.overlay').is(e.target)) {
+            setMenuClose();
+        }
     });
 
     function setMenuClose() {
         burger?.setAttribute('aria-expanded', 'false');
         burger?.setAttribute('aria-label', 'Открыть меню');
-        burger.classList.remove('burger--active');
-        menu.classList.remove('burger-menu--active');
+        burger?.classList.remove('active');
+        menu?.classList.remove('active');
+        body?.classList.remove('overflow-hidden');
+        $('.overlay').remove();
+        return application.prototype.enableScroll();
     }
-
-    $(document).on("click", function (e) {
-        if ($('.overlay').is(e.target)) {
-            setMenuClose();
-        }
-    });
-};
-
-// Initialization popup menu mobile
-application.prototype.initPopupMenuMobile = function () {
-    const menuCall = $('[data-popup-menu-call]');
-    const menu = $('[data-popup-menu]');
-
-    menuCall.on('click', function () {
-        $(this).siblings('[data-popup-menu]').toggleClass('popup-menu--active');
-
-        if (!$(this).siblings('[data-popup-menu]').hasClass('popup-menu--active')) {
-            application.prototype.disableScroll();
-        } else {
-            application.prototype.enableScroll();
-        }
-    });
-
-    $(document).on("click", function (e) {
-        if ($('.overlay').is(e.target)) {
-            menu.removeClass('popup-menu--active');
-        }
-    });
 };
 
 // Initialization overlay element
 application.prototype.initOverlay = function () {
-    if($("[data-overlay]").length) {
-        const body = $("body");
-        const triggerEl = $("[data-overlay]");
+    if($('[data-overlay]').length) {
+        const body = $('body');
+        const triggerEl = $('[data-overlay]');
 
-        $(triggerEl).on("click", function () {
-            body.addClass("overflow-hidden");
+        $(triggerEl).on('click', function () {
+            body.addClass('overflow-hidden');
             $("<div class='overlay'></div>").insertAfter($(this));
         });
 
-        $(document).on("click", function (e) {
-            if ($(".overlay").is(e.target)) {
-                body.removeClass("overflow-hidden");
-                $(".overlay").remove();
-                return application.prototype.enableScroll();
-            }
-        });
-    }
-};
-
-// Initialization actions user mobile
-application.prototype.initHeaderActionsMobile = function () {
-    if ($(".js-header-actions-mobile-dropdown").length) {
-        const mobileTrigger = $(".js-header-actions-mobile-dropdown");
-        const actions = $(".header-actions");
-        const actionsNoAuth = $(".header-actions-no-auth");
-        const actionsCurrentUser = $(".header-actions-current-user");
-
-        $(document).on("click", function (e) {
-            if ($(".overlay").is(e.target)) {
-                actionsCurrentUser.removeClass("active");
-                actionsNoAuth.removeClass("active");
+        $(document).on('click', function (e) {
+            if ($('.overlay').is(e.target)) {
+                setTargetAction()
             }
         });
 
-        responsiveHeaderActions();
-        $(window).on("resize", responsiveHeaderActions);
-
-        function responsiveHeaderActions() {
-            if (window.matchMedia("(max-width: 991.98px)").matches) {
-                $(mobileTrigger).on("click", function () {
-                    if(actions.hasClass("header-actions--current-user")) {
-                        actionsNoAuth.removeClass("active");
-                        if(actionsCurrentUser.hasClass("active")) {
-                            actionsCurrentUser.removeClass("active");
-                            return application.prototype.enableScroll();
-                        } else {
-                            actionsCurrentUser.addClass("active");
-                            return application.prototype.disableScroll();
-                        }
-                    } else {
-                        actionsCurrentUser.removeClass("active");
-                        if(actionsNoAuth.hasClass("active")) {
-                            actionsNoAuth.removeClass("active");
-                            return application.prototype.enableScroll();
-                        } else {
-                            actionsNoAuth.addClass("active");
-                            return application.prototype.disableScroll();
-                        }
-                    }
-                });
-            } else {
-                actionsCurrentUser.removeClass("active");
-                actionsNoAuth.removeClass("active");
-                return application.prototype.enableScroll();
+        $(document).on('keyup', function (e) {
+            if (e.key == 'Escape') {
+                setTargetAction()
             }
+        });
+
+        function setTargetAction() {
+            body.removeClass('overflow-hidden');
+            $('.overlay').remove();
+            return application.prototype.enableScroll();
         }
     }
 };
 
-// Initialization tabs
-application.prototype.initTabs = function () {
-    if ($(".tabs").length) {
-        let currentSelected = 1;
-        $(".tabs__nav-item").on("click", function () {
-            $(".tabs__nav-item").not(this).find(".tabs__nav-btn").removeClass("selected");
-            $(this).find(".tabs__nav-btn").removeClass("notice").addClass("selected");
+// Initialization menu call
+application.prototype.initMenu = function () {
+    const body = $('body');
+    /*const catalogSpoiler = $('[data-catalog-spoiler]'); del*/
+    const catalog = $('[data-catalog]');
+    const catalogClose = $('[data-catalog-close]');
+    let overlayTrigger = $('[data-overlay-transparent]');
 
-            currentSelected = $(this).find(".tabs__nav-btn").data("target");
-            $(this).closest(".tabs").find(".tabs__panel").removeClass("active");
-            $(this).closest(".tabs").find(".tabs__panel[data-id='" + currentSelected + "']").addClass("active");
+    catalogSpoiler.on('click', () => {
+        setCatalogSwitch();
+    });
+
+    catalogClose.on('click', () => {
+        setCatalogClose();
+    });
+
+    setOverlay();
+
+    $(window).on('resize', function () {
+        setCatalogClose();
+    });
+
+    $(document).on('keyup', function (e) {
+        if (e.key == 'Escape') {
+            setCatalogClose();
+        }
+    });
+
+    function setCatalogSwitch() {
+        if (catalog.hasClass('active') && catalogSpoiler.hasClass('active')) {
+            catalogSpoiler.attr('aria-expanded', 'false');
+            catalogSpoiler.attr('aria-label', 'Открыть меню');
+            catalogSpoiler.removeClass('active');
+            catalog.removeClass('active');
+            body.removeClass('overflow-hidden');
+        } else {
+            catalogSpoiler.attr('aria-expanded', 'true');
+            catalogSpoiler.attr('aria-label', 'Закрыть меню');
+            catalogSpoiler.addClass('active');
+            catalog.addClass('active');
+            body.addClass('overflow-hidden');
+        }
+    }
+
+    function setCatalogClose() {
+        catalogSpoiler.attr('aria-expanded', 'false');
+        catalogSpoiler.attr('aria-label', 'Открыть меню');
+        catalogSpoiler.removeClass('active');
+        catalog.removeClass('active');
+        body.removeClass('overflow-hidden');
+        $('.menu-catalog-header').removeClass('submenu');
+        $('.overlay-transparent').remove();
+    }
+
+    function setOverlay() {
+        overlayTrigger.on('click', function () {
+            $("<div class='overlay-transparent'></div>").insertAfter($(this));
+        });
+
+        $(document).on('click', function (e) {
+            if ($('.overlay-transparent').is(e.target)) {
+                setCatalogClose();
+            }
         });
     }
 };
 
-// Initialization notice
-application.prototype.initNotice = function () {
-    $(document).on("click", ".notice", function () {
-        $(this).find(".notice-elem").removeClass("active");
+// Initialization menu height overflow
+application.prototype.setMenuHeightOverflow = function () {
+    defineMenuOverflow();
+    $(window).on('resize scroll', function () {
+        defineMenuOverflow();
     });
+
+    function defineMenuOverflow() {
+        let viewportHeight = $(window).outerHeight() - $('.header').outerHeight();
+        let menuHeight = $('.menu-catalog').outerHeight();
+
+        if (menuHeight > viewportHeight) {
+            $('.menu-catalog').addClass('menu-catalog-overflow');
+        } else {
+            $('.menu-catalog').removeClass('menu-catalog-overflow');
+        }
+    }
 };
 
-// Initialization validation num code
-application.prototype.initValidationNumCode = function () {
-    if($(".authreg--recovery").length) {
-        let in1 = document.getElementById('recoveryFormValidationCode1'),
-            ins = document.querySelectorAll('.js-forminput-recovery-num'),
-            splitNumber = function (e) {
-                let data = e.data || e.target.value; // Chrome doesn't get the e.data, it's always empty, fallback to value then.
-                if (!data) return; // Shouldn't happen, just in case.
-                if (data.length === 1) return; // Here is a normal behavior, not a paste action.
+// Initialization menu catalog behavior
+application.prototype.initMenuCatalogSubmenu = function () {
+    const catalogSpoiler = $('[data-catalog-spoiler]');
+    const catalogTitle = $('[data-catalog-title]');
+    const rootItem = $('.menu-catalog-root-link');
+    const rootSubmenuItem = $('.menu-catalog-submenu-section');
 
-                popupNext(e.target, data);
-            },
-            popupNext = function (el, data) {
-                el.value = data[0]; // Apply first item to first input
-                data = data.substring(1); // remove the first char.
-                if (el.nextElementSibling && data.length) {
-                    // Do the same with the next element and next data
-                    popupNext(el.nextElementSibling, data);
+    catalogSpoiler.on('click', function (e) {
+        const defaultRootItem = $(".menu-catalog-root-link[data-submenu-section='0']");
+        const defaultSubmenuItem = $(".menu-catalog-submenu-section[data-root-pointer='0']");
+        let currentCatalogTitle = catalogTitle.data('catalog-title');
+
+        catalogTitle.text(currentCatalogTitle);
+        rootItem.removeClass('selected');
+        rootItem.closest('.menu-catalog-root').removeClass('hide');
+        rootItem.closest('.menu-catalog').find('.menu-catalog-submenu').removeClass('active');
+        rootSubmenuItem.removeClass('active');
+        defaultRootItem.addClass('selected');
+        defaultSubmenuItem.addClass('active');
+    });
+
+    if (window.matchMedia('(min-width: 992px)').matches) {
+        if (!$('html').hasClass('touch')) {
+            rootItem.on('mouseover', function () {
+                let rootItemId = null;
+                if ($(this).is('[data-submenu-section]')) {
+                    rootItemId = $(this).data('submenu-section');
+                }
+
+                $('.menu-catalog-submenu-section').removeClass('active');
+                $(".menu-catalog-submenu-section[data-root-pointer='" + rootItemId + "']").addClass('active');
+            });
+        } else {
+            rootItem.on('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                let rootItemId = $(this).data('submenu-section');
+
+                $('.menu-catalog-submenu-section').removeClass('active');
+                $(".menu-catalog-submenu-section[data-root-pointer='" + rootItemId + "']").addClass('active');
+            });
+        }
+    } else if (window.matchMedia('(max-width: 991.98px)').matches) {
+        rootItem.on('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            let rootItemId = $(this).data('submenu-section');
+            let currentCatalogTitle = $(this).text();
+
+            catalogTitle.text(currentCatalogTitle);
+            $(this).closest('.menu-catalog').find('.menu-catalog-header').addClass('submenu');
+            $(this).closest('.menu-catalog-root').addClass('hide');
+            $(this).closest('.menu-catalog').find('.menu-catalog-submenu').addClass('active');
+            $('.menu-catalog-submenu-section').removeClass('active');
+            $(".menu-catalog-submenu-section[data-root-pointer='" + rootItemId + "']").addClass('active');
+        });
+
+        $('.menu-catalog-title-back').on('click', function (e) {
+            let currentCatalogTitle = catalogTitle.data('catalog-title');
+
+            catalogTitle.text(currentCatalogTitle);
+            $(this).closest('.menu-catalog-header').removeClass('submenu');
+            $(this).closest('.menu-catalog').find('.menu-catalog-root').removeClass('hide');
+            $(this).closest('.menu-catalog').find('.menu-catalog-submenu').removeClass('active');
+        });
+    }
+};
+
+// Initialization basic slider
+application.prototype.initBasicSlider = function () {
+    if ($('.basic-slider-wrap').length) {
+        const slider = $('[data-basic-slider]');
+        let spaceBetweenDesktop = 20;
+
+        slider.each(function (i) {
+            slider.eq(i).closest('.basic-slider-wrap').addClass('basic-slider-wrap-' + i);
+            if ($(this).is('[data-basic-slider-gap]')) {
+                spaceBetweenDesktop = 40;
+            }
+
+            const basicSliderSetting = {
+                slidesPerView: 'auto',
+                slidesPerGroup: 1,
+                spaceBetween: 12,
+                direction: 'horizontal',
+                navigation: {
+                    nextEl: '.basic-slider-wrap-' + i + ' .swiper-button-next',
+                    prevEl: '.basic-slider-wrap-' + i + ' .swiper-button-prev',
+                },
+                pagination: {
+                    el: '.basic-slider-wrap-' + i + ' .swiper-pagination',
+                    type: 'bullets',
+                },
+                breakpoints: {
+                    992: {
+                        spaceBetween: spaceBetweenDesktop
+                    },
                 }
             };
 
-        ins.forEach(function (input) {
-            /**
-             * Control on keyup to catch what the user intent to do.
-             * I could have check for numeric key only here, but I didn't.
-             */
-            input.addEventListener('keyup', function (e) {
-                // Break if Shift, Tab, CMD, Option, Control.
-                if (e.keyCode === 16 || e.keyCode == 9 || e.keyCode == 224 || e.keyCode == 18 || e.keyCode == 17) {
-                    return;
-                }
-
-                // On Backspace or left arrow, go to the previous field.
-                if ((e.keyCode === 8 || e.keyCode === 37) && this.previousElementSibling && this.previousElementSibling.tagName === "INPUT") {
-                    this.previousElementSibling.select();
-                } else if (e.keyCode !== 8 && this.nextElementSibling) {
-                    this.nextElementSibling.select();
-                }
-
-                // If the target is populated to quickly, value length can be > 1
-                if (e.target.value.length > 1) {
-                    splitNumber(e);
-                }
-            });
-
-            /**
-             * Better control on Focus
-             * - don't allow focus on other field if the first one is empty
-             * - don't allow focus on field if the previous one if empty (debatable)
-             * - get the focus on the first empty field
-             */
-            input.addEventListener('focus', function (e) {
-                // If the focus element is the first one, do nothing
-                if (this === in1) return;
-
-                // If value of input 1 is empty, focus it.
-                if (in1.value == '') {
-                    in1.focus();
-                }
-
-                // If value of a previous input is empty, focus it.
-                // To remove if you don't wanna force user respecting the fields order.
-                if (this.previousElementSibling.value == '') {
-                    this.previousElementSibling.focus();
-                }
-            });
+            basicSlider = new Swiper('.basic-slider-wrap-' + i + ' .basic-slider', basicSliderSetting);
         });
-
-        /**
-         * Handle copy/paste of a big number.
-         * It catches the value pasted on the first field and spread it into the inputs.
-         */
-        in1.addEventListener('input', splitNumber);
     }
 };
 
-// Initialization navigation pages tabs
-application.prototype.initNavTabs = function () {
-    if ($(".js-main-section-tabs").length) {
-        const swiperNavTabs = new Swiper(".js-main-section-tabs", {
-            slidesPerView: "auto",
+// Initialization sliders
+application.prototype.initSliders = function () {
+    if ($('.nav-breadcrumbs').length) {
+        let sliderNavBreadcrumbs = new Swiper('.nav-breadcrumbs', {
             spaceBetween: 0,
+            slidesPerView: 'auto',
         });
     }
-};
 
-// Initialization page-content tabs
-application.prototype.initPageContentTabs = function () {
-    if ($(".js-page-content-tabs").length) {
-        const swiperPageContentTabs = new Swiper(".js-page-content-tabs", {
-            slidesPerView: "auto",
-            spaceBetween: 32,
-        });
-    }
-};
+    /*if ($('.menu-catalog-submenu-banners').length) {
+        $('.menu-catalog-submenu-banners').each(function (i) {
+            let currentElem = $(this).find('.swiper').addClass('menu-catalog-submenu-banners-slider-' + i);
 
-// Initialization inner-page-tabs
-application.prototype.initInnerPageTabs = function () {
-    if ($(".inner-page-tabs").length) {
-        initTabBehavior();
-        initTabsSlider();
-
-        function initTabBehavior() {
-            const tabBlock = $(".inner-page-tabs");
-            let currentSelected = 0;
-            let currentTabBlockId = null;
-            $(".inner-page-tabs__nav-item").on("click", function () {
-                currentTabBlockId = $(this).closest(tabBlock).data("tab");
-
-                $(".inner-page-tabs__nav-item").not(this).find(".inner-page-tabs__link").removeClass("selected");
-                $(this).find(".inner-page-tabs__link").removeClass("notice").addClass("selected");
-
-                currentSelected = $(this).find(".inner-page-tabs__link").data("target");
-                $(".inner-page-tabs-content[data-tab-content='" + currentTabBlockId + "']").find(".inner-page-tabs-content__panel").removeClass("active");
-                $(".inner-page-tabs-content[data-tab-content='" + currentTabBlockId + "']").find(".inner-page-tabs-content__panel[data-id='" + currentSelected + "']").addClass("active");
-            });
-        }
-
-        function initTabsSlider() {
-            if($(".inner-page-tabs.swiper").closest(".tasks")) {
-                const swiperTasksInnerPageTabsSettings = {
-                    slidesPerView: "auto",
-                    spaceBetween: 12,
-                    direction: "horizontal",
-                    breakpoints: {
-                        992: {
-                            spaceBetween: 0,
-                            direction: "vertical",
-                            mousewheel: true,
-                        }
+            let sliderCatalogSubmenuBanners = new Swiper('.menu-catalog-submenu-banners-slider-' + i, {
+                spaceBetween: 12,
+                slidesPerView: 'auto',
+                breakpoints: {
+                    992: {
+                        spaceBetween: 40
                     },
-                };
-                let swiperTasksInnerPageTabs = null;
-
-                reinitSlider();
-                $(window).on("resize", reinitSlider);
-
-                function reinitSlider() {
-                    if (window.matchMedia("(max-width: 991.98px)").matches) {
-                        swiperTasksInnerPageTabs = null;
-                        swiperTasksInnerPageTabs = new Swiper(".tasks .inner-page-tabs.swiper", swiperTasksInnerPageTabsSettings);
-                    } else {
-                        swiperTasksInnerPageTabs = null;
-                    }
                 }
+            });
+        });
+    }*/
 
+    if ($('.index-slider-wrapper').length) {
+        const indexSliderDesktopSettings = new Swiper('.index-slider', {
+            slidesPerView: 1,
+            effect: 'fade',
+            watchOverflow: true,
+            navigation: {
+                nextEl: '.index-slider .swiper-button-next',
+                prevEl: '.index-slider .swiper-button-prev',
+            },
+            pagination: {
+                el: ".index-slider .swiper-pagination",
+                clickable: true,
+            },
+        });
+    }
+};
+
+// Initialization readmore plugin
+application.prototype.initReadmore = function () {
+    if ($('[data-spoiler]').length) {
+        const spoiler = $('[data-spoiler]');
+
+        spoiler.each(function (i) {
+            let currentMoreText = $(this).data('spoiler-more');
+            let currentLessText = $(this).data('spoiler-less');
+            let defaultHeight = 340;
+            let defaultMoreText = 'Показать все';
+            let defaultLessText = 'Свернуть';
+            let currentElemHeight = spoiler.eq(i).data('collapsed-height');
+
+            if ($(this).is('[data-spoiler-more]')) {
+                currentMoreText = currentMoreText;
+                currentLessText = defaultLessText;
+            } else if ($(this).is('[data-spoiler-less]')) {
+                currentMoreText = defaultMoreText;
+                currentLessText = currentLessText;
+            } else if (!$(this).is('[data-spoiler-more]') && !$(this).is('[data-spoiler-less]')) {
+                currentMoreText = defaultMoreText;
+                currentLessText = defaultLessText;
+            }
+
+            if (currentElemHeight === '' || currentElemHeight === null || currentElemHeight === undefined) {
+                currentElemHeight = defaultHeight;
+            }
+
+            if ($(this).find('.spoiler-content').height() > defaultHeight) {
+                $(this).addClass('spoiler-scrolled');
+            }
+
+            spoiler.eq(i).addClass('spoiler-' + i);
+            if ($(this).is('[data-spoiler-sidebar]')) {
+                $('.spoiler-' + i).readmore({
+                    collapsedHeight: currentElemHeight,
+                    moreLink: '<a class="link link-red link-tdu" href="javascript:;">\n' +
+                        '           <span class="text-content">' + currentMoreText + '</span>\n' +
+                        '       </a>',
+                    lessLink: '<a class="link link-red link-tdu" href="javascript:;">\n' +
+                        '           <span class="text-content">' + currentLessText + '</span>\n' +
+                        '       </a>',
+                });
             } else {
-                const swiperInnerPageTabs = new Swiper(".inner-page-tabs.swiper", {
-                    slidesPerView: "auto",
-                    spaceBetween: 16,
-                    breakpoints: {
-                        992: {
-                            spaceBetween: 32,
-                        }
-                    },
+                $('.spoiler-' + i).readmore({
+                    collapsedHeight: currentElemHeight,
+                    moreLink: '<a class="link link-primary link-dropdown" href="javascript:;">\n' +
+                        '           <span class="text-content">' + currentMoreText + '</span>\n' +
+                        '               <svg class="icon icon-fill">\n' +
+                        '                   <use href="img/sprite.svg#chevron-down"></use>\n' +
+                        '               </svg>\n' +
+                        '       </a>',
+                    lessLink: '<a class="link link-primary link-dropdown" href="javascript:;">\n' +
+                        '           <span class="text-content">' + currentLessText + '</span>\n' +
+                        '               <svg class="icon icon-fill">\n' +
+                        '                   <use href="img/sprite.svg#chevron-up"></use>\n' +
+                        '               </svg>\n' +
+                        '       </a>',
                 });
             }
-        }
+        });
     }
 };
 
@@ -409,1102 +468,9 @@ application.prototype.initTooltips = function () {
     }
 };
 
-// Initialization cards progress bar
-application.prototype.initProgressBar = function () {
-    if ($(".js-progress").length) {
-        $(".js-progress").each(function (i, e) {
-            let curValue = $(e).find(".progress-bar-data__value").data("value");
-            let curMaxValue = $(e).find(".progress-bar-data__max").data("max");
-            let curIndicator = $(e).find(".progress-bar__indicator");
-            let curProgressLine = $(e).find(".progress-bar__line");
-
-            function result(curValue, curMaxValue) {
-                let res = ((curValue / curMaxValue) * 100).toFixed(2);
-                return res;
-            }
-
-            curIndicator.val(result(curValue, curMaxValue));
-            let curProgressLineValue = curIndicator.val() * 1 + "%";
-            curProgressLine.css({
-                "width" : curProgressLineValue
-            });
-        });
-    }
-};
-
-// Initialization registration stepper
-application.prototype.initRegStepper = function () {
-    if($(".bs-stepper").length) {
-        window.steppers = {
-            registration: new Stepper($('.bs-stepper')[0])
-        };
-    }
-    // if($(".bs-stepper").length) {
-    //     let stepper = new Stepper($('.bs-stepper')[0]);
-    //
-    //     $(".js-stepper-trigger").on("click", function () {
-    //         let nextStep = $(this).data("index-next");
-    //
-    //         switch(nextStep) {
-    //             case 2:
-    //                 stepper.to(2);
-    //                 break;
-    //             case 3:
-    //                 stepper.to(3);
-    //                 break;
-    //             default:
-    //                 stepper.to(1);
-    //         }
-    //     });
-    // }
-};
-
-// Initialization form processing
-application.prototype.initFormProcessing = function () {
-    function getFormData($form) {
-        let unindexed_array = $form.serializeArray();
-        let indexed_array = {};
-        $.map(unindexed_array, function (n, i) {
-            indexed_array[n["name"]] = n["value"];
-        });
-        return indexed_array;
-    }
-
-    // $(document).on("submit", ".form", function (e) {
-    //   e.preventDefault();
-    //   let currentForm = $(this);
-    //   let formData = getFormData(currentForm);
-    //
-    //   // $.ajax({
-    //   //   type: "POST",
-    //   //   url: "forms.php",
-    //   //   dataType: "json",
-    //   //   data: getFormData(currentForm),
-    //   //   success: function (currentForm) {
-    //   //     console.log("success");
-    //   //   },
-    //   //   error: function () {
-    //   //     console.log("error");
-    //   //   }
-    //   // });
-    //   BX.ajax.runAction('dev:core.registration.checkPrimaryData', {
-    //     data: {
-    //       'post': formData,
-    //     }
-    //   }).then(
-    //       response => {
-    //         if (response.data.result === 'success') {
-    //           console.log('SUCCESS! Go to the next step');
-    //         } else {
-    //           console.log(response.data.errors);
-    //         }
-    //       },
-    //       error => {
-    //         //сюда будут приходить все ответы, у которых status !== 'success'
-    //         console.log(error);
-    //       }
-    //   );
-    //   return false;
-    // });
-
-    $(document).on('submit', '.js-register-step-1', function (e) {
-        e.preventDefault();
-        let $currentForm = $(this);
-        let formData = getFormData($currentForm);
-        let $submitBtn = $currentForm.find('[type="submit"]');
-        BX.ajax.runAction('dev:core.registration.checkPrimaryData', {
-            data: {
-                'post': formData,
-            }
-        }).then(
-            response => {
-                if (response.data.result === 'success') {
-                    let nextStep = parseInt($submitBtn.data('index-next'));
-                    window.steppers.registration.to(nextStep);
-                    console.log('SUCCESS! Go to the next step');
-                } else {
-                    console.log(response.data.errors);
-                }
-            },
-            error => {
-                //сюда будут приходить все ответы, у которых status !== 'success'
-                console.log(error);
-            }
-        );
-        return false;
-    });
-
-    $(document).on('submit', '.js-register-final', function (e) {
-        e.preventDefault();
-        let $currentForm = $(this);
-        let userType = $currentForm.data('user-type');
-
-
-        let formData = getFormData($currentForm);
-        let $submitBtn = $currentForm.find('[type="submit"]');
-
-        let $step1form = $('.js-register-step-1[data-user-type="' + userType + '"]');
-        let step1formData = getFormData($step1form);
-
-        let merged = {...step1formData, ...formData};
-
-        BX.ajax.runAction('dev:core.registration.checkAllAndRegister', {
-            data: {
-                'post': merged,
-            }
-        }).then(
-            response => {
-                console.log(response.data);
-                if (response.data.result === 'success') {
-                    if (response.data.redirect) {
-                        window.location.href = response.data.redirect;
-                    }
-                } else {
-                    // errors
-                }
-            },
-            error => {
-                //сюда будут приходить все ответы, у которых status !== 'success'
-                console.log(error);
-            }
-        );
-        return false;
-    });
-};
-
-// Initialization cards button "favorite"
-application.prototype.initCardFavorite = function () {
-    $(document).on("click", ".card", function (e) {
-        let $buttonFav = $(this).find('.js-card-favorite');
-        if ($buttonFav.is(e.target)) {
-            e.stopPropagation();
-            e.preventDefault();
-
-            $buttonFav.toggleClass("selected");
-            // todo: ajax проверить success or wrong, добавить класс selected
-        }
-    });
-};
-
-// Initialization mainscreen slider
-application.prototype.initMainscreenSlider = function () {
-    if ($(".js-mainscreen-slider").length) {
-        const mainscreenSliderSettings = {
-            slidesPerView: 1,
-            spaceBetween: 0,
-            direction: "horizontal",
-            effect: "fade",
-            pagination: {
-                el: ".js-mainscreen-slider .swiper-pagination",
-                clickable: true,
-            },
-            breakpoints: {
-                768: {
-                    direction: "vertical",
-                },
-            }
-        };
-        let mainscreenSlider = new Swiper(".js-mainscreen-slider", mainscreenSliderSettings);
-    }
-};
-
-// Initialization tag-bar slider
-application.prototype.initTagbarSlider = function () {
-    if ($(".js-tag-bar-slider").length) {
-        const currentSlider = $(".js-tag-bar-slider");
-
-        currentSlider.each(function (i) {
-            currentSlider.eq(i).addClass("js-tag-bar-slider-" + i);
-
-            let tagbarSlider = new Swiper(".js-tag-bar-slider-" + i, {
-                slidesPerView: "auto",
-                spaceBetween: 8,
-                direction: "horizontal",
-                mousewheel: true,
-            });
-        });
-    }
-};
-
-// Initialization basic slider
-application.prototype.initBasicSlider = function () {
-    if ($(".basic-slider-ecodelo").length) {
-        const ecodeloSlider = new Swiper(".basic-slider-ecodelo .js-basic-slider", {
-            slidesPerView: "auto",
-            spaceBetween: 12,
-            slidesPerGroup: 1,
-            direction: "horizontal",
-            navigation: {
-                nextEl: ".basic-slider-ecodelo .swiper-button-next",
-                prevEl: ".basic-slider-ecodelo .swiper-button-prev",
-            },
-            breakpoints: {
-                768: {
-                    slidesPerView: 2,
-                    slidesPerGroup: 2,
-                    spaceBetween: 24,
-                },
-                992: {
-                    slidesPerView: 3,
-                    slidesPerGroup: 3,
-                    spaceBetween: 24,
-                },
-                1328: {
-                    slidesPerView: 4,
-                    slidesPerGroup: 4,
-                    spaceBetween: 24,
-                }
-            }
-        });
-    }
-
-    if ($(".basic-slider-petition").length) {
-        const petitionSlider = new Swiper(".basic-slider-petition .js-basic-slider", {
-            slidesPerView: "auto",
-            spaceBetween: 12,
-            slidesPerGroup: 1,
-            direction: "horizontal",
-            navigation: {
-                nextEl: ".basic-slider-petition .swiper-button-next",
-                prevEl: ".basic-slider-petition .swiper-button-prev",
-            },
-            breakpoints: {
-                768: {
-                    slidesPerView: 2,
-                    slidesPerGroup: 2,
-                    spaceBetween: 24,
-                },
-                992: {
-                    slidesPerView: 3,
-                    slidesPerGroup: 3,
-                    spaceBetween: 24,
-                },
-                1328: {
-                    slidesPerView: 4,
-                    slidesPerGroup: 4,
-                    spaceBetween: 24,
-                }
-            }
-        });
-    }
-
-    if ($(".basic-slider-fundraising").length) {
-        const fundraisingSlider = new Swiper(".basic-slider-fundraising .js-basic-slider", {
-            slidesPerView: "auto",
-            spaceBetween: 12,
-            slidesPerGroup: 1,
-            direction: "horizontal",
-            navigation: {
-                nextEl: ".basic-slider-fundraising .swiper-button-next",
-                prevEl: ".basic-slider-fundraising .swiper-button-prev",
-            },
-            breakpoints: {
-                768: {
-                    slidesPerView: 2,
-                    slidesPerGroup: 2,
-                    spaceBetween: 24,
-                },
-                992: {
-                    slidesPerView: 3,
-                    slidesPerGroup: 3,
-                    spaceBetween: 24,
-                },
-                1328: {
-                    slidesPerView: 4,
-                    slidesPerGroup: 4,
-                    spaceBetween: 24,
-                }
-            }
-        });
-    }
-
-    if ($(".basic-slider-media").length) {
-        const basicSliderMediaSliderSettings = {
-            slidesPerView: "auto",
-            spaceBetween: 12,
-            slidesPerGroup: 1,
-            direction: "horizontal",
-            breakpoints: {
-                768: {
-                    slidesPerView: 2,
-                    slidesPerGroup: 2,
-                    spaceBetween: 24,
-                },
-                992: {
-                    slidesPerView: 3,
-                    slidesPerGroup: 3,
-                    spaceBetween: 24,
-                },
-                1328: {
-                    slidesPerView: 4,
-                    slidesPerGroup: 4,
-                    spaceBetween: 24,
-                }
-            }
-        };
-        let basicSliderMediaSlider = null;
-
-        reinitSlider();
-        $(window).on("resize", reinitSlider);
-
-        function reinitSlider() {
-            if (window.matchMedia("(max-width: 767.98px)").matches) {
-                basicSliderMediaSlider = null;
-                basicSliderMediaSlider = new Swiper(".basic-slider-media .js-basic-slider", basicSliderMediaSliderSettings);
-            }
-        }
-    }
-
-    if ($(".basic-slider-interests").length) {
-        const interestsSlider = new Swiper(".basic-slider-interests .js-basic-slider", {
-            slidesPerView: "auto",
-            spaceBetween: 12,
-            slidesPerGroup: 1,
-            direction: "horizontal",
-            navigation: {
-                nextEl: ".basic-slider-interests .swiper-button-next",
-                prevEl: ".basic-slider-interests .swiper-button-prev",
-            },
-            breakpoints: {
-                768: {
-                    slidesPerView: 2,
-                    slidesPerGroup: 2,
-                    spaceBetween: 24,
-                },
-                992: {
-                    slidesPerView: 3,
-                    slidesPerGroup: 3,
-                    spaceBetween: 24,
-                },
-                1328: {
-                    slidesPerView: 4,
-                    slidesPerGroup: 4,
-                    spaceBetween: 24,
-                }
-            }
-        });
-    }
-
-    if ($(".basic-slider-partners").length) {
-        const partnersSlider = new Swiper(".basic-slider-partners .js-basic-slider", {
-            slidesPerView: 4,
-            slidesPerGroup: 4,
-            spaceBetween: 12,
-            direction: "horizontal",
-            navigation: {
-                nextEl: ".basic-slider-partners .swiper-button-next",
-                prevEl: ".basic-slider-partners .swiper-button-prev",
-            },
-            breakpoints: {
-                768: {
-                    slidesPerView: 6,
-                    slidesPerGroup: 6,
-                    spaceBetween: 12,
-                },
-                992: {
-                    slidesPerView: 8,
-                    slidesPerGroup: 8,
-                    spaceBetween: 20,
-                },
-                1328: {
-                    slidesPerView: 10,
-                    slidesPerGroup: 10,
-                    spaceBetween: 20,
-                }
-            }
-        });
-    }
-};
-
-// Initialization mobile slider
-application.prototype.initMobileSlider = function () {
-    if ($(".mobile-only-slider").length) {
-        const mobilePartnersSliderSetting = {
-            slidesPerView: 3,
-            slidesPerGroup: 3,
-            spaceBetween: 12,
-            direction: "horizontal",
-        };
-        let mobilePartnersSlider = null;
-
-        breakpointChecker();
-        $(window).on("resize", breakpointChecker);
-
-        function breakpointChecker() {
-            if (window.matchMedia("(min-width: 992px)").matches) {
-                if(mobilePartnersSlider !== null) mobilePartnersSlider.destroy(true, true);
-                mobilePartnersSlider = null;
-            }
-            else if (window.matchMedia("(max-width: 991.98px)").matches) {
-                mobilePartnersSlider = new Swiper(".mobile-only-slider.js-basic-slider", mobilePartnersSliderSetting);
-            }
-        }
-    }
-};
-
-// Initialization responsive card slider
-application.prototype.initResponsiveCardSlider = function () {
-    if ($(".card-list-responsive").length) {
-        // init slider on mobile
-        if ($(".card-list-responsive.card-list-responsive--desktop-only").length) {
-            const mobileCardSliderSetting = {
-                slidesPerView: "auto",
-                spaceBetween: 12,
-                slidesPerGroup: 1,
-                direction: "horizontal",
-                breakpoints: {
-                    768: {
-                        slidesPerView: 2,
-                        slidesPerGroup: 2,
-                        spaceBetween: 24,
-                    }
-                }
-            };
-            let mobileCardSlider = null;
-
-            breakpointChecker();
-            $(window).on("resize", breakpointChecker);
-
-            function breakpointChecker() {
-                if (window.matchMedia("(min-width: 992px)").matches) {
-                    if(mobileCardSlider !== null) mobileCardSlider.destroy(true, true);
-                    mobileCardSlider = null;
-                }
-                else if (window.matchMedia("(max-width: 991.98px)").matches) {
-                    mobileCardSlider = new Swiper(".card-list-responsive--desktop-only .js-basic-slider", mobileCardSliderSetting);
-                }
-            }
-        }
-        // init slider on desktop
-        else if ($(".card-list-responsive.card-list-responsive--mobile-only").length) {
-            const desktopCardSliderSetting = {
-                slidesPerView: 3,
-                slidesPerGroup: 3,
-                spaceBetween: 24,
-                direction: "horizontal",
-                navigation: {
-                    nextEl: ".card-list-responsive .swiper-button-next",
-                    prevEl: ".card-list-responsive .swiper-button-prev",
-                },
-                breakpoints: {
-                    1328: {
-                        slidesPerView: 4,
-                        slidesPerGroup: 4,
-                        spaceBetween: 24,
-                    }
-                }
-            };
-            let desktopCardSlider = null;
-
-            breakpointChecker();
-            $(window).on("resize", breakpointChecker);
-
-            function breakpointChecker() {
-                if (window.matchMedia("(min-width: 992px)").matches) {
-                    desktopCardSlider = new Swiper(".card-list-responsive--mobile-only .js-basic-slider", desktopCardSliderSetting);
-                }
-                else if (window.matchMedia("(max-width: 991.98px)").matches) {
-                    if(desktopCardSlider !== null) desktopCardSlider.destroy(true, true);
-                    desktopCardSlider = null;
-                }
-            }
-        }
-    }
-};
-
-// Initialization handler for current user dropdown menu
-application.prototype.initHandlerCurrentUser = function () {
-    if ($(".js-current-user-menu").length) {
-        $(document).on("click", function (e) {
-            if (window.matchMedia("(min-width: 992px)").matches) {
-                if (!$(".js-current-user-menu").hasClass("open") && $(".current-user__dropdown").is(e.target)) {
-                    $(".js-current-user-menu").addClass("open");
-                }
-                else if ($(".js-current-user-menu").hasClass("open") && $(".current-user__dropdown").is(e.target)) {
-                    $(".js-current-user-menu").removeClass("open");
-                }
-                else if ($(".current-user__dropdown-menu ul").has(e.target).length) {
-                    $(".js-current-user-menu").removeClass("open");
-                }
-                else if (!$(".js-current-user-menu").is(e.target) && $(".js-current-user-menu").has(e.target).length === 0) {
-                    $(".js-current-user-menu").removeClass("open");
-                }
-            }
-        });
-    }
-};
-
-// Initialization password-switcher
-application.prototype.initPasswordSwitcher = function () {
-    if ($('input[type=password]').length) {
-        $(document).on('click', 'input[data-password-switcher]', function(){
-            if ($(this).is(':checked')) {
-                $(this).closest('.form__field').find('input[data-password-target]').attr('type', 'text');
-            } else {
-                $(this).closest('.form__field').find('input[data-password-target]').attr('type', 'password');
-            }
-        });
-    }
-};
-
-// Initialization select2 plagin
-application.prototype.initSelect2 = function () {
-    if ($(".js-select2").length) {
-        $(".js-select2").select2({
-            allowClear: true,
-        });
-    }
-};
-
-// Initialization tag selected
-application.prototype.initTagSelected = function () {
-    if ($("label.tag").length) {
-        $("label.tag").on("click", function () {
-            let elemInput = $(this).find("input[type='checkbox']");
-            if(!elemInput.is(":checked")) {
-                $(this).removeClass("selected");
-            } else if(elemInput.is(":checked")) {
-                $(this).addClass("selected");
-            }
-        });
-    }
-};
-
-// Mobile number mask
-application.prototype.initMaskedInput = function () {
-    $(".isPhone").mask("+7-999-999-99-99", { autoclear: false });
-};
-
-// Initialization add list
-application.prototype.initAddList = function () {
-    if ($(".js-add-list").length) {
-        $(".js-add-list .add-list__item").each(function (e) {
-            $(this).find(".add-list__delete").on("click", function () {
-                $(this).closest(".add-list__item").remove();
-            });
-        });
-    }
-};
-
-// Initialization drop files
-application.prototype.initDropfiles = function () {
-    File.prototype.convertToBase64 = function (callback) {
-        let reader = new FileReader();
-
-        reader.onloadend = function (e) {
-            callback(e.target.result, e.target.error);
-        };
-        reader.readAsDataURL(this);
-    };
-
-    File.prototype.convertToSvgHtml = function (callback) {
-        let reader = new FileReader();
-
-        reader.onloadend = function(e) {
-            callback(e.target.result, e.target.error);
-        }
-        reader.readAsText(this);
-    };
-
-    const getDataImage = (file, callback) => {
-        let filename = file.name,
-            idxDot = filename.lastIndexOf(".") + 1,
-            extFile = filename.substr(idxDot, filename.length).toLowerCase();
-
-        if (extFile === "jpg" || extFile === "jpeg" || extFile === "png") {
-            file.convertToBase64((base64) => {
-                callback(base64, false);
-            })
-        }
-        else if(extFile === "svg") {
-            file.convertToSvgHtml((svgHtml) => {
-                callback(svgHtml, true);
-            })
-        }
-        else {
-            alert('Неверный формат файла (Поддерживаемые форматы: jpg, jpeg, png, svg)');
-        }
-    }
-
-    const getDataDocs = (file, callback) => {
-        let filename = file.name,
-            idxDot = filename.lastIndexOf(".") + 1,
-            extFile = filename.substr(idxDot, filename.length).toLowerCase();
-
-        if (extFile === "jpg" || extFile === "jpeg" || extFile === "png") {
-            file.convertToBase64((base64) => {
-                callback(base64, false);
-            })
-        }
-        else {
-            alert('Неверный формат файла (Поддерживаемые форматы: jpg, jpeg, png, svg)');
-        }
-    }
-
-    $('body').on('dragenter', '.js-drop-file', function (e) {
-        e.stopPropagation();
-        e.preventDefault();
-    });
-
-    $('body').on('dragover', '.js-drop-file', function (e) {
-        e.stopPropagation();
-        e.preventDefault();
-    });
-
-    $('body').on('drop', '.js-drop-file', function (e) {
-        e.stopPropagation();
-        e.preventDefault();
-
-        let type = $(this).closest('.dropfile').attr('data-type');
-
-        if (type === 'image') {
-            for (let i in e.originalEvent.dataTransfer.files) {
-                if (e.originalEvent.dataTransfer.files.hasOwnProperty(i)) {
-                    let file = e.originalEvent.dataTransfer.files[i];
-                    getDataImage(file, (data, isSvg) => {
-                        appendImage($(this), data, isSvg);
-                    });
-                }
-            }
-        }
-        else if (type === 'document') {
-            appendDocument($(this), e.originalEvent.dataTransfer.files);
-        }
-    })
-
-    $('.js-drop-file').on('change', '.js-change-file', function () {
-        let type = $(this).closest('.dropfile').attr('data-type');
-
-        if (type === 'image') {
-            for (let i in $(this)[0].files) {
-                if ($(this)[0].files.hasOwnProperty(i)) {
-                    let file = $(this)[0].files[i];
-                    if (type === 'image') {
-                        getDataImage(file, (data, isSvg) => {
-                            appendImage($(this), data, isSvg);
-                        });
-                    }
-                    else if (type === 'document') {
-                        getDataDocs(file, (data) => {
-                            appendImage($(this), data, isSvg);
-                        });
-                    }
-                }
-            }
-        }
-        else if (type === 'document') {
-            appendDocument($(this), $(this)[0].files);
-        }
-    });
-
-    function appendImage($input, data, isSvg) {
-        let image = '',
-            $parent = $input.closest('.dropfile');
-
-        if(isSvg) {
-            image = data;
-        }
-        else {
-            image = `<img src="` + data + `">`;
-        }
-
-        let html = `
-                    <div class="dropfile-image__item">
-                        ` + image + `
-                        <div class="dropfile-image__remove js-remove-image">
-                            <svg class="icon btn__icon">
-                                <use href="/local/templates/main/img/sprite.svg#trash"></use>
-                            </svg>
-                        </div>
-                        <input class="js-image" type="hidden" name="` + $parent.attr('data-input-name') + `" value='` + data + `'>
-                    </div>
-                    `;
-
-        if($parent.hasClass('js-upload-cover')) {
-            $parent
-                .find('.dropfile-image')
-                .html(html);
-        }
-        else if($parent.hasClass('js-upload-avatar')) {
-            $parent
-                .find('.dropfile-area')
-                .addClass('dropfile-image')
-                .html(html);
-        }
-        else if($parent.hasClass('js-upload-photos')) {
-            $parent
-                .find('.dropfile-gallery')
-                .show()
-                .append(html);
-        }
-    }
-
-    function appendDocument($input, files) {
-        let $parent = $input.closest('.dropfile'),
-            $inputFile = $('<input/>')
-                .attr('type', "file")
-                .attr('multiple', true)
-                .attr('name', $parent.attr('data-input-name'))
-                .hide();
-
-        $inputFile.get(0).files = files;
-
-        for (let i in files) {
-            if (files.hasOwnProperty(i)) {
-                let filename = files[i].name,
-                    idxDot = filename.lastIndexOf(".") + 1,
-                    extFile = filename.substr(idxDot, filename.length).toLowerCase();
-
-                if (extFile === "doc" || extFile === "docx" || extFile === "xls" ||
-                    extFile === "xlsx" || extFile === "ppt" || extFile === "pptx" ||
-                    extFile === "txt" || extFile === "pdf"
-                ) {
-                } else {
-                    alert('Неверный формат файла (Поддерживаемые форматы: doc, docx, xls, xlsx, ppt, pptx, txt, pdf)');
-
-                    return false;
-                }
-            }
-        }
-
-        let html = ``;
-        for (let i in files) {
-            if (files.hasOwnProperty(i)) {
-                let filename = files[i].name;
-
-                let $parent = $input.closest('.dropfile'),
-                    $inputFile = $('<input/>')
-                        .attr('type', "file")
-                        .attr('multiple', true)
-                        .attr('name', $parent.attr('data-input-name'))
-                        .hide();
-
-                const dataTransfer = new DataTransfer();
-                dataTransfer.items.add(files[i]);
-                $inputFile.get(0).files = dataTransfer.files;
-
-                if ($inputFile.get(0).webkitEntries.length) {
-                    $inputFile.get(0).dataset.file = `${dataTransfer.files[0].name}`;
-                }
-
-                console.log($inputFile.get(0).files)
-
-                $html = $('<div/>')
-                    .addClass('dropfile-documents__item')
-                    .html(`<svg class="icon">
-                                <use href="/local/templates/main/img/sprite.svg#file"></use>
-                            </svg>
-                            <div class="dropfile-documents__name">` + filename + `</div>
-                            <div class="dropfile-documents__remove js-remove-document">
-                                <svg class="icon">
-                                    <use href="/local/templates/main/img/sprite.svg#cross"></use>
-                                </svg>
-                            </div>`)
-                    .append($inputFile)
-
-                $parent.find('.dropfile-documents').append($html);
-            }
-        }
-
-        //$parent.find('.dropfile-documents').append(html);
-    }
-
-
-    $('body').on('click', '.dropfile-image', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-    });
-
-    $('body').on('click', '.js-remove-image', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-
-        let $parent = $(this).closest('.dropfile');
-
-        if($parent.hasClass('js-upload-photos')) {
-            $(this).closest('.dropfile-image__item').remove();
-        }
-        else {
-            let html = ``;
-
-            if($parent.hasClass('js-upload-avatar')) {
-                $parent.find('')
-                html += `<div class="dropfile-descr">
-                        <div class="dropfile-descr__view">
-                            <svg class="icon">
-                                <use href="/local/templates/main/img/sprite.svg#add-image"></use>
-                            </svg>
-                        </div>
-                    </div>`
-            }
-
-            $(this).closest('.dropfile-image').html(html);
-
-            if($parent.hasClass('js-upload-avatar')) {
-                $parent.find('.dropfile-area').removeClass('dropfile-image');
-            }
-        }
-    });
-
-    $('body').on('click', '.js-remove-document', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-
-        console.log('oks')
-        $(this).closest('.dropfile-documents__item').remove();
-    });
-};
-
-
-// Initialization readmore plugin
-application.prototype.initReadmore = function () {
-    if ($(".js-spoiler").length) {
-        const spoiler = $(".js-spoiler");
-
-        spoiler.each(function (i) {
-            let currentElemHeight = spoiler.eq(i).data("collapsed-height");
-            spoiler.eq(i).addClass("js-spoiler-" + i);
-
-            $(".js-spoiler-" + i).readmore({
-                collapsedHeight: currentElemHeight,
-                moreLink: '<a href="javascript:;" class="btn-reset btn btn--noframe btn--link btn--tdu-dashed btn--green page-content__spoiler-trigger">\n' +
-                    '                                        <span class="btn__text">Показать полностью</span>\n' +
-                    '                                    </a>',
-                lessLink: '<a href="javascript:;" class="btn-reset btn btn--noframe btn--link btn--tdu-dashed btn--green page-content__spoiler-trigger">\n' +
-                    '                                        <span class="btn__text">Скрыть</span>\n' +
-                    '                                    </a>'
-            });
-        });
-    }
-};
-
-// Initialization accordion
-application.prototype.initAccordion = function () {
-    if ($(".accordion").length) {
-        initAccordionResonsive();
-        $(window).on("resize", initAccordionResonsive, reloadAccordionResonsive);
-
-        function reloadAccordionResonsive() {
-            setTimeout(function () {
-                location.reload();
-            }, 300);
-        }
-        function initAccordionResonsive() {
-            $(".accordion__collapse").hide();
-
-            if (window.matchMedia("(max-width: 767.98px)").matches) {
-                $(".js-accordion-btn").on("click", function () {
-                    if (!$(this).hasClass("open")) {
-                        $(this).closest(".accordion").find(".accordion__btn").removeClass("open");
-                        $(this).closest(".accordion__item").siblings(".accordion__item").removeClass("active");
-                        $(this).closest(".accordion__item").siblings(".accordion__item").find(".accordion__collapse").slideUp(160);
-                        $(this).addClass("open");
-                        $(this).closest(".accordion__item").addClass("active");
-                        $(this).closest(".accordion__item").find(".accordion__collapse").removeClass("collapsed");
-                        $(this).closest(".accordion__item").find(".accordion__collapse").slideDown(160);
-                    } else if ($(this).hasClass("open")) {
-                        $(this).removeClass("open");
-                        $(this).closest(".accordion__item").removeClass("active");
-                        $(this).closest(".accordion__item").find(".accordion__collapse").slideUp(160);
-                        setTimeout(function () {
-                            $(this).closest(".accordion__item").find(".accordion__collapse").addClass("collapsed");
-                        }, 160);
-                    }
-                });
-            } else if (window.matchMedia("(min-width: 768px)").matches) {
-                $(".js-accordion-btn-icon").on("click", function () {
-                    if (!$(this).closest(".js-accordion-btn").hasClass("open")) {
-                        $(this).closest(".accordion").find(".accordion__btn").removeClass("open");
-                        $(this).closest(".accordion__item").siblings(".accordion__item").removeClass("active");
-                        $(this).closest(".accordion__item").siblings(".accordion__item").find(".accordion__collapse").slideUp(160);
-                        $(this).closest(".accordion__btn").addClass("open");
-                        $(this).closest(".accordion__item").addClass("active");
-                        $(this).closest(".accordion__item").find(".accordion__collapse").removeClass("collapsed");
-                        $(this).closest(".accordion__item").find(".accordion__collapse").slideDown(160);
-                    } else if ($(this).closest(".js-accordion-btn").hasClass("open")) {
-                        $(this).closest(".accordion").find(".accordion__btn").removeClass("open");
-                        $(this).closest(".accordion__item").removeClass("active");
-                        $(this).closest(".accordion__item").find(".accordion__collapse").slideUp(160);
-                        setTimeout(function () {
-                            $(this).closest(".accordion__item").find(".accordion__collapse").addClass("collapsed");
-                        }, 160);
-                    }
-                });
-            }
-        }
-    }
-};
-
-// Initialization check all group
-application.prototype.initCheckall = function () {
-    if ($(".checkall-for").length) {
-        initOnloadCheckall();
-        initOnclickCheckallFor();
-        initOnclickCheckallGroup();
-
-        function initOnloadCheckall() {
-            $(".checkall-for").each(function () {
-                const checkallFor = $(this);
-                const checkallForData = checkallFor.data("checkall-for");
-                let checkallForState = false;
-                let checkallGroupState = [];
-                let checkallGroupCheckedState = [];
-
-                checkallForHandling();
-                compareGroupState(checkallGroupState);
-
-                function checkallForHandling() {
-                    $(".checkall-group[data-checkall-group='" + checkallForData + "']").each(function (e) {
-                        let checkallGroupElem = $(this);
-
-                        if(checkallGroupElem.is(":checked")) {
-                            checkallForState = true;
-                            checkallGroupState.push(true);
-                        } else if(!checkallGroupElem.is(":checked")) {
-                            checkallGroupState.push(false);
-                        }
-                    });
-
-                    if(checkallForState === false) {
-                        checkallFor.prop("checked", false);
-                    } else if(checkallForState === true) {
-                        checkallFor.prop("checked", true);
-                    }
-                }
-
-                function compareGroupState(arr) {
-                    $.each(arr, function(i) {
-                        if(arr[i] === true) {
-                            checkallGroupCheckedState.push("checked");
-                        } else if(arr[i] === false) {
-                            checkallGroupCheckedState.push("notChecked");
-                        }
-                    });
-
-                    const allChecked = checkallGroupCheckedState.every(elem => elem === "checked");
-
-                    if(allChecked) checkallFor.removeClass("custom-checkbox__input--checkline");
-                }
-            });
-        }
-
-        function initOnclickCheckallFor() {
-            $(".checkall-for").on("click", function (e) {
-                const checkallFor = $(this);
-                const checkallForData = checkallFor.data("checkall-for");
-
-                if(checkallFor.is(":checked")) {
-                    checkallFor.prop("checked", true);
-                    checkallFor.removeClass("custom-checkbox__input--checkline");
-                    $(".checkall-group[data-checkall-group='" + checkallForData + "']").prop("checked", true);
-                } else if(!checkallFor.is(":checked")) {
-                    checkallFor.prop("checked", false);
-                    $(".checkall-group[data-checkall-group='" + checkallForData + "']").prop("checked", false);
-                }
-            });
-        }
-
-        function initOnclickCheckallGroup() {
-            $(".checkall-group").on("click", function (e) {
-                const checkallGroup = $(this);
-                const checkallGroupData = checkallGroup.data("checkall-group");
-
-                let checkallGroupState = [];
-                let checkallGroupCheckedState = [];
-
-                checkallGroupHandling();
-                compareGroupState(checkallGroupState);
-
-                function checkallGroupHandling() {
-                    $(".checkall-group[data-checkall-group='" + checkallGroupData + "']").each(function (e) {
-                        let checkallGroupElem = $(this);
-
-                        if(checkallGroupElem.is(":checked")) {
-                            checkallGroupState.push(true);
-                        } else if(!checkallGroupElem.is(":checked")) {
-                            checkallGroupState.push(false);
-                        }
-                    });
-                }
-
-                function compareGroupState(arr) {
-                    $.each(arr, function(i) {
-                        if(arr[i] === true) {
-                            checkallGroupCheckedState.push("checked");
-                        } else if(arr[i] === false) {
-                            checkallGroupCheckedState.push("notChecked");
-                        }
-                    });
-
-                    const allChecked = checkallGroupCheckedState.every(elem => elem === "checked");
-                    const allNotChecked = checkallGroupCheckedState.every(elem => elem === "notChecked");
-
-                    if(allChecked) {
-                        $(".checkall-for[data-checkall-for='" + checkallGroupData + "']").prop("checked", true);
-                        $(".checkall-for[data-checkall-for='" + checkallGroupData + "']").removeClass("custom-checkbox__input--checkline");
-                    } else if(allNotChecked) {
-                        $(".checkall-for[data-checkall-for='" + checkallGroupData + "']").prop("checked", false);
-                    } else if(!allChecked && !allNotChecked) {
-                        $(".checkall-for[data-checkall-for='" + checkallGroupData + "']").prop("checked", true);
-
-                        if(!$(".checkall-for[data-checkall-for='" + checkallGroupData + "']").hasClass("custom-checkbox__input--checkline")) {
-                            $(".checkall-for[data-checkall-for='" + checkallGroupData + "']").addClass("custom-checkbox__input--checkline");
-                        }
-                    }
-                }
-            });
-        }
-    }
-};
-
-// Set height to '.page-content-settings-bar'
-application.prototype.setSettingsBarHeight = function () {
-    if ($('.page-content-settings-bar').length) {
-        const body = $('.has-settings-bar');
-        let barsHeight = $('.page-content-settings-bar').outerHeight();
-        body.css('padding-bottom', barsHeight);
-    }
-};
-
-// Set behavior static star-rating
-application.prototype.setStaticStarRating = function () {
-    if ($('.js-star-rating').length) {
-        $('.js-star-rating').each(function (i) {
-            const rating = $(this).find('.star-rating');
-            const value = parseInt($(this).find('.star-rating-value').text());
-
-            switch (value) {
-                case 0:
-                    rating.addClass('star-rating-0');
-                    break;
-                case 1:
-                    rating.addClass('star-rating-1');
-                    break;
-                case 2:
-                    rating.addClass('star-rating-2');
-                    break;
-                case 3:
-                    rating.addClass('star-rating-3');
-                    break;
-                case 4:
-                    rating.addClass('star-rating-4');
-                    break;
-                case 5:
-                    rating.addClass('star-rating-5');
-                    break;
-                default:
-                    rating.addClass('star-rating-0');
-            }
-        });
-    }
-};
-
-
-/*------------------------------------*/
-// Initialize input-search behavior
+// Initialization input-search behavior
 application.prototype.initInputSearch = function () {
     if ($('.input-search').length) {
-        console.log("success");
         $('.input-search').on('input', function () {
             if ($(this).val() === '' || $(this).val() === null) {
                 $(this).removeClass('has-data');
@@ -1519,5 +485,334 @@ application.prototype.initInputSearch = function () {
             $(this).closest('.input-search-wrapper').removeClass('has-data');
             $(this).closest('.input-search-wrapper').find('.input-search').val('').removeClass('has-data');
         });
+    }
+};
+
+// Initialization tag-bar slider
+application.prototype.initTagbarSlider = function () {
+    if ($('[data-tag-bar-slider]').length) {
+        const slider = $('[data-tag-bar-slider]');
+
+        slider.each(function (i) {
+            const tagbarSliderSetting = {
+                slidesPerView: 'auto',
+                spaceBetween: 8,
+                direction: 'horizontal',
+            };
+            let tagbarSlider = null;
+
+            slider.eq(i).addClass('tag-bar-slider-' + i);
+
+            breakpointChecker();
+            $(window).on('resize', breakpointChecker);
+
+            function breakpointChecker() {
+                if (window.matchMedia('(min-width: 992px)').matches) {
+                    if(tagbarSlider !== null) tagbarSlider.destroy(true, true);
+                    tagbarSlider = null;
+                }
+                else if (window.matchMedia('(max-width: 991.98px)').matches) {
+                    tagbarSlider = new Swiper('.tag-bar-slider-' + i, tagbarSliderSetting);
+                }
+            }
+        });
+    }
+};
+
+// Initialization mobile number mask
+application.prototype.initMaskedInput = function () {
+    $(".isPhone").mask("+7-999-999-99-99", { autoclear: false });
+};
+
+// Initialization switch content
+application.prototype.initSwitchContent = function () {
+    $('.switch-content').on('click', function () {
+        if($(this).hasClass('active')) {
+            $(this).removeClass('active');
+        } else {
+            $(this).addClass('active');
+        }
+    });
+};
+
+// Initialization notification
+application.prototype.initNotification = function () {
+    const actionNotice = $('.action-notice');
+    const noticeBtn = $('[data-notice]');
+
+    noticeBtn.on('click', function () {
+        let currentDataValue = noticeBtn.data('notice');
+
+        actionNotice
+            .fadeOut()
+            .removeClass('added');
+
+        if ($(this).hasClass('active')) {
+            showNotification();
+            setTimeout(hideNotification, 3000);
+            return;
+        }
+    });
+
+    function showNotification() {
+        actionNotice
+            .addClass('added')
+            .fadeIn()
+            .animate({ opacity: 1 }, 200);
+    }
+
+    function hideNotification() {
+        actionNotice
+            .fadeOut('slow')
+            .removeClass('added');
+    }
+};
+
+// Initialization range slider
+application.prototype.initCatalogPriceSlider = function () {
+    if ($('.range-slider').length) {
+        const slider = document.getElementById('range-slider');
+        const inputNumMin = document.getElementById('rsf_min');
+        const inputNumMax = document.getElementById('rsf_max');
+        let inputs = [inputNumMin, inputNumMax];
+
+        noUiSlider.create(slider, {
+            start: [10, 60],
+            step: 1,
+            connect: true,
+            range: {
+                'min': [0],
+                'max': [100],
+            }
+        });
+
+        slider.noUiSlider.on('update', function (values, handle) {
+            inputs[handle].value = values[handle];
+        });
+
+        // Listen to keydown events on the input field.
+        inputs.forEach(function (input, handle) {
+            input.addEventListener('change', function () {
+                slider.noUiSlider.setHandle(handle, this.value);
+            });
+
+            input.addEventListener('keydown', function (e) {
+                let values = slider.noUiSlider.get();
+                let value = Number(values[handle]);
+
+                // [[handle0_down, handle0_up], [handle1_down, handle1_up]]
+                let steps = slider.noUiSlider.steps();
+
+                // [down, up]
+                let step = steps[handle];
+
+                let position;
+
+                // 13 is enter,
+                // 38 is key up,
+                // 40 is key down.
+                switch (e.which) {
+                    case 13:
+                        slider.noUiSlider.setHandle(handle, this.value);
+
+                        break;
+                    case 38:
+                        // Get step to go increase slider value (up)
+                        position = step[1];
+
+                        // false = no step is set
+                        if (position === false) {
+                            position = 1;
+                        }
+
+                        // null = edge of slider
+                        if (position !== null) {
+                            slider.noUiSlider.setHandle(handle, value + position);
+                        }
+
+                        break;
+                    case 40:
+                        position = step[0];
+
+                        if (position === false) {
+                            position = 1;
+                        }
+
+                        if (position !== null) {
+                            slider.noUiSlider.setHandle(handle, value - position);
+                        }
+
+                        break;
+                }
+            });
+        });
+
+
+        // Restricts input for the given textbox to the given inputFilter.
+        function setInputFilter(textbox, inputFilter, errMsg) {
+            ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop", "focusout"].forEach(function(event) {
+                textbox.addEventListener(event, function(e) {
+                    if (inputFilter(this.value)) {
+                        // Accepted value
+                        this.oldValue = this.value;
+                        this.oldSelectionStart = this.selectionStart;
+                        this.oldSelectionEnd = this.selectionEnd;
+                    } else if (this.hasOwnProperty("oldValue")) {
+                        // Rejected value - restore the previous one
+                        this.reportValidity();
+                        this.value = this.oldValue;
+                        this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+                    } else {
+                        // Rejected value - nothing to restore
+                        this.value = "";
+                    }
+                });
+            });
+        }
+
+        // Install input filters.
+        setInputFilter(document.querySelector(".range-slider-fields__input"), function(value) {
+            return /^-?\d*$/.test(value); });
+    }
+};
+
+// Initialization catalog sidebar filter
+application.prototype.initCatalogSidebarFilter = function () {
+    if ($('[data-filter]').length && $('[data-filter-spoiler]').length) {
+        const filter = $('[data-filter]');
+        const filterSpoiler = $('[data-filter-spoiler]');
+        const filterClose = $('[data-filter-close]');
+
+        setResponsiveFilter();
+        setCheckChangeFilter();
+        $(window).on('resize', setResponsiveFilter, setCloseFilter, setCheckChangeFilter);
+
+        filterClose.on('click', function () {
+            setCloseFilter();
+        });
+
+        $(document).on('keyup', function (e) {
+            if (e.key == 'Escape') {
+                setCloseFilter();
+            }
+        });
+
+        function setResponsiveFilter() {
+            if (window.matchMedia('(min-width: 992px)').matches) {
+                setCloseFilter();
+            } else if (window.matchMedia('(max-width: 991.98px)').matches) {
+                filterSpoiler.on('click', function () {
+                    $(this).addClass('active');
+                    filter.addClass('active');
+                });
+            }
+        }
+
+        function setCloseFilter() {
+            filter.removeClass('active');
+            filterSpoiler.removeClass('active');
+        }
+
+        function setCheckChangeFilter() {
+            if (window.matchMedia('(min-width: 992px)').matches) {
+                filter.removeClass('has-filter');
+            } else if (window.matchMedia('(max-width: 991.98px)').matches) {
+                filter.on('change', function () {
+                    filter.addClass('has-filter');
+                    filterSpoiler.addClass('has-filter');
+                });
+            }
+        }
+    }
+};
+
+// Initialization catalog sidebar apply filter
+application.prototype.initCatalogSidebarApplyFilter = function () {
+    let trigger = null;
+    let coordsTrigger = null;
+    let wTrigger = null;
+    let hTrigger = null;
+    let html = '<div class="catalog-sidebar-apply-filter">' +
+        '           <div class="catalog-sidebar-apply-filter__title">Показать</div>' +
+        '           <div class="catalog-sidebar-apply-filter__value">2 184 товара</div>' +
+        '       </div>';
+
+    $(document).on('click', '.catalog-sidebar-filter__item .custom-checkbox__input', '.catalog-sidebar-filter__item .custom-checkbox__label-for', function () {
+        let scroll = $(window).scrollTop();
+        trigger = $(this).closest('.custom-checkbox');
+        coordsTrigger = trigger.offset();
+        wTrigger = trigger.outerWidth();
+        hTrigger = trigger.outerHeight();
+
+        $('.catalog-sidebar-apply-filter').remove();
+        $('body').append(html);
+        $('.catalog-sidebar-apply-filter').css({
+            'top': parseInt(coordsTrigger.top + (hTrigger * 0.5)) - scroll + 'px',
+            'left': parseInt(coordsTrigger.left + (wTrigger - 2)) + 'px',
+        });
+        setTimeout(function () {
+            $('.catalog-sidebar-apply-filter').remove();
+        }, 5000);
+
+    });
+
+    $(window).on('scroll', function () {
+        $('.catalog-sidebar-apply-filter').remove();
+    });
+};
+
+// Initialization catalog content sort
+application.prototype.initCatalogContentSort = function () {
+    if ($('.catalog-content-settings__sort-options').length) {
+        initCatalogContentSortSwitch();
+        catalogSettingsSortSelect();
+        $(window).on('resize', catalogSettingsSortSelect);
+
+        $(document).on('click', function (e) {
+            if (!$('.catalog-content-settings__sort-select').is(e.target) &&
+                !$('.catalog-content-settings__sort-options').is(e.target) &&
+                $('.catalog-content-settings__sort-options').has(e.target).length === 0)
+            {
+                closeCatalogContentSettingsSort();
+            }
+        });
+
+        $(document).on('keyup', function (e) {
+            if (e.key == 'Escape') {
+                closeCatalogContentSettingsSort();
+            }
+        });
+
+        function initCatalogContentSortSwitch() {
+            $('.catalog-content-settings__sort-options input[type="radio"]').on('click', function () {
+                if (window.matchMedia('(max-width: 1199.98px)').matches) {
+                    let selectPlaceholder = $(this).siblings('.tag').text();
+
+                    $('.catalog-content-settings__sort').find('.catalog-content-settings__sort-select-text').text(selectPlaceholder);
+                    closeCatalogContentSettingsSort();
+                }
+            });
+        }
+
+        function catalogSettingsSortSelect() {
+            if (window.matchMedia('(min-width: 1200px)').matches) {
+                closeCatalogContentSettingsSort();
+            } else if (window.matchMedia('(max-width: 1199.98px)').matches) {
+                $('.catalog-content-settings__sort-select').on('click', function () {
+                    if (!$(this).hasClass('active')) {
+                        $(this).addClass('active');
+                        $(this).siblings('.catalog-content-settings__sort-options').addClass('active');
+                    } else if ($(this).hasClass('active')) {
+                        $(this).removeClass('active');
+                        $(this).siblings('.catalog-content-settings__sort-options').removeClass('active');
+                    }
+                });
+            }
+        }
+
+        function closeCatalogContentSettingsSort () {
+            $('.catalog-content-settings__sort-select').removeClass('active');
+            $('.catalog-content-settings__sort-options').removeClass('active');
+        }
     }
 };

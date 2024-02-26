@@ -41,6 +41,12 @@
                 border-radius: 50%;
                 background-color: #000;
             }
+            .pl-header {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                margin: 0 0 15px 20px;
+            }
             .logo {
                 display: inline-flex;
                 margin-right: 40px;
@@ -55,9 +61,9 @@
     </head>
 
     <body>
-    <div style="display: flex; align-items:center; margin: 0 0 15px 20px;">
+    <div class="pl-header">
         <div class="logo">
-            <img src="img/sprite.svg#logo" width="162" height="78" alt="Логотип компании">
+            <img src="img/logo.png" width="115" height="73" alt="Логотип компании">
         </div>
         <span style="display: inline-flex; align-items:center; font-size: 24px;">
             <span style="color: forestgreen; font-weight: 600;">00 + ui</span>
