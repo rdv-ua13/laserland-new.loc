@@ -77,15 +77,517 @@
 		color: var(--gray7-color);
 		font-size: 14px;
 	}
+
+	&-cards {
+		.laser-advantages__item {
+			display: flex;
+			overflow: hidden;
+			border: 1px solid var(--gray5-color);
+			border-radius: 8px;
+			background-color: var(--gray6-color);
+		}
+		.laser-advantages__view {
+			position: relative;
+
+			&::before {
+				content: "";
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-1px, -1px);
+				min-width: 2px;
+				width: 2px;
+				min-height: 2px;
+				height: 2px;
+				border-radius: 50%;
+				box-shadow: 0 8px 48px 8px rgba(0, 187, 221, 0.6);
+			}
+		}
+		.laser-advantages__title {
+			font-weight: 500;
+		}
+	}
+
+	&-script {
+		display: flex;
+
+		&__title {
+			line-height: 1;
+			letter-spacing: -0.2px;
+
+			&:not(:last-child) {
+				margin-bottom: 20px;
+			}
+		}
+		&__content {
+			color: var(--gray8-color);
+			font-size: 14px;
+		}
+	}
 }
 @media (min-width: 992px) {
 	.laser-advantages {
+		&__item {
+			flex: 1;
+		}
+
+		&-cards {
+			display: grid;
+			gap: 20px;
+
+			.laser-advantages__item {
+				flex-direction: column;
+				gap: 20px;
+				padding: 24px 24px 20px;
+			}
+			.laser-advantages__view {
+				min-width: 48px;
+				width: 48px;
+				min-height: 48px;
+				height: 48px;
+			}
+			.laser-advantages__title {
+				display: flex;
+				flex: 1;
+				align-items: flex-end;
+				min-height: 48px;
+			}
+		}
+
+		&-script {
+			&__item {
+				min-width: 275px;
+				width: 275px;
+
+				&:nth-child(2) {
+					margin-right: auto;
+				}
+				&:nth-child(n+3) {
+					display: none;
+				}
+			}
+			&__title {
+				font-weight: 500;
+				font-size: 72px;
+			}
+		}
+	}
+}
+@media (min-width: 1400px) {
+	.laser-advantages {
 		gap: 120px;
+
+		&-cards {
+			grid-template-columns: repeat(3, 1fr);
+		}
+
+		&-script {
+			gap: 80px;
+		}
 	}
 }
 @media (max-width: 991.98px) {
 	.laser-advantages {
 		flex-direction: column;
 		gap: 40px;
+
+		&-cards {
+			display: flex;
+			flex-direction: column;
+			gap: 12px;
+
+			.laser-advantages__item {
+				align-items: center;
+				gap: 16px;
+				padding: 24px 16px 20px 24px;
+			}
+			.laser-advantages__view {
+				min-width: 32px;
+				width: 32px;
+				min-height: 32px;
+				height: 32px;
+			}
+		}
+
+		&-script {
+			gap: 32px;
+			margin-bottom: 70px;
+
+			&__item {
+				flex: 1;
+			}
+			&__title {
+				font-weight: 700;
+				font-size: 48px;
+			}
+		}
+	}
+}
+@media (min-width: 992px) and (max-width: 1399.98px) {
+	.laser-advantages {
+		gap: 80px;
+
+		&-cards {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		&-script {
+			gap: 40px;
+		}
+	}
+}
+
+.laser-event {
+	&__item {
+		position: relative;
+		overflow: hidden;
+		border-radius: 4px;
+
+		&:hover {
+			.laser-event__bg {
+				transform: scale(1.05);
+			}
+			.laser-event__descr {
+				bottom: 0;
+			}
+			.laser-event__action {
+				opacity: 1;
+			}
+		}
+	}
+	&__bg {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+		border-radius: 4px;
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: cover;
+		transition: var(--transition);
+	}
+	&__descr {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: -72px;
+		left: 0;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+		gap: 20px;
+		padding: 24px;
+		transition: var(--transition);
+
+		&::before {
+			content: "";
+			z-index: 0;
+			position: absolute;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			min-height: 155px;
+			height: 155px;
+			background: linear-gradient(rgba(0, 0, 0, 0), #050505);
+		}
+	}
+	&__title {
+		position: relative;
+		display: flex;
+		flex: 1;
+		align-items: flex-end;
+		cursor: default;
+	}
+	&__action {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		opacity: 0;
+		transition: var(--transition);
+	}
+}
+@media (min-width: 992px) {
+	.laser-event {
+		.reset-slider-list {
+			display: grid;
+			gap: 20px;
+		}
+		&__item,
+		&__bg {
+			aspect-ratio: 9/16;
+		}
+	}
+}
+@media (min-width: 1200px) {
+	.laser-event {
+		.reset-slider-list {
+			grid-template-columns: repeat(4, 1fr);
+		}
+	}
+}
+@media (max-width: 991.98px) {
+	.laser-event {
+		&__item,
+		&__bg {
+			min-width: 223px;
+			width: 223px;
+			min-height: 378px;
+			height: 378px;
+		}
+	}
+}
+@media (min-width: 992px) and (max-width: 1199.98px) {
+	.laser-event {
+		.reset-slider-list {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+}
+
+.laser-client-tag {
+	display: flex;
+	gap: 24px;
+
+	&__board {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+	}
+	&__list {
+		display: flex;
+		flex-wrap: wrap;
+	}
+	&__item {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	&__action {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 16px;
+		overflow: hidden;
+	}
+}
+@media (min-width: 992px) {
+	.laser-client-tag {
+		&__board {
+			flex: 1;
+		}
+		&__action {
+			justify-content: flex-end;
+			align-items: flex-end;
+		}
+	}
+}
+@media (min-width: 1200px) {
+	.laser-client-tag {
+		&__list {
+			gap: 20px 48px;
+		}
+		&__action {
+			min-width: 360px;
+			width: 360px;
+		}
+	}
+}
+@media (max-width: 991.98px) {
+	.laser-client-tag {
+		flex-wrap: wrap;
+
+		&__board,
+		&__action {
+			min-width: 100%;
+			width: 100%;
+		}
+		&__list {
+			gap: 16px 20px;
+		}
+		&__item {
+			flex: 1;
+		}
+	}
+}
+@media (min-width: 992px) and (max-width: 1199.98px) {
+	.laser-client-tag {
+		&__list {
+			gap: 20px 32px;
+		}
+		&__action {
+			min-width: 300px;
+			width: 300px;
+		}
+	}
+}
+
+.laser-extra-fun {
+	&__list {
+		display: flex;
+	}
+	&__item {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		gap: 4px;
+		overflow: hidden;
+		border: 1px solid var(--gray5-color);
+		border-radius: 8px;
+		background-color: var(--gray6-color);
+	}
+	&__label {
+		z-index: 0;
+		position: absolute;
+		top: 8px;
+		right: 8px;
+	}
+	&__content {
+		color: var(--gray7-color);
+		font-size: 14px;
+	}
+}
+@media (min-width: 992px) {
+	.laser-extra-fun {
+		&__list {
+			display: grid;
+			grid-template-columns: repeat(4, 1fr);
+			gap: 20px;
+		}
+		&__item {
+			padding: 36px 24px;
+
+			&--wide {
+				grid-column: span 2;
+			}
+		}
+	}
+}
+@media (max-width: 991.98px) {
+	.laser-extra-fun {
+		&__list {
+			display: flex;
+			flex-direction: column;
+			gap: 12px;
+		}
+		&__item {
+			padding: 20px 70px 20px 20px;
+		}
+	}
+}
+
+.laser-action {
+	display: flex;
+}
+@media (max-width: 991.98px) {
+	.laser-action {
+		flex-direction: column;
+	}
+}
+
+.laser-focus {
+	.image {
+		overflow: hidden;
+		border-radius: 8px;
+	}
+}
+@media (min-width: 992px) {
+	.laser-focus {
+		.image {
+			aspect-ratio: 16/6;
+		}
+	}
+}
+@media (max-width: 991.98px) {
+	.laser-focus {
+		.image {
+			aspect-ratio: 16/11;
+		}
+	}
+}
+
+.laser-contacts {
+	display: flex;
+	flex-direction: column;
+	gap: 32px;
+
+	&__item {
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+	}
+	&__base {
+		display: flex;
+		align-items: flex-start;
+	}
+	&__view,
+	&__caption {
+		display: flex;
+	}
+	&__caption {
+		color: var(--gray7-color);
+	}
+
+	&-social {
+		.icon {
+			min-width: 40px;
+			width: 40px;
+			min-height: 40px;
+			height: 40px;
+		}
+	}
+}
+@media (min-width: 992px) {
+	.laser-contacts {
+		&__base {
+			gap: 16px;
+		}
+		&__view {
+			padding: 4px;
+
+			.icon {
+				min-width: 24px;
+				width: 24px;
+				min-height: 24px;
+				height: 24px;
+			}
+		}
+		&__caption {
+			padding-left: 48px;
+		}
+	}
+}
+@media (max-width: 991.98px) {
+	.laser-contacts {
+		&__base {
+			gap: 12px;
+		}
+		&__view {
+			padding: 2px;
+
+			.icon {
+				min-width: 20px;
+				width: 20px;
+				min-height: 20px;
+				height: 20px;
+			}
+		}
+		&__caption {
+			padding-left: 36px;
+		}
+	}
+}
+
+.contact-map {}
+@media (min-width: 992px) {
+	.contact-map {
+		.image {
+			aspect-ratio: 16/6;
+		}
+	}
+}
+@media (max-width: 991.98px) {
+	.contact-map {
+		.image {
+			aspect-ratio: 12/16;
+		}
 	}
 }

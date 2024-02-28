@@ -130,7 +130,7 @@
                 </div>
                 <div class="mobile-menu-header__contacts">
                     <a class="header-contacts__tel" href="tel:+73022284258">
-                        <svg class="icon icon-fill desktop-only">
+                        <svg class="icon icon-fill icon-cyan desktop-only">
                             <use href="img/sprite.svg#fill-call-calling"></use>
                         </svg>
                         <span class="fz-sm">+7 (3022) 28-42-58</span>

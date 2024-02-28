@@ -5,14 +5,18 @@
 	background-color: var(--black-color);
 	color: var(--white-color);
 
-	&__row {
+	.logo {
 		display: flex;
-		flex-wrap: wrap;
+		justify-content: center;
+		align-items: center;
 	}
-	&__column {
-		flex: 1;
+	&__info {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 12px;
 	}
-	&__title {
+	&__owner {
 		color: var(--gray2-color);
 		font-weight: 700;
 		font-size: 14px;
@@ -20,116 +24,29 @@
 		letter-spacing: 0.42px;
 		text-transform: uppercase;
 	}
-	&__list {
-		& a {
-			color: var(--white-color);
-		}
-	}
-	&-contacts {
-		display: flex;
-		flex-direction: column;
-
-		&__tel {
-			display: flex;
-			flex-direction: column;
-
-			&-caption {
-				&:hover {
-					color: var(--gray2-color);
-				}
-			}
-		}
-	}
-	&__rights {
-		display: flex;
-		flex-direction: column;
-		gap: 20px;
-
-		.link-secondary {
-			&:hover {
-				color: var(--gray2-color);
-			}
-		}
-	}
-
-	.column-between {
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		gap: 20px;
-
-		&__item {
-			flex: 1;
-
-			&:not(:first-child) {
-				flex: 0;
-			}
-		}
-	}
+	&__privacy-policy {}
 }
 @media (min-width: 992px) {
 	.footer {
-		padding-top: 60px;
-		padding-bottom: 60px;
+		padding-top: 80px;
+		padding-bottom: 80px;
 
-		&__row {
-			gap: 20px;
-		}
-		&__title {
+		.logo {
 			&:not(:last-child) {
-				margin-bottom: 24px;
+				margin-bottom: 48px;
 			}
-		}
-		&__list {
-			& li:not(:last-child) {
-				margin-bottom: 16px;
-			}
-		}
-		&-contacts {
-			gap: 24px;
 		}
 	}
 }
 @media (max-width: 991.98px) {
 	.footer {
-		padding-top: 20px;
-		padding-bottom: 20px;
+		padding-top: 60px;
+		padding-bottom: 60px;
 
-		&__row {
-			gap: 32px;
-		}
-		&__title {
+		.logo {
 			&:not(:last-child) {
-				margin-bottom: 16px;
+				margin-bottom: 40px;
 			}
-		}
-		&__list {
-			& li:not(:last-child) {
-				margin-bottom: 12px;
-			}
-		}
-		&-contacts {
-			gap: 20px;
-		}
-
-		.payment-supports {
-			gap: 24px;
-		}
-	}
-}
-@media (max-width: 575.98px) {
-	.footer {
-		.footer__column {
-			min-width: 100%;
-			width: 100%;
-		}
-	}
-}
-@media (min-width: 576px) and (max-width: 767.98px) {
-	.footer {
-		.footer__column {
-			min-width: calc((100vw - 64px) / 2);
-			width: calc((100vw - 64px) / 2);
 		}
 	}
 }
