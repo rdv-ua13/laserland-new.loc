@@ -326,7 +326,7 @@
 }
 @media (max-width: 991.98px) {
 	.laser-event {
-		&__item,
+		&__item.swiper-slide,
 		&__bg {
 			min-width: 223px;
 			width: 223px;
@@ -875,6 +875,9 @@
 				}
 			}
 		}
+		&-hr {
+			padding: 0;
+		}
 	}
 }
 @media (min-width: 992px) {
@@ -894,26 +897,34 @@
 			transform: unset !important;
 		}
 
-		.swiper-slide {
-			&:not(.slide-desktop-sidebar) {
-				.laser-tariff-slider__descr {
-					&-title {
-						display: none;
+		.slide-desktop-sidebar {
+			.laser-tariff-slider__descr {
+				&-item {
+					&--hr {
+						overflow: visible;
 					}
 				}
 			}
 		}
-		.slide-desktop-sidebar {
-			.laser-tariff-slider {
-				&__descr {
-					&-item {
-						&:nth-child(2) {
-							.laser-tariff-slider__descr-title {
-								&::before {
-									content: "";
-								}
-							}
-						}
+		.swiper-slide {
+			&:not(.slide-desktop-sidebar) {
+				.laser-tariff-slider__descr {
+					&-title {
+						z-index: -1;
+						opacity: 0;
+						user-select: none;
+						pointer-events: none;
+					}
+					&-value {
+						z-index: 1;
+						position: absolute;
+						top: 0;
+						bottom: 0;
+						left: 0;
+						display: flex;
+						justify-content: flex-start;
+						align-items: flex-start;
+						overflow: hidden;
 					}
 				}
 			}
@@ -926,11 +937,25 @@
 			gap: 40px;
 
 			&-item {
+				position: relative;
+				overflow: hidden;
+
 				&--gap-more {
 					margin-bottom: 20px;
 				}
-				&--hr {
-					display: none;
+				&--extra-fun {
+					.laser-tariff-slider__descr-title {
+						display: -webkit-box;
+						-webkit-box-orient: vertical;
+						overflow: hidden;
+					}
+				}
+			}
+			&-hr {
+				&.decor-bt {
+					&::before {
+						right: unset;
+					}
 				}
 			}
 		}
@@ -944,22 +969,67 @@
 
 		.slide-desktop-sidebar {
 			.laser-tariff-slider__descr {
-				padding-right: 24px;
+				padding-right: 20px;
+			}
+		}
+		.swiper-slide {
+			&:not(.slide-desktop-sidebar) {
+				.laser-tariff-slider__descr {
+					&-title {
+						margin-right: calc((285px - (((100vw - 120px) - 305px - 80px) / 4)) * -1);
+					}
+					&-value {
+						min-width: calc(((100vw - 120px) - 305px - 80px) / 4);
+						width: calc(((100vw - 120px) - 305px - 80px) / 4);
+					}
+				}
+			}
+		}
+
+		&__descr {
+			&-item {
+				&--extra-fun {
+					.laser-tariff-slider__descr-title {
+						-webkit-line-clamp: 2;
+						min-height: 48px;
+						height: 48px;
+					}
+				}
 			}
 		}
 	}
 }
-/*@media (max-width: 1199.98px) {
-	.laser-tariff-slider-wrapper {
-		padding-top: 20px;
+@media (min-width: 1400px) {
+	.laser-tariff-slider {
+		&__descr {
+			&-hr {
+				&.decor-bt {
+					&::before {
+						min-width: calc(1280px - 20px);
+						width: calc(1280px - 20px);
+					}
+				}
+			}
+		}
 	}
-}*/
+}
 @media (max-width: 991.98px) {
 	.laser-tariff-slider {
 		cursor: grab;
 
+		.swiper-slide {
+			width: auto;
+			height: auto;
+		}
+		.slide-desktop-sidebar {
+			display: none;
+		}
 		&__item {
 			gap: 24px;
+			min-width: 305px;
+			width: 305px;
+			min-height: 100%;
+			height: 100%;
 			padding: 20px 20px 60px 20px;
 			border: 1px solid var(--gray5-color);
 			border-radius: 8px;
@@ -982,9 +1052,14 @@
 			&-title {
 				color: var(--gray7-color);
 			}
-			&-hr {
-				padding: 0;
-			}
+		}
+	}
+}
+@media (max-width: 374.98px) {
+	.laser-tariff-slider {
+		&__item {
+			min-width: 255px;
+			width: 255px;
 		}
 	}
 }
@@ -998,6 +1073,306 @@
 			.laser-tariff-slider__descr {
 				padding-right: 16px;
 			}
+		}
+		.swiper-slide {
+			&:not(.slide-desktop-sidebar) {
+				.laser-tariff-slider__descr {
+					&-title {
+						margin-right: calc((264px - (((100vw - 120px) - 280px - 80px) / 4)) * -1);
+					}
+					&-value {
+						min-width: calc(((100vw - 120px) - 280px - 80px) / 4);
+						width: calc(((100vw - 120px) - 280px - 80px) / 4);
+					}
+				}
+			}
+		}
+
+		&__title {
+			font-size: 24px;
+		}
+		&__descr {
+			&-item {
+				&--extra-fun {
+					.laser-tariff-slider__descr-title {
+						-webkit-line-clamp: 3;
+						min-height: 60px;
+						height: 60px;
+						font-size: 14px;
+						line-height: 20px;
+					}
+					.laser-tariff-slider__descr-value {
+						font-size: 14px;
+						line-height: 20px;
+					}
+				}
+			}
+			&-price {
+				font-size: 24px;
+			}
+		}
+	}
+}
+@media (min-width: 992px) and (max-width: 1399.98px) {
+	.laser-tariff-slider {
+		&__descr {
+			&-hr {
+				&.decor-bt {
+					&::before {
+						min-width: calc(100vw - 120px - 20px);
+						width: calc(100vw - 120px - 20px);
+					}
+				}
+			}
+		}
+	}
+}
+
+.laser-review {
+	&-audio {
+		.laser-review__item {
+			display: flex;
+			align-items: center;
+		}
+		.laser-review__view {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+
+			.image {
+				overflow: hidden;
+				border-radius: 50%;
+			}
+		}
+		.laser-review__content {
+			display: flex;
+			flex: 1;
+			flex-direction: column;
+		}
+		.laser-review__player {
+			border-radius: 8px;
+			background-color: var(--gray6-color);
+		}
+	}
+	&-text {
+		.laser-review__item {
+			display: flex;
+			flex-direction: column;
+			border: 1px solid var(--gray5-color);
+			border-radius: 8px;
+			background-color: var(--gray6-color);
+		}
+		.laser-review__header {
+			display: flex;
+			align-items: center;
+		}
+		.laser-review__view {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+
+			.image {
+				overflow: hidden;
+				border-radius: 50%;
+			}
+		}
+		.laser-review__data {
+			display: flex;
+			flex-direction: column;
+			gap: 2px;
+		}
+		.laser-review__date {
+			color: var(--gray7-color);
+		}
+		.laser-review__content {
+			display: flex;
+			flex: 1;
+			flex-direction: column;
+		}
+	}
+	&-photo {
+		.laser-review__item {
+			.image {
+				min-height: 100%;
+				height: 100%;
+				min-width: 100%;
+				width: 100%;
+			}
+		}
+	}
+	&-video {
+		.laser-review__item {
+			aspect-ratio: 16/11;
+		}
+	}
+}
+@media (min-width: 992px) {
+	.laser-review {
+		&-audio {
+			display: grid;
+			gap: 48px;
+
+			.laser-review__item {
+				gap: 20px;
+			}
+			.laser-review__view {
+				.image {
+					min-width: 80px;
+					width: 80px;
+					min-height: 80px;
+					height: 80px;
+				}
+			}
+			.laser-review__content {
+				gap: 12px;
+			}
+			.laser-review__player {
+				min-height: 52px;
+				height: 52px;
+				padding: 8px 8px 16px;
+			}
+		}
+		&-text {
+			column-gap: 20px;
+
+			.laser-review__item {
+				gap: 16px;
+				margin-bottom: 20px;
+				padding: 20px 24px;
+				break-inside: avoid;
+			}
+			.laser-review__header {
+				gap: 16px;
+			}
+			.laser-review__view {
+				.image {
+					min-width: 60px;
+					width: 60px;
+					min-height: 60px;
+					height: 60px;
+				}
+			}
+		}
+		&-photo {
+			.reset-slider-list {
+				display: grid;
+				gap: 20px;
+			}
+
+			.laser-review__item {
+				aspect-ratio: 16/11;
+			}
+		}
+		&-video {
+			display: grid;
+			gap: 20px;
+		}
+	}
+}
+@media (min-width: 1400px) {
+	.laser-review {
+		&-audio {
+			grid-template-columns: repeat(3, 1fr);
+		}
+		&-text {
+			column-count: 3;
+		}
+		&-photo {
+			.reset-slider-list {
+				grid-template-columns: repeat(3, 1fr);
+			}
+		}
+		&-video {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+}
+@media (max-width: 991.98px) {
+	.laser-review {
+		&-audio {
+			display: flex;
+			flex-direction: column;
+			gap: 32px;
+
+			.laser-review__item {
+				gap: 16px;
+			}
+			.laser-review__view {
+				.image {
+					min-width: 60px;
+					width: 60px;
+					min-height: 60px;
+					height: 60px;
+				}
+			}
+			.laser-review__content {
+				gap: 4px;
+			}
+			.laser-review__player {
+				min-height: 48px;
+				height: 48px;
+				padding: 8px 6px 16px;
+			}
+		}
+		&-text {
+			display: flex;
+			flex-direction: column;
+			gap: 12px;
+
+			.laser-review__item {
+				gap: 12px;
+				padding: 16px;
+			}
+			.laser-review__header {
+				gap: 12px;
+			}
+			.laser-review__view {
+				.image {
+					min-width: 40px;
+					width: 40px;
+					min-height: 40px;
+					height: 40px;
+				}
+			}
+		}
+		&-photo {
+			.laser-review__item {
+				min-width: 320px;
+				width: 320px;
+				min-height: 215px;
+				height: 215px;
+			}
+		}
+		&-video {
+			display: flex;
+			flex-direction: column;
+			gap: 12px;
+		}
+	}
+}
+@media (min-width: 768px) and (max-width: 991.98px) {
+	.laser-review {
+		&-video {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+}
+@media (min-width: 992px) and (max-width: 1399.98px) {
+	.laser-review {
+		&-audio {
+			grid-template-columns: repeat(2, 1fr);
+		}
+		&-text {
+			column-count: 2;
+		}
+		&-photo {
+			.reset-slider-list {
+				grid-template-columns: repeat(2, 1fr);
+			}
+		}
+		&-video {
+			grid-template-columns: repeat(2, 1fr);
 		}
 	}
 }

@@ -12,7 +12,9 @@ application.prototype.init = function () {
     this.initBurger();
     this.initOverlay();
     this.initBasicSlider();
+    this.initBasicTabSlider();
     this.initSliders();
+    this.initBasicTabs();
     this.initAccordion();
     this.initTooltips();
     this.initMaskedInput();
@@ -141,9 +143,7 @@ application.prototype.initBasicSlider = function () {
         slider.each(function (i) {
             const basicSliderSetting = {
                 slidesPerView: 'auto',
-                slidesPerGroup: 1,
                 spaceBetween: 12,
-                direction: 'horizontal'
             };
 
             slider.eq(i).closest('.basic-slider-wrap').addClass('basic-slider-wrap-' + i);
@@ -156,9 +156,31 @@ application.prototype.initBasicSlider = function () {
                     basicSlider = null;
                 } else if (window.matchMedia('(max-width: 991.98px)').matches) {
                     basicSlider = null;
-                    basicSlider = new Swiper('.basic-slider-wrap-' + i + ' .basic-slider', basicSliderSetting);
+                    basicSlider = new Swiper('.basic-slider-wrap-' + i + ' [data-basic-slider]', basicSliderSetting);
                 }
             }
+        });
+    }
+};
+
+// Initialization basic tab slider
+application.prototype.initBasicTabSlider = function () {
+    if ($('[data-tabs-slider]').length) {
+        const slider = $('[data-tabs-slider]');
+        let basicTabSlider = null;
+
+        slider.each(function (i) {
+            slider.eq(i).closest('.basic-slider-wrap').addClass('basic-slider-wrap-' + i);
+
+            basicTabSlider = new Swiper('.basic-slider-wrap-' + i + ' [data-tabs-slider]', {
+                slidesPerView: 'auto',
+                spaceBetween: 12,
+                breakpoints: {
+                    992: {
+                        spaceBetween: 20,
+                    },
+                }
+            });
         });
     }
 };
@@ -166,62 +188,6 @@ application.prototype.initBasicSlider = function () {
 // Initialization sliders
 application.prototype.initSliders = function () {
     if ($('.laser-gallery-slider').length) {
-        /*let sliderGallery = new Swiper('.laser-gallery-slider', {
-            spaceBetween: 12,
-            slidesPerView: 'auto',
-            breakpoints: {
-                    992: {
-                        spaceBetween: 20,
-                        /!*slidesPerView: 2,*!/
-                        initialSlide: 1,
-                        loop: true,
-                    },
-                }
-        });*/
-
-
-        /*let sliderGallery = null;
-
-        const sliderGalleryDesktopSetting = {
-            spaceBetween: 20,
-            slidesPerView: 'auto',
-            initialSlide: 1,
-            loop: true,
-        };
-        const sliderGalleryMobileSetting = {
-            spaceBetween: 12,
-            slidesPerView: 'auto',
-        };
-
-        reinitSlider();
-        /!*setTimeout(function () {
-            location.reload(true);
-        }, 1);*!/
-        $(window).on('resize', reinitSlider);
-
-        function reinitSlider() {
-            if (window.matchMedia('(min-width: 992px)').matches) {
-                /!*if(sliderGallery !== null) sliderGallery = null;*!/
-                if(sliderGallery !== null) sliderGallery.destroy(true, true);
-                sliderGallery = null;
-
-                sliderGallery = new Swiper('.laser-gallery-slider', sliderGalleryDesktopSetting);
-                sliderGallery.update();
-                console.log("reinit");
-                console.log("success");
-            } else if (window.matchMedia('(max-width: 991.98px)').matches) {
-                /!*if(sliderGallery !== null) sliderGallery = null;*!/
-                if(sliderGallery !== null) sliderGallery.destroy(true, true);
-                sliderGallery = null;
-
-                sliderGallery = new Swiper('.laser-gallery-slider', sliderGalleryMobileSetting);
-                sliderGallery.update();
-                console.log("reinit");
-                console.log("success2");
-            }
-        }*/
-
-        //попробуй в @media вставить полную инициализацию без выноса свойств слайдера в const
         let sliderGallery = null;
 
         const sliderGalleryDesktopSetting = {
@@ -259,10 +225,51 @@ application.prototype.initSliders = function () {
                 prevEl: '.laser-script-slider-wrapper .swiper-button-prev',
             },
             breakpoints: {
-                    992: {
-                        spaceBetween: 20,
-                    },
-                }
+                992: {
+                    spaceBetween: 20,
+                },
+            }
+        });
+    }
+
+    if ($('.laser-tariff-slider').length) {
+        let sliderTariff = null;
+
+        const sliderTariffSetting = {
+            spaceBetween: 12,
+            slidesPerView: 'auto',
+        };
+
+        reinitSlider();
+        $(window).on('resize', reinitSlider);
+
+        function reinitSlider() {
+            if (window.matchMedia('(min-width: 992px)').matches) {
+                if(sliderTariff !== null) sliderTariff.destroy(true, true);
+                sliderTariff = null;
+            } else if (window.matchMedia('(max-width: 991.98px)').matches) {
+                sliderTariff = new Swiper('.laser-tariff-slider', sliderTariffSetting);
+            }
+        }
+    }
+};
+
+// Initialization basic tabs
+application.prototype.initBasicTabs = function () {
+    if ($('.basic-tabs').length) {
+        const tabsContainer = $('.basic-tabs-container');
+        let currentSelected = 0;
+        let currentTabBlockId = null;
+
+        $('.basic-tabs-item').on('click', function () {
+            currentTabBlockId = $(this).closest(tabsContainer).data('tab');
+
+            $(".basic-tabs-container[data-tab='" + currentTabBlockId + "']").find('.basic-tabs-trigger').removeClass('active');
+            $(this).find('.basic-tabs-trigger').removeClass('notice').addClass('active');
+
+            currentSelected = $(this).find(".basic-tabs-trigger").data("target");
+            $(".basic-tabs-content[data-tab-content='" + currentTabBlockId + "']").find('.basic-tabs-content__panel').removeClass('active');
+            $(".basic-tabs-content[data-tab-content='" + currentTabBlockId + "']").find(".basic-tabs-content__panel[data-id='" + currentSelected + "']").addClass('active');
         });
     }
 };

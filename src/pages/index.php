@@ -658,10 +658,359 @@
                         <h2>Наши гости говорят, что мы создаем <span class="cyan-color">идеальный праздник</span> и заряжаем яркими эмоциями!</h2>
                     </div>
 
-                    Аудио отзывы / Отзывы / Фото / Видео
-                    <br>
-                    <br>
-                    content
+                    <div class="basic-tabs">
+                        <div class="slider-out basic-slider-wrap basic-tabs-container-wrapper">
+                            <div class="basic-tabs-container basic-slider swiper" data-tab="tab-review" data-tabs-slider>
+                                <div class="basic-tabs-slider-list swiper-wrapper reset-slider-list">
+                                    <div class="basic-tabs-item swiper-slide">
+                                        <span class="tab basic-tabs-trigger active" data-target="0">Аудио отзывы</span>
+                                    </div>
+                                    <div class="basic-tabs-item swiper-slide">
+                                        <span class="tab basic-tabs-trigger selected" data-target="1">Отзывы</span>
+                                    </div>
+                                    <div class="basic-tabs-item swiper-slide">
+                                        <span class="tab basic-tabs-trigger selected" data-target="2">Фото</span>
+                                    </div>
+                                    <div class="basic-tabs-item swiper-slide">
+                                        <span class="tab basic-tabs-trigger selected" data-target="3">Видео</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="basic-tabs-content" data-tab-content="tab-review">
+                            <div class="basic-tabs-content__panel active" data-id="0">
+                                <div class="laser-review laser-review-audio">
+                                    <div class="laser-review__item">
+                                        <div class="laser-review__view">
+                                            <img
+                                                loading="lazy"
+                                                class="image"
+                                                src="img/avatar.png"
+                                                alt="Изображение блока"
+                                            >
+                                        </div>
+                                        <div class="laser-review__content">
+                                            <div class="laser-review__title fw-medium fz-sm">Name Name</div>
+                                            <div class="laser-review__player">player</div>
+                                        </div>
+                                    </div>
+                                    <div class="laser-review__item">
+                                        <div class="laser-review__view">
+                                            <img
+                                                    loading="lazy"
+                                                    class="image"
+                                                    src="img/avatar.png"
+                                                    alt="Изображение блока"
+                                            >
+                                        </div>
+                                        <div class="laser-review__content">
+                                            <div class="laser-review__title fw-medium fz-sm">Name Name</div>
+                                            <div class="laser-review__player">player</div>
+                                        </div>
+                                    </div>
+                                    <div class="laser-review__item">
+                                        <div class="laser-review__view">
+                                            <img
+                                                    loading="lazy"
+                                                    class="image"
+                                                    src="img/avatar.png"
+                                                    alt="Изображение блока"
+                                            >
+                                        </div>
+                                        <div class="laser-review__content">
+                                            <div class="laser-review__title fw-medium fz-sm">Name Name</div>
+                                            <div class="laser-review__player">player</div>
+                                        </div>
+                                    </div>
+                                    <div class="laser-review__item">
+                                        <div class="laser-review__view">
+                                            <img
+                                                    loading="lazy"
+                                                    class="image"
+                                                    src="img/avatar.png"
+                                                    alt="Изображение блока"
+                                            >
+                                        </div>
+                                        <div class="laser-review__content">
+                                            <div class="laser-review__title fw-medium fz-sm">Name Name</div>
+                                            <div class="laser-review__player">player</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="basic-tabs-content__panel" data-id="1">
+                                <div class="laser-review laser-review-text">
+                                    <div class="laser-review__item">
+                                        <div class="laser-review__header">
+                                            <div class="laser-review__view">
+                                                <img
+                                                        loading="lazy"
+                                                        class="image"
+                                                        src="img/avatar.png"
+                                                        alt="Изображение блока"
+                                                >
+                                            </div>
+                                            <div class="laser-review__data">
+                                                <div class="laser-review__title fw-medium fz-sm">Name Name</div>
+                                                <div class="laser-review__date fz-caption">28.01.2024</div>
+                                            </div>
+                                        </div>
+                                        <div class="laser-review__content">
+                                            <p>Великолепный продукт. Лично для меня это был первый антидетекторный браузер, который я использовал. Удобный интерфейс, все интуитивно понятно даже новичку. Бесплатное использование 10 браузеров без всяких продлений подписки и т.д., как это принято видеть в других подобных и не только продуктах. За это однозначно +реп. За год использования возникла 1 трудность, которую мне помогла решить техподдержка, буквально за 5-7 минут.</p>
+                                            <p>Вывод: 9,5/10 Это идеальный вариант как для новичка, так и для опытного пользователя. Снимаю 0,5 балла, потому что нет предела совершенству:)</p>
+                                        </div>
+                                    </div>
+                                    <div class="laser-review__item">
+                                        <div class="laser-review__header">
+                                            <div class="laser-review__view">
+                                                <img
+                                                        loading="lazy"
+                                                        class="image"
+                                                        src="img/avatar.png"
+                                                        alt="Изображение блока"
+                                                >
+                                            </div>
+                                            <div class="laser-review__data">
+                                                <div class="laser-review__title fw-medium fz-sm">Name Name</div>
+                                                <div class="laser-review__date fz-caption">28.01.2024</div>
+                                            </div>
+                                        </div>
+                                        <div class="laser-review__content">
+                                            <p>Игра в лазертаг — отличный способ провести время в выходной! Мы с друзьями регулярно собираемся здесь, чтобы размяться и позабыть о повседневных заботах. Адреналин, командная работа и драйв делают этот вид развлечения просто незабываемым!</p>
+                                        </div>
+                                    </div>
+                                    <div class="laser-review__item">
+                                        <div class="laser-review__header">
+                                            <div class="laser-review__view">
+                                                <img
+                                                        loading="lazy"
+                                                        class="image"
+                                                        src="img/avatar.png"
+                                                        alt="Изображение блока"
+                                                >
+                                            </div>
+                                            <div class="laser-review__data">
+                                                <div class="laser-review__title fw-medium fz-sm">Name Name</div>
+                                                <div class="laser-review__date fz-caption">28.01.2024</div>
+                                            </div>
+                                        </div>
+                                        <div class="laser-review__content">
+                                            <p>Отличное место для активного времяпрепровождения! Посетил лазертаг с друзьями и остался в восторге. Игра насыщенная, атмосфера подогревает адреналин, и каждый момент наполнен яркими эмоциями. Оборудование работает без нареканий, персонал профессионально и дружелюбно поддерживает игру.</p>
+                                        </div>
+                                    </div>
+                                    <div class="laser-review__item">
+                                        <div class="laser-review__header">
+                                            <div class="laser-review__view">
+                                                <img
+                                                        loading="lazy"
+                                                        class="image"
+                                                        src="img/avatar.png"
+                                                        alt="Изображение блока"
+                                                >
+                                            </div>
+                                            <div class="laser-review__data">
+                                                <div class="laser-review__title fw-medium fz-sm">Name Name</div>
+                                                <div class="laser-review__date fz-caption">28.01.2024</div>
+                                            </div>
+                                        </div>
+                                        <div class="laser-review__content">
+                                            <p>Лазертаг стал нашим любимым местом для корпоративных мероприятий! Мы уже несколько раз организовывали здесь игры для нашей команды, и каждый раз получали массу удовольствия. Это прекрасная возможность объединиться, почувствовать дружескую состязательность и отдохнуть от повседневной рутины</p>
+                                        </div>
+                                    </div>
+                                    <div class="laser-review__item">
+                                        <div class="laser-review__header">
+                                            <div class="laser-review__view">
+                                                <img
+                                                        loading="lazy"
+                                                        class="image"
+                                                        src="img/avatar.png"
+                                                        alt="Изображение блока"
+                                                >
+                                            </div>
+                                            <div class="laser-review__data">
+                                                <div class="laser-review__title fw-medium fz-sm">Name Name</div>
+                                                <div class="laser-review__date fz-caption">28.01.2024</div>
+                                            </div>
+                                        </div>
+                                        <div class="laser-review__content">
+                                            <p>Лазертаг — прекрасное место для тимбилдинга! Мы с коллегами провели здесь несколько часов, и это было не только весело, но и очень полезно для нашей командной работы. В игре приходится действовать оперативно и согласованно, что отлично способствует укреплению отношений в коллективе.</p>
+                                        </div>
+                                    </div>
+                                    <div class="laser-review__item">
+                                        <div class="laser-review__header">
+                                            <div class="laser-review__view">
+                                                <img
+                                                        loading="lazy"
+                                                        class="image"
+                                                        src="img/avatar.png"
+                                                        alt="Изображение блока"
+                                                >
+                                            </div>
+                                            <div class="laser-review__data">
+                                                <div class="laser-review__title fw-medium fz-sm">Name Name</div>
+                                                <div class="laser-review__date fz-caption">28.01.2024</div>
+                                            </div>
+                                        </div>
+                                        <div class="laser-review__content">
+                                            <p>Провели день рождения с детьми в лазертаге, и это было просто потрясающе! Дети были в восторге от игры, а мы, взрослые, не менее радовались каждому моменту. Безопасность на высшем уровне, атмосфера веселья и игровые площадки прекрасно оборудованы для разных возрастных групп.</p>
+                                        </div>
+                                    </div>
+                                    <div class="laser-review__item">
+                                        <div class="laser-review__header">
+                                            <div class="laser-review__view">
+                                                <img
+                                                        loading="lazy"
+                                                        class="image"
+                                                        src="img/avatar.png"
+                                                        alt="Изображение блока"
+                                                >
+                                            </div>
+                                            <div class="laser-review__data">
+                                                <div class="laser-review__title fw-medium fz-sm">Name Name</div>
+                                                <div class="laser-review__date fz-caption">28.01.2024</div>
+                                            </div>
+                                        </div>
+                                        <div class="laser-review__content">
+                                            <p>Посетили лазертаг в рамках дружеского соревнования, и это было просто ошеломительно! Игра дала отличный заряд энергии и положительных эмоций на всю неделю вперёд. Рекомендую всем, кто хочет активно и весело провести время с друзьями или семьей.</p>
+                                        </div>
+                                    </div>
+                                    <div class="laser-review__item">
+                                        <div class="laser-review__header">
+                                            <div class="laser-review__view">
+                                                <img
+                                                        loading="lazy"
+                                                        class="image"
+                                                        src="img/avatar.png"
+                                                        alt="Изображение блока"
+                                                >
+                                            </div>
+                                            <div class="laser-review__data">
+                                                <div class="laser-review__title fw-medium fz-sm">Name Name</div>
+                                                <div class="laser-review__date fz-caption">28.01.2024</div>
+                                            </div>
+                                        </div>
+                                        <div class="laser-review__content">
+                                            <p>Впечатления от лазертага просто фантастические! Мы с семьей решили попробовать что-то новое, и не пожалели. Это не просто игра, а целый мир приключений и эмоций. Были в восторге от профессиональной организации и качества оборудования. Обязательно вернемся снова!</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="basic-tabs-content__panel" data-id="2">
+                                <div class="slider-out basic-slider-wrap">
+                                    <div class="laser-review laser-review-photo basic-slider swiper" data-basic-slider>
+                                        <div class="swiper-wrapper reset-slider-list">
+                                            <div class="swiper-slide">
+                                                <a class="laser-review__item media-photo" href="img/gallery-1.jpg" data-fancybox="review-photo">
+                                                    <img
+                                                            loading="lazy"
+                                                            class="image"
+                                                            src="img/gallery-1.jpg"
+                                                            alt="Изображение блока"
+                                                    >
+                                                </a>
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <a class="laser-review__item media-photo" href="img/gallery-2.jpg" data-fancybox="review-photo">
+                                                    <img
+                                                            loading="lazy"
+                                                            class="image"
+                                                            src="img/gallery-2.jpg"
+                                                            alt="Изображение блока"
+                                                    >
+                                                </a>
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <a class="laser-review__item media-photo" href="img/gallery-3.jpg" data-fancybox="review-photo">
+                                                    <img
+                                                            loading="lazy"
+                                                            class="image"
+                                                            src="img/gallery-3.jpg"
+                                                            alt="Изображение блока"
+                                                    >
+                                                </a>
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <a class="laser-review__item media-photo" href="img/gallery-4.jpg" data-fancybox="review-photo">
+                                                    <img
+                                                            loading="lazy"
+                                                            class="image"
+                                                            src="img/gallery-4.jpg"
+                                                            alt="Изображение блока"
+                                                    >
+                                                </a>
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <a class="laser-review__item media-photo" href="img/gallery-5.jpg" data-fancybox="review-photo">
+                                                    <img
+                                                            loading="lazy"
+                                                            class="image"
+                                                            src="img/gallery-5.jpg"
+                                                            alt="Изображение блока"
+                                                    >
+                                                </a>
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <a class="laser-review__item media-photo" href="img/gallery-6.jpg" data-fancybox="review-photo">
+                                                    <img
+                                                            loading="lazy"
+                                                            class="image"
+                                                            src="img/gallery-6.jpg"
+                                                            alt="Изображение блока"
+                                                    >
+                                                </a>
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <a class="laser-review__item media-photo" href="img/gallery-7.jpg" data-fancybox="review-photo">
+                                                    <img
+                                                            loading="lazy"
+                                                            class="image"
+                                                            src="img/gallery-7.jpg"
+                                                            alt="Изображение блока"
+                                                    >
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="basic-tabs-content__panel" data-id="3">
+                                <div class="laser-review laser-review-video">
+									<?/* //todo - preview или video? */?>
+                                    <a class="laser-review__item media-video" href="demo.mp4" data-fancybox="review-video">
+										<?/*<img
+                                            loading="lazy"
+                                            class="image"
+                                            src="img/gallery-1.jpg"
+                                            alt="Изображение блока"
+                                    >*/?>
+                                        <video
+                                                class="media-video__item"
+                                                src="demo.mp4"
+                                                preload="auto"
+                                                poster=""
+                                        ></video>
+                                    </a>
+                                    <a class="laser-review__item media-video" href="demo.mp4" data-fancybox="review-video">
+                                        <video
+                                                class="media-video__item"
+                                                src="demo.mp4"
+                                                preload="auto"
+                                                poster=""
+                                        ></video>
+                                    </a>
+                                    <a class="laser-review__item media-video" href="demo.mp4" data-fancybox="review-video">
+                                        <video
+                                                class="media-video__item"
+                                                src="demo.mp4"
+                                                preload="auto"
+                                                poster=""
+                                        ></video>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
             </div>
@@ -696,10 +1045,10 @@
                                     <div class="laser-tariff-slider__descr-title">Кол-во человек</div>
                                 </div>
                                 <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--gap-more">
-                                    <div class="laser-tariff-slider__descr-title h3 as-hidden">от 00 000 ₽</div>
+                                    <div class="laser-tariff-slider__descr-price h3 as-hidden">от 00 000 ₽</div>
                                 </div>
                                 <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--gap-more laser-tariff-slider__descr-item--hr">
-                                    <div class="laser-tariff-slider__descr-hr decor-bt decor-bt--mark decor-bt--mark-purple as-hidden"></div>
+                                    <div class="laser-tariff-slider__descr-hr decor-bt decor-bt--mark decor-bt--mark-purple"></div>
                                 </div>
                                 <div class="laser-tariff-slider__descr-item">
                                     <div class="laser-tariff-slider__descr-title">Знакомство, инструктаж, развлекательная программа с ведущим</div>
@@ -731,7 +1080,7 @@
                                 <div class="laser-tariff-slider__descr-item">
                                     <div class="laser-tariff-slider__descr-title">Фирменный торт 2 кг</div>
                                 </div>
-                                <div class="laser-tariff-slider__descr-item">
+                                <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--extra-fun">
                                     <div class="laser-tariff-slider__descr-title">Дополнительные развлечения</div>
                                 </div>
                             </div>
@@ -827,7 +1176,7 @@
                                         </svg>
                                     </div>
                                 </div>
-                                <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
+                                <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check laser-tariff-slider__descr-item--extra-fun">
                                     <div class="laser-tariff-slider__descr-title">Дополнительные развлечения</div>
                                     <div class="laser-tariff-slider__descr-value">
                                         <svg class="icon icon-fill">
@@ -928,7 +1277,7 @@
                                         </svg>
                                     </div>
                                 </div>
-                                <div class="laser-tariff-slider__descr-item">
+                                <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--extra-fun">
                                     <div class="laser-tariff-slider__descr-title">Дополнительные развлечения</div>
                                     <div class="laser-tariff-slider__descr-value">Одно развлечение из списка Light</div>
                                 </div>
@@ -1025,7 +1374,7 @@
                                         </svg>
                                     </div>
                                 </div>
-                                <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
+                                <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--extra-fun">
                                     <div class="laser-tariff-slider__descr-title">Дополнительные развлечения</div>
                                     <div class="laser-tariff-slider__descr-value">Одно развлечение из списков Light и Max</div>
                                 </div>
@@ -1122,7 +1471,7 @@
                                         </svg>
                                     </div>
                                 </div>
-                                <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
+                                <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--extra-fun">
                                     <div class="laser-tariff-slider__descr-title">Дополнительные развлечения</div>
                                     <div class="laser-tariff-slider__descr-value">Два развлечения из списков Light и Max</div>
                                 </div>
