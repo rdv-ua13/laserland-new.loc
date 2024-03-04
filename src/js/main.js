@@ -165,44 +165,106 @@ application.prototype.initBasicSlider = function () {
 
 // Initialization sliders
 application.prototype.initSliders = function () {
-    /*if ($('.nav-breadcrumbs').length) {
-        let sliderNavBreadcrumbs = new Swiper('.nav-breadcrumbs', {
-            spaceBetween: 0,
+    if ($('.laser-gallery-slider').length) {
+        /*let sliderGallery = new Swiper('.laser-gallery-slider', {
+            spaceBetween: 12,
             slidesPerView: 'auto',
-        });
-    }*/
-
-    /*if ($('.menu-catalog-submenu-banners').length) {
-        $('.menu-catalog-submenu-banners').each(function (i) {
-            let currentElem = $(this).find('.swiper').addClass('menu-catalog-submenu-banners-slider-' + i);
-
-            let sliderCatalogSubmenuBanners = new Swiper('.menu-catalog-submenu-banners-slider-' + i, {
-                spaceBetween: 12,
-                slidesPerView: 'auto',
-                breakpoints: {
+            breakpoints: {
                     992: {
-                        spaceBetween: 40
+                        spaceBetween: 20,
+                        /!*slidesPerView: 2,*!/
+                        initialSlide: 1,
+                        loop: true,
                     },
                 }
-            });
-        });
-    }*/
+        });*/
 
-    /*if ($('.index-slider-wrapper').length) {
-        const indexSliderDesktopSettings = new Swiper('.index-slider', {
-            slidesPerView: 1,
-            effect: 'fade',
-            watchOverflow: true,
+
+        /*let sliderGallery = null;
+
+        const sliderGalleryDesktopSetting = {
+            spaceBetween: 20,
+            slidesPerView: 'auto',
+            initialSlide: 1,
+            loop: true,
+        };
+        const sliderGalleryMobileSetting = {
+            spaceBetween: 12,
+            slidesPerView: 'auto',
+        };
+
+        reinitSlider();
+        /!*setTimeout(function () {
+            location.reload(true);
+        }, 1);*!/
+        $(window).on('resize', reinitSlider);
+
+        function reinitSlider() {
+            if (window.matchMedia('(min-width: 992px)').matches) {
+                /!*if(sliderGallery !== null) sliderGallery = null;*!/
+                if(sliderGallery !== null) sliderGallery.destroy(true, true);
+                sliderGallery = null;
+
+                sliderGallery = new Swiper('.laser-gallery-slider', sliderGalleryDesktopSetting);
+                sliderGallery.update();
+                console.log("reinit");
+                console.log("success");
+            } else if (window.matchMedia('(max-width: 991.98px)').matches) {
+                /!*if(sliderGallery !== null) sliderGallery = null;*!/
+                if(sliderGallery !== null) sliderGallery.destroy(true, true);
+                sliderGallery = null;
+
+                sliderGallery = new Swiper('.laser-gallery-slider', sliderGalleryMobileSetting);
+                sliderGallery.update();
+                console.log("reinit");
+                console.log("success2");
+            }
+        }*/
+
+        //попробуй в @media вставить полную инициализацию без выноса свойств слайдера в const
+        let sliderGallery = null;
+
+        const sliderGalleryDesktopSetting = {
+            spaceBetween: 20,
+            slidesPerView: 'auto',
+            initialSlide: 1,
+            loop: true,
+        };
+        const sliderGalleryMobileSetting = {
+            spaceBetween: 12,
+            slidesPerView: 'auto',
+        };
+
+        reinitSlider();
+        $(window).on('resize', reinitSlider);
+
+        function reinitSlider() {
+            if(sliderGallery !== null) sliderGallery.destroy(true, true);
+            sliderGallery = null;
+
+            if (window.matchMedia('(min-width: 992px)').matches) {
+                sliderGallery = new Swiper('.laser-gallery-slider', sliderGalleryDesktopSetting);
+            } else if (window.matchMedia('(max-width: 991.98px)').matches) {
+                sliderGallery = new Swiper('.laser-gallery-slider', sliderGalleryMobileSetting);
+            }
+        }
+    }
+
+    if ($('.laser-script-slider').length) {
+        let sliderScript = new Swiper('.laser-script-slider', {
+            spaceBetween: 12,
+            slidesPerView: 'auto',
             navigation: {
-                nextEl: '.index-slider .swiper-button-next',
-                prevEl: '.index-slider .swiper-button-prev',
+                nextEl: '.laser-script-slider-wrapper .swiper-button-next',
+                prevEl: '.laser-script-slider-wrapper .swiper-button-prev',
             },
-            pagination: {
-                el: ".index-slider .swiper-pagination",
-                clickable: true,
-            },
+            breakpoints: {
+                    992: {
+                        spaceBetween: 20,
+                    },
+                }
         });
-    }*/
+    }
 };
 
 // Initialization accordion
