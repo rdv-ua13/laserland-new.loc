@@ -221,7 +221,7 @@
     </div>
 </div>
 
-<div class="gap-xl">
+<div class="gap-xl scroll-to-target" id="scenarios">
     <div class="block bg-light">
         <div class="container">
             <div class="page-content">
@@ -646,53 +646,59 @@
     </div>
 </div>
 
-<div class="gap-xl">
+<div class="scroll-to-target" id="reviews">
     <div class="block bg-gray1">
         <div class="container">
-            <div class="page-content">
-                <div class="page-content__side">
-                    <div class="flex-inline decor-bt fw-medium fz-sm">Как проходят праздники<br class="desktop-only">  в LaserLand</div>
-                </div>
-                <div class="page-content__content">
-                    <div class="gap-xs">
+            <div class="gap-xs">
+                <div class="page-content">
+                    <div class="page-content__side">
+                        <div class="flex-inline decor-bt fw-medium fz-sm">Как проходят праздники<br class="desktop-only">  в LaserLand</div>
+                    </div>
+                    <div class="page-content__content">
                         <h2>Наши гости говорят, что мы создаем <span class="cyan-color">идеальный праздник</span> и заряжаем яркими эмоциями!</h2>
                     </div>
+                </div>
+            </div>
 
-                    <div class="basic-tabs">
-                        <div class="slider-out basic-slider-wrap basic-tabs-container-wrapper">
-                            <div class="basic-tabs-container basic-slider swiper" data-tab="tab-review" data-tabs-slider>
-                                <div class="basic-tabs-slider-list swiper-wrapper reset-slider-list">
-                                    <div class="basic-tabs-item swiper-slide">
-                                        <span class="tab basic-tabs-trigger active" data-target="0">Аудио отзывы</span>
-                                    </div>
-                                    <div class="basic-tabs-item swiper-slide">
-                                        <span class="tab basic-tabs-trigger selected" data-target="1">Отзывы</span>
-                                    </div>
-                                    <div class="basic-tabs-item swiper-slide">
-                                        <span class="tab basic-tabs-trigger selected" data-target="2">Фото</span>
-                                    </div>
-                                    <div class="basic-tabs-item swiper-slide">
-                                        <span class="tab basic-tabs-trigger selected" data-target="3">Видео</span>
-                                    </div>
-                                </div>
+            <div class="basic-tabs laser-review-tabs">
+                <div class="slider-out basic-slider-wrap basic-tabs-container-wrapper">
+                    <div class="basic-tabs-container basic-slider swiper" data-tab="tab-review" data-tabs-slider>
+                        <div class="basic-tabs-slider-list swiper-wrapper reset-slider-list">
+                            <div class="basic-tabs-item swiper-slide">
+                                <span class="tab basic-tabs-trigger active" data-target="0">Аудио отзывы</span>
+                            </div>
+                            <div class="basic-tabs-item swiper-slide">
+                                <span class="tab basic-tabs-trigger selected" data-target="1">Отзывы</span>
+                            </div>
+                            <div class="basic-tabs-item swiper-slide">
+                                <span class="tab basic-tabs-trigger selected" data-target="2">Фото</span>
+                            </div>
+                            <div class="basic-tabs-item swiper-slide">
+                                <span class="tab basic-tabs-trigger selected" data-target="3">Видео</span>
                             </div>
                         </div>
+                    </div>
+                </div>
 
-                        <div class="basic-tabs-content" data-tab-content="tab-review">
-                            <div class="basic-tabs-content__panel active" data-id="0">
+                <div class="basic-tabs-content" data-tab-content="tab-review">
+                    <div class="basic-tabs-content__panel active" data-id="0">
+                        <div class="spoiler laser-review-spoiler" data-spoiler data-spoiler-more="Хочу больше отзывов">
+                            <div class="spoiler-content basic-tabs-content__content">
                                 <div class="laser-review laser-review-audio">
                                     <div class="laser-review__item">
                                         <div class="laser-review__view">
                                             <img
-                                                loading="lazy"
-                                                class="image"
-                                                src="img/avatar.png"
-                                                alt="Изображение блока"
+                                                    loading="lazy"
+                                                    class="image"
+                                                    src="img/avatar.png"
+                                                    alt="Изображение блока"
                                             >
                                         </div>
                                         <div class="laser-review__content">
                                             <div class="laser-review__title fw-medium fz-sm">Name Name</div>
-                                            <div class="laser-review__player">player</div>
+                                            <div class="laser-review__player">
+                                                <audio-player src="demo.mp3" preload></audio-player>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="laser-review__item">
@@ -706,7 +712,9 @@
                                         </div>
                                         <div class="laser-review__content">
                                             <div class="laser-review__title fw-medium fz-sm">Name Name</div>
-                                            <div class="laser-review__player">player</div>
+                                            <div class="laser-review__player">
+                                                <audio-player src="demo2.mp3" preload></audio-player>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="laser-review__item">
@@ -720,7 +728,9 @@
                                         </div>
                                         <div class="laser-review__content">
                                             <div class="laser-review__title fw-medium fz-sm">Name Name</div>
-                                            <div class="laser-review__player">player</div>
+                                            <div class="laser-review__player">
+                                                <audio-player src="demo.mp3" preload></audio-player>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="laser-review__item">
@@ -734,12 +744,18 @@
                                         </div>
                                         <div class="laser-review__content">
                                             <div class="laser-review__title fw-medium fz-sm">Name Name</div>
-                                            <div class="laser-review__player">player</div>
+                                            <div class="laser-review__player">
+                                                <audio-player src="demo2.mp3" preload></audio-player>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="basic-tabs-content__panel" data-id="1">
+                        </div>
+                    </div>
+                    <div class="basic-tabs-content__panel" data-id="1">
+                        <div class="spoiler laser-review-spoiler" data-spoiler data-spoiler-more="Хочу больше отзывов">
+                            <div class="spoiler-content basic-tabs-content__content">
                                 <div class="laser-review laser-review-text">
                                     <div class="laser-review__item">
                                         <div class="laser-review__header">
@@ -894,9 +910,89 @@
                                             <p>Впечатления от лазертага просто фантастические! Мы с семьей решили попробовать что-то новое, и не пожалели. Это не просто игра, а целый мир приключений и эмоций. Были в восторге от профессиональной организации и качества оборудования. Обязательно вернемся снова!</p>
                                         </div>
                                     </div>
+                                    <div class="laser-review__item">
+                                        <div class="laser-review__header">
+                                            <div class="laser-review__view">
+                                                <img
+                                                        loading="lazy"
+                                                        class="image"
+                                                        src="img/avatar.png"
+                                                        alt="Изображение блока"
+                                                >
+                                            </div>
+                                            <div class="laser-review__data">
+                                                <div class="laser-review__title fw-medium fz-sm">Name Name</div>
+                                                <div class="laser-review__date fz-caption">28.01.2024</div>
+                                            </div>
+                                        </div>
+                                        <div class="laser-review__content">
+                                            <p>Лазертаг — прекрасное место для тимбилдинга! Мы с коллегами провели здесь несколько часов, и это было не только весело, но и очень полезно для нашей командной работы. В игре приходится действовать оперативно и согласованно, что отлично способствует укреплению отношений в коллективе.</p>
+                                        </div>
+                                    </div>
+                                    <div class="laser-review__item">
+                                        <div class="laser-review__header">
+                                            <div class="laser-review__view">
+                                                <img
+                                                        loading="lazy"
+                                                        class="image"
+                                                        src="img/avatar.png"
+                                                        alt="Изображение блока"
+                                                >
+                                            </div>
+                                            <div class="laser-review__data">
+                                                <div class="laser-review__title fw-medium fz-sm">Name Name</div>
+                                                <div class="laser-review__date fz-caption">28.01.2024</div>
+                                            </div>
+                                        </div>
+                                        <div class="laser-review__content">
+                                            <p>Провели день рождения с детьми в лазертаге, и это было просто потрясающе! Дети были в восторге от игры, а мы, взрослые, не менее радовались каждому моменту. Безопасность на высшем уровне, атмосфера веселья и игровые площадки прекрасно оборудованы для разных возрастных групп.</p>
+                                        </div>
+                                    </div>
+                                    <div class="laser-review__item">
+                                        <div class="laser-review__header">
+                                            <div class="laser-review__view">
+                                                <img
+                                                        loading="lazy"
+                                                        class="image"
+                                                        src="img/avatar.png"
+                                                        alt="Изображение блока"
+                                                >
+                                            </div>
+                                            <div class="laser-review__data">
+                                                <div class="laser-review__title fw-medium fz-sm">Name Name</div>
+                                                <div class="laser-review__date fz-caption">28.01.2024</div>
+                                            </div>
+                                        </div>
+                                        <div class="laser-review__content">
+                                            <p>Посетили лазертаг в рамках дружеского соревнования, и это было просто ошеломительно! Игра дала отличный заряд энергии и положительных эмоций на всю неделю вперёд. Рекомендую всем, кто хочет активно и весело провести время с друзьями или семьей.</p>
+                                        </div>
+                                    </div>
+                                    <div class="laser-review__item">
+                                        <div class="laser-review__header">
+                                            <div class="laser-review__view">
+                                                <img
+                                                        loading="lazy"
+                                                        class="image"
+                                                        src="img/avatar.png"
+                                                        alt="Изображение блока"
+                                                >
+                                            </div>
+                                            <div class="laser-review__data">
+                                                <div class="laser-review__title fw-medium fz-sm">Name Name</div>
+                                                <div class="laser-review__date fz-caption">28.01.2024</div>
+                                            </div>
+                                        </div>
+                                        <div class="laser-review__content">
+                                            <p>Впечатления от лазертага просто фантастические! Мы с семьей решили попробовать что-то новое, и не пожалели. Это не просто игра, а целый мир приключений и эмоций. Были в восторге от профессиональной организации и качества оборудования. Обязательно вернемся снова!</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="basic-tabs-content__panel" data-id="2">
+                        </div>
+                    </div>
+                    <div class="basic-tabs-content__panel" data-id="2">
+                        <div class="spoiler laser-review-spoiler" data-spoiler data-spoiler-more="Хочу больше отзывов">
+                            <div class="spoiler-content basic-tabs-content__content">
                                 <div class="slider-out basic-slider-wrap">
                                     <div class="laser-review laser-review-photo basic-slider swiper" data-basic-slider>
                                         <div class="swiper-wrapper reset-slider-list">
@@ -974,16 +1070,20 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="basic-tabs-content__panel" data-id="3">
+                        </div>
+                    </div>
+                    <div class="basic-tabs-content__panel" data-id="3">
+                        <div class="spoiler laser-review-spoiler" data-spoiler data-spoiler-more="Хочу больше отзывов">
+                            <div class="spoiler-content basic-tabs-content__content">
                                 <div class="laser-review laser-review-video">
-									<?/* //todo - preview или video? */?>
+                                    <?/* //todo - preview или video? */?>
                                     <a class="laser-review__item media-video" href="demo.mp4" data-fancybox="review-video">
-										<?/*<img
-                                            loading="lazy"
-                                            class="image"
-                                            src="img/gallery-1.jpg"
-                                            alt="Изображение блока"
-                                    >*/?>
+                                        <?/*<img
+                                                    loading="lazy"
+                                                    class="image"
+                                                    src="img/gallery-1.jpg"
+                                                    alt="Изображение блока"
+                                            >*/?>
                                         <video
                                                 class="media-video__item"
                                                 src="demo.mp4"
@@ -1011,477 +1111,478 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<div class="gap-xl">
-    <div class="container">
-        <div class="gap-lg">
-            <div class="page-content">
-                <div class="page-content__side">
-                    <div class="flex-inline decor-bt fw-medium fz-sm">Тарифы</div>
-                </div>
-                <div class="page-content__content">
-                    <h2>Выберите подходящий <span class="purple-color">тариф</span></h2>
-                </div>
-            </div>
-        </div>
-
-        <div class="slider-out laser-tariff-slider-wrapper">
-            <div class="laser-tariff-slider swiper">
-                <div class="swiper-wrapper reset-slider-list">
-                    <div class="swiper-slide slide-desktop-sidebar">
-                        <div class="laser-tariff-slider__item">
-                            <div class="laser-tariff-slider__title h3 as-hidden">LASER <span class="tariff-name">TARIFF</span></div>
-                            <div class="laser-tariff-slider__descr">
-                                <div class="laser-tariff-slider__descr-item">
-                                    <div class="laser-tariff-slider__descr-title">Длительность</div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item">
-                                    <div class="laser-tariff-slider__descr-title">Кол-во человек</div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--gap-more">
-                                    <div class="laser-tariff-slider__descr-price h3 as-hidden">от 00 000 ₽</div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--gap-more laser-tariff-slider__descr-item--hr">
-                                    <div class="laser-tariff-slider__descr-hr decor-bt decor-bt--mark decor-bt--mark-purple"></div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item">
-                                    <div class="laser-tariff-slider__descr-title">Знакомство, инструктаж, развлекательная программа с ведущим</div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item">
-                                    <div class="laser-tariff-slider__descr-title">Лазертаг</div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item">
-                                    <div class="laser-tariff-slider__descr-title">Торжественная часть</div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item">
-                                    <div class="laser-tariff-slider__descr-title">Праздничная сервировка и оформление</div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item">
-                                    <div class="laser-tariff-slider__descr-title">Пригласительные для гостей праздника</div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item">
-                                    <div class="laser-tariff-slider__descr-title">Подарок имениннику</div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item">
-                                    <div class="laser-tariff-slider__descr-title">Дискотека</div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item">
-                                    <div class="laser-tariff-slider__descr-title">Фотограф <span class="caption fz-caption">До 200 фотогрфий</span></div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item">
-                                    <div class="laser-tariff-slider__descr-title">Порционная еда <span class="caption fz-caption">Пицца, наггетсы, сок</span></div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item">
-                                    <div class="laser-tariff-slider__descr-title">Фирменный торт 2 кг</div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--extra-fun">
-                                    <div class="laser-tariff-slider__descr-title">Дополнительные развлечения</div>
-                                </div>
-                            </div>
-                        </div>
+<div class="gap-xl scroll-to-target" id="prices">
+    <div class="block block-top">
+        <div class="container">
+            <div class="gap-lg">
+                <div class="page-content">
+                    <div class="page-content__side">
+                        <div class="flex-inline decor-bt fw-medium fz-sm">Тарифы</div>
                     </div>
-                    <div class="swiper-slide">
-                        <div class="laser-tariff-slider__item">
-                            <div class="laser-tariff-slider__title h3">LASER <span class="tariff-name">MINI</span></div>
-                            <div class="laser-tariff-slider__descr">
-                                <div class="laser-tariff-slider__descr-item">
-                                    <div class="laser-tariff-slider__descr-title">Длительность</div>
-                                    <div class="laser-tariff-slider__descr-value">1.5 часа</div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item">
-                                    <div class="laser-tariff-slider__descr-title">Кол-во человек</div>
-                                    <div class="laser-tariff-slider__descr-value">До 8 человек</div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--gap-more">
-                                    <div class="laser-tariff-slider__descr-price h3">от 6 700 ₽</div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--gap-more laser-tariff-slider__descr-item--hr">
-                                    <div class="laser-tariff-slider__descr-hr decor-bt decor-bt--mark decor-bt--mark-purple"></div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item">
-                                    <div class="laser-tariff-slider__descr-title">Знакомство, инструктаж, развлекательная программа с ведущим</div>
-                                    <div class="laser-tariff-slider__descr-value">30 минут</div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item">
-                                    <div class="laser-tariff-slider__descr-title">Лазертаг</div>
-                                    <div class="laser-tariff-slider__descr-value">4-5 игр</div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
-                                    <div class="laser-tariff-slider__descr-title">Торжественная часть</div>
-                                    <div class="laser-tariff-slider__descr-value">
-                                        <svg class="icon icon-fill">
-                                            <use href="img/sprite.svg#fill-minus-rec"></use>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
-                                    <div class="laser-tariff-slider__descr-title">Праздничная сервировка и оформление</div>
-                                    <div class="laser-tariff-slider__descr-value">
-                                        <svg class="icon icon-fill">
-                                            <use href="img/sprite.svg#fill-minus-rec"></use>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
-                                    <div class="laser-tariff-slider__descr-title">Пригласительные для гостей праздника</div>
-                                    <div class="laser-tariff-slider__descr-value">
-                                        <svg class="icon icon-fill">
-                                            <use href="img/sprite.svg#fill-minus-rec"></use>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
-                                    <div class="laser-tariff-slider__descr-title">Подарок имениннику</div>
-                                    <div class="laser-tariff-slider__descr-value">
-                                        <svg class="icon icon-fill">
-                                            <use href="img/sprite.svg#fill-minus-rec"></use>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
-                                    <div class="laser-tariff-slider__descr-title">Дискотека</div>
-                                    <div class="laser-tariff-slider__descr-value">
-                                        <svg class="icon icon-fill">
-                                            <use href="img/sprite.svg#fill-minus-rec"></use>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
-                                    <div class="laser-tariff-slider__descr-title">Фотограф <span class="caption fz-caption">До 200 фотогрфий</span></div>
-                                    <div class="laser-tariff-slider__descr-value">
-                                        <svg class="icon icon-fill">
-                                            <use href="img/sprite.svg#fill-minus-rec"></use>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
-                                    <div class="laser-tariff-slider__descr-title">Порционная еда <span class="caption fz-caption">Пицца, наггетсы, сок</span></div>
-                                    <div class="laser-tariff-slider__descr-value">
-                                        <svg class="icon icon-fill">
-                                            <use href="img/sprite.svg#fill-minus-rec"></use>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
-                                    <div class="laser-tariff-slider__descr-title">Фирменный торт 2 кг</div>
-                                    <div class="laser-tariff-slider__descr-value">
-                                        <svg class="icon icon-fill">
-                                            <use href="img/sprite.svg#fill-minus-rec"></use>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check laser-tariff-slider__descr-item--extra-fun">
-                                    <div class="laser-tariff-slider__descr-title">Дополнительные развлечения</div>
-                                    <div class="laser-tariff-slider__descr-value">
-                                        <svg class="icon icon-fill">
-                                            <use href="img/sprite.svg#fill-minus-rec"></use>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="laser-tariff-slider__item">
-                            <div class="laser-tariff-slider__title h3">LASER <span class="tariff-name">MIX</span></div>
-                            <div class="laser-tariff-slider__descr">
-                                <div class="laser-tariff-slider__descr-item">
-                                    <div class="laser-tariff-slider__descr-title">Длительность</div>
-                                    <div class="laser-tariff-slider__descr-value">2.5 часа</div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item">
-                                    <div class="laser-tariff-slider__descr-title">Кол-во человек</div>
-                                    <div class="laser-tariff-slider__descr-value">До 12 человек</div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--gap-more">
-                                    <div class="laser-tariff-slider__descr-price h3">от 13 600 ₽</div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--gap-more laser-tariff-slider__descr-item--hr">
-                                    <div class="laser-tariff-slider__descr-hr decor-bt decor-bt--mark decor-bt--mark-purple"></div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item">
-                                    <div class="laser-tariff-slider__descr-title">Знакомство, инструктаж, развлекательная программа с ведущим</div>
-                                    <div class="laser-tariff-slider__descr-value">30 минут</div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item">
-                                    <div class="laser-tariff-slider__descr-title">Лазертаг</div>
-                                    <div class="laser-tariff-slider__descr-value">4-5 игр</div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
-                                    <div class="laser-tariff-slider__descr-title">Торжественная часть</div>
-                                    <div class="laser-tariff-slider__descr-value">
-                                        <svg class="icon icon-fill plus">
-                                            <use href="img/sprite.svg#fill-plus-rec"></use>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
-                                    <div class="laser-tariff-slider__descr-title">Праздничная сервировка и оформление</div>
-                                    <div class="laser-tariff-slider__descr-value">
-                                        <svg class="icon icon-fill plus">
-                                            <use href="img/sprite.svg#fill-plus-rec"></use>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
-                                    <div class="laser-tariff-slider__descr-title">Пригласительные для гостей праздника</div>
-                                    <div class="laser-tariff-slider__descr-value">
-                                        <svg class="icon icon-fill plus">
-                                            <use href="img/sprite.svg#fill-plus-rec"></use>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
-                                    <div class="laser-tariff-slider__descr-title">Подарок имениннику</div>
-                                    <div class="laser-tariff-slider__descr-value">
-                                        <svg class="icon icon-fill plus">
-                                            <use href="img/sprite.svg#fill-plus-rec"></use>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
-                                    <div class="laser-tariff-slider__descr-title">Дискотека</div>
-                                    <div class="laser-tariff-slider__descr-value">
-                                        <svg class="icon icon-fill">
-                                            <use href="img/sprite.svg#fill-minus-rec"></use>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
-                                    <div class="laser-tariff-slider__descr-title">Фотограф <span class="caption fz-caption">До 200 фотогрфий</span></div>
-                                    <div class="laser-tariff-slider__descr-value">
-                                        <svg class="icon icon-fill">
-                                            <use href="img/sprite.svg#fill-minus-rec"></use>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
-                                    <div class="laser-tariff-slider__descr-title">Порционная еда <span class="caption fz-caption">Пицца, наггетсы, сок</span></div>
-                                    <div class="laser-tariff-slider__descr-value">
-                                        <svg class="icon icon-fill">
-                                            <use href="img/sprite.svg#fill-minus-rec"></use>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
-                                    <div class="laser-tariff-slider__descr-title">Фирменный торт 2 кг</div>
-                                    <div class="laser-tariff-slider__descr-value">
-                                        <svg class="icon icon-fill">
-                                            <use href="img/sprite.svg#fill-minus-rec"></use>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--extra-fun">
-                                    <div class="laser-tariff-slider__descr-title">Дополнительные развлечения</div>
-                                    <div class="laser-tariff-slider__descr-value">Одно развлечение из списка Light</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="laser-tariff-slider__item">
-                            <div class="laser-tariff-slider__title h3">LASER <span class="tariff-name">MAX</span></div>
-                            <div class="laser-tariff-slider__descr">
-                                <div class="laser-tariff-slider__descr-item">
-                                    <div class="laser-tariff-slider__descr-title">Длительность</div>
-                                    <div class="laser-tariff-slider__descr-value">3 часа</div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item">
-                                    <div class="laser-tariff-slider__descr-title">Кол-во человек</div>
-                                    <div class="laser-tariff-slider__descr-value">До 16 человек</div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--gap-more">
-                                    <div class="laser-tariff-slider__descr-price h3">от 16 600 ₽</div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--gap-more laser-tariff-slider__descr-item--hr">
-                                    <div class="laser-tariff-slider__descr-hr decor-bt decor-bt--mark decor-bt--mark-purple"></div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item">
-                                    <div class="laser-tariff-slider__descr-title">Знакомство, инструктаж, развлекательная программа с ведущим</div>
-                                    <div class="laser-tariff-slider__descr-value">30 минут</div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item">
-                                    <div class="laser-tariff-slider__descr-title">Лазертаг</div>
-                                    <div class="laser-tariff-slider__descr-value">4-5 игр</div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
-                                    <div class="laser-tariff-slider__descr-title">Торжественная часть</div>
-                                    <div class="laser-tariff-slider__descr-value">
-                                        <svg class="icon icon-fill plus">
-                                            <use href="img/sprite.svg#fill-plus-rec"></use>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
-                                    <div class="laser-tariff-slider__descr-title">Праздничная сервировка и оформление</div>
-                                    <div class="laser-tariff-slider__descr-value">
-                                        <svg class="icon icon-fill plus">
-                                            <use href="img/sprite.svg#fill-plus-rec"></use>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
-                                    <div class="laser-tariff-slider__descr-title">Пригласительные для гостей праздника</div>
-                                    <div class="laser-tariff-slider__descr-value">
-                                        <svg class="icon icon-fill plus">
-                                            <use href="img/sprite.svg#fill-plus-rec"></use>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
-                                    <div class="laser-tariff-slider__descr-title">Подарок имениннику</div>
-                                    <div class="laser-tariff-slider__descr-value">
-                                        <svg class="icon icon-fill plus">
-                                            <use href="img/sprite.svg#fill-plus-rec"></use>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
-                                    <div class="laser-tariff-slider__descr-title">Дискотека</div>
-                                    <div class="laser-tariff-slider__descr-value">
-                                        <svg class="icon icon-fill plus">
-                                            <use href="img/sprite.svg#fill-plus-rec"></use>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
-                                    <div class="laser-tariff-slider__descr-title">Фотограф <span class="caption fz-caption">До 200 фотогрфий</span></div>
-                                    <div class="laser-tariff-slider__descr-value">
-                                        <svg class="icon icon-fill plus">
-                                            <use href="img/sprite.svg#fill-plus-rec"></use>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
-                                    <div class="laser-tariff-slider__descr-title">Порционная еда <span class="caption fz-caption">Пицца, наггетсы, сок</span></div>
-                                    <div class="laser-tariff-slider__descr-value">
-                                        <svg class="icon icon-fill">
-                                            <use href="img/sprite.svg#fill-minus-rec"></use>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
-                                    <div class="laser-tariff-slider__descr-title">Фирменный торт 2 кг</div>
-                                    <div class="laser-tariff-slider__descr-value">
-                                        <svg class="icon icon-fill">
-                                            <use href="img/sprite.svg#fill-minus-rec"></use>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--extra-fun">
-                                    <div class="laser-tariff-slider__descr-title">Дополнительные развлечения</div>
-                                    <div class="laser-tariff-slider__descr-value">Одно развлечение из списков Light и Max</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="laser-tariff-slider__item">
-                            <div class="laser-tariff-slider__title h3">LASER <span class="tariff-name">MEGA</span></div>
-                            <div class="laser-tariff-slider__descr">
-                                <div class="laser-tariff-slider__descr-item">
-                                    <div class="laser-tariff-slider__descr-title">Длительность</div>
-                                    <div class="laser-tariff-slider__descr-value">4 часа</div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item">
-                                    <div class="laser-tariff-slider__descr-title">Кол-во человек</div>
-                                    <div class="laser-tariff-slider__descr-value">До 30 человек</div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--gap-more">
-                                    <div class="laser-tariff-slider__descr-price h3">от 39 800 ₽</div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--gap-more laser-tariff-slider__descr-item--hr">
-                                    <div class="laser-tariff-slider__descr-hr decor-bt decor-bt--mark decor-bt--mark-purple"></div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item">
-                                    <div class="laser-tariff-slider__descr-title">Знакомство, инструктаж, развлекательная программа с ведущим</div>
-                                    <div class="laser-tariff-slider__descr-value">65 минут</div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item">
-                                    <div class="laser-tariff-slider__descr-title">Лазертаг</div>
-                                    <div class="laser-tariff-slider__descr-value">3-4 игр</div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
-                                    <div class="laser-tariff-slider__descr-title">Торжественная часть</div>
-                                    <div class="laser-tariff-slider__descr-value">
-                                        <svg class="icon icon-fill plus">
-                                            <use href="img/sprite.svg#fill-plus-rec"></use>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
-                                    <div class="laser-tariff-slider__descr-title">Праздничная сервировка и оформление</div>
-                                    <div class="laser-tariff-slider__descr-value">
-                                        <svg class="icon icon-fill ">
-                                            <use href="img/sprite.svg#fill-plus-rec"></use>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
-                                    <div class="laser-tariff-slider__descr-title">Пригласительные для гостей праздника</div>
-                                    <div class="laser-tariff-slider__descr-value">
-                                        <svg class="icon icon-fill plus">
-                                            <use href="img/sprite.svg#fill-plus-rec"></use>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
-                                    <div class="laser-tariff-slider__descr-title">Подарок имениннику</div>
-                                    <div class="laser-tariff-slider__descr-value">
-                                        <svg class="icon icon-fill plus">
-                                            <use href="img/sprite.svg#fill-plus-rec"></use>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
-                                    <div class="laser-tariff-slider__descr-title">Дискотека</div>
-                                    <div class="laser-tariff-slider__descr-value">
-                                        <svg class="icon icon-fill plus">
-                                            <use href="img/sprite.svg#fill-plus-rec"></use>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
-                                    <div class="laser-tariff-slider__descr-title">Фотограф <span class="caption fz-caption">До 200 фотогрфий</span></div>
-                                    <div class="laser-tariff-slider__descr-value">
-                                        <svg class="icon icon-fill plus">
-                                            <use href="img/sprite.svg#fill-plus-rec"></use>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
-                                    <div class="laser-tariff-slider__descr-title">Порционная еда <span class="caption fz-caption">Пицца, наггетсы, сок</span></div>
-                                    <div class="laser-tariff-slider__descr-value">
-                                        <svg class="icon icon-fill plus">
-                                            <use href="img/sprite.svg#fill-plus-rec"></use>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
-                                    <div class="laser-tariff-slider__descr-title">Фирменный торт 2 кг</div>
-                                    <div class="laser-tariff-slider__descr-value">
-                                        <svg class="icon icon-fill plus">
-                                            <use href="img/sprite.svg#fill-plus-rec"></use>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--extra-fun">
-                                    <div class="laser-tariff-slider__descr-title">Дополнительные развлечения</div>
-                                    <div class="laser-tariff-slider__descr-value">Два развлечения из списков Light и Max</div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="page-content__content">
+                        <h2>Выберите подходящий <span class="purple-color">тариф</span></h2>
                     </div>
                 </div>
             </div>
-        </div>
 
+            <div class="slider-out laser-tariff-slider-wrapper">
+                <div class="laser-tariff-slider swiper">
+                    <div class="swiper-wrapper reset-slider-list">
+                        <div class="swiper-slide slide-desktop-sidebar">
+                            <div class="laser-tariff-slider__item">
+                                <div class="laser-tariff-slider__title h3 as-hidden">LASER <span class="tariff-name">TARIFF</span></div>
+                                <div class="laser-tariff-slider__descr">
+                                    <div class="laser-tariff-slider__descr-item">
+                                        <div class="laser-tariff-slider__descr-title">Длительность</div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item">
+                                        <div class="laser-tariff-slider__descr-title">Кол-во человек</div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--gap-more">
+                                        <div class="laser-tariff-slider__descr-price h3 as-hidden">от 00 000 ₽</div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--gap-more laser-tariff-slider__descr-item--hr">
+                                        <div class="laser-tariff-slider__descr-hr decor-bt decor-bt--mark decor-bt--mark-purple"></div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item">
+                                        <div class="laser-tariff-slider__descr-title">Знакомство, инструктаж, развлекательная программа с ведущим</div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item">
+                                        <div class="laser-tariff-slider__descr-title">Лазертаг</div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item">
+                                        <div class="laser-tariff-slider__descr-title">Торжественная часть</div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item">
+                                        <div class="laser-tariff-slider__descr-title">Праздничная сервировка и оформление</div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item">
+                                        <div class="laser-tariff-slider__descr-title">Пригласительные для гостей праздника</div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item">
+                                        <div class="laser-tariff-slider__descr-title">Подарок имениннику</div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item">
+                                        <div class="laser-tariff-slider__descr-title">Дискотека</div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item">
+                                        <div class="laser-tariff-slider__descr-title">Фотограф <span class="caption fz-caption">До 200 фотогрфий</span></div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item">
+                                        <div class="laser-tariff-slider__descr-title">Порционная еда <span class="caption fz-caption">Пицца, наггетсы, сок</span></div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item">
+                                        <div class="laser-tariff-slider__descr-title">Фирменный торт 2 кг</div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--extra-fun">
+                                        <div class="laser-tariff-slider__descr-title">Дополнительные развлечения</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="laser-tariff-slider__item">
+                                <div class="laser-tariff-slider__title h3">LASER <span class="tariff-name">MINI</span></div>
+                                <div class="laser-tariff-slider__descr">
+                                    <div class="laser-tariff-slider__descr-item">
+                                        <div class="laser-tariff-slider__descr-title">Длительность</div>
+                                        <div class="laser-tariff-slider__descr-value">1.5 часа</div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item">
+                                        <div class="laser-tariff-slider__descr-title">Кол-во человек</div>
+                                        <div class="laser-tariff-slider__descr-value">До 8 человек</div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--gap-more">
+                                        <div class="laser-tariff-slider__descr-price h3">от 6 700 ₽</div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--gap-more laser-tariff-slider__descr-item--hr">
+                                        <div class="laser-tariff-slider__descr-hr decor-bt decor-bt--mark decor-bt--mark-purple"></div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item">
+                                        <div class="laser-tariff-slider__descr-title">Знакомство, инструктаж, развлекательная программа с ведущим</div>
+                                        <div class="laser-tariff-slider__descr-value">30 минут</div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item">
+                                        <div class="laser-tariff-slider__descr-title">Лазертаг</div>
+                                        <div class="laser-tariff-slider__descr-value">4-5 игр</div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
+                                        <div class="laser-tariff-slider__descr-title">Торжественная часть</div>
+                                        <div class="laser-tariff-slider__descr-value">
+                                            <svg class="icon icon-fill">
+                                                <use href="img/sprite.svg#fill-minus-rec"></use>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
+                                        <div class="laser-tariff-slider__descr-title">Праздничная сервировка и оформление</div>
+                                        <div class="laser-tariff-slider__descr-value">
+                                            <svg class="icon icon-fill">
+                                                <use href="img/sprite.svg#fill-minus-rec"></use>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
+                                        <div class="laser-tariff-slider__descr-title">Пригласительные для гостей праздника</div>
+                                        <div class="laser-tariff-slider__descr-value">
+                                            <svg class="icon icon-fill">
+                                                <use href="img/sprite.svg#fill-minus-rec"></use>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
+                                        <div class="laser-tariff-slider__descr-title">Подарок имениннику</div>
+                                        <div class="laser-tariff-slider__descr-value">
+                                            <svg class="icon icon-fill">
+                                                <use href="img/sprite.svg#fill-minus-rec"></use>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
+                                        <div class="laser-tariff-slider__descr-title">Дискотека</div>
+                                        <div class="laser-tariff-slider__descr-value">
+                                            <svg class="icon icon-fill">
+                                                <use href="img/sprite.svg#fill-minus-rec"></use>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
+                                        <div class="laser-tariff-slider__descr-title">Фотограф <span class="caption fz-caption">До 200 фотогрфий</span></div>
+                                        <div class="laser-tariff-slider__descr-value">
+                                            <svg class="icon icon-fill">
+                                                <use href="img/sprite.svg#fill-minus-rec"></use>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
+                                        <div class="laser-tariff-slider__descr-title">Порционная еда <span class="caption fz-caption">Пицца, наггетсы, сок</span></div>
+                                        <div class="laser-tariff-slider__descr-value">
+                                            <svg class="icon icon-fill">
+                                                <use href="img/sprite.svg#fill-minus-rec"></use>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
+                                        <div class="laser-tariff-slider__descr-title">Фирменный торт 2 кг</div>
+                                        <div class="laser-tariff-slider__descr-value">
+                                            <svg class="icon icon-fill">
+                                                <use href="img/sprite.svg#fill-minus-rec"></use>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check laser-tariff-slider__descr-item--extra-fun">
+                                        <div class="laser-tariff-slider__descr-title">Дополнительные развлечения</div>
+                                        <div class="laser-tariff-slider__descr-value">
+                                            <svg class="icon icon-fill">
+                                                <use href="img/sprite.svg#fill-minus-rec"></use>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="laser-tariff-slider__item">
+                                <div class="laser-tariff-slider__title h3">LASER <span class="tariff-name">MIX</span></div>
+                                <div class="laser-tariff-slider__descr">
+                                    <div class="laser-tariff-slider__descr-item">
+                                        <div class="laser-tariff-slider__descr-title">Длительность</div>
+                                        <div class="laser-tariff-slider__descr-value">2.5 часа</div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item">
+                                        <div class="laser-tariff-slider__descr-title">Кол-во человек</div>
+                                        <div class="laser-tariff-slider__descr-value">До 12 человек</div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--gap-more">
+                                        <div class="laser-tariff-slider__descr-price h3">от 13 600 ₽</div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--gap-more laser-tariff-slider__descr-item--hr">
+                                        <div class="laser-tariff-slider__descr-hr decor-bt decor-bt--mark decor-bt--mark-purple"></div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item">
+                                        <div class="laser-tariff-slider__descr-title">Знакомство, инструктаж, развлекательная программа с ведущим</div>
+                                        <div class="laser-tariff-slider__descr-value">30 минут</div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item">
+                                        <div class="laser-tariff-slider__descr-title">Лазертаг</div>
+                                        <div class="laser-tariff-slider__descr-value">4-5 игр</div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
+                                        <div class="laser-tariff-slider__descr-title">Торжественная часть</div>
+                                        <div class="laser-tariff-slider__descr-value">
+                                            <svg class="icon icon-fill plus">
+                                                <use href="img/sprite.svg#fill-plus-rec"></use>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
+                                        <div class="laser-tariff-slider__descr-title">Праздничная сервировка и оформление</div>
+                                        <div class="laser-tariff-slider__descr-value">
+                                            <svg class="icon icon-fill plus">
+                                                <use href="img/sprite.svg#fill-plus-rec"></use>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
+                                        <div class="laser-tariff-slider__descr-title">Пригласительные для гостей праздника</div>
+                                        <div class="laser-tariff-slider__descr-value">
+                                            <svg class="icon icon-fill plus">
+                                                <use href="img/sprite.svg#fill-plus-rec"></use>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
+                                        <div class="laser-tariff-slider__descr-title">Подарок имениннику</div>
+                                        <div class="laser-tariff-slider__descr-value">
+                                            <svg class="icon icon-fill plus">
+                                                <use href="img/sprite.svg#fill-plus-rec"></use>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
+                                        <div class="laser-tariff-slider__descr-title">Дискотека</div>
+                                        <div class="laser-tariff-slider__descr-value">
+                                            <svg class="icon icon-fill">
+                                                <use href="img/sprite.svg#fill-minus-rec"></use>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
+                                        <div class="laser-tariff-slider__descr-title">Фотограф <span class="caption fz-caption">До 200 фотогрфий</span></div>
+                                        <div class="laser-tariff-slider__descr-value">
+                                            <svg class="icon icon-fill">
+                                                <use href="img/sprite.svg#fill-minus-rec"></use>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
+                                        <div class="laser-tariff-slider__descr-title">Порционная еда <span class="caption fz-caption">Пицца, наггетсы, сок</span></div>
+                                        <div class="laser-tariff-slider__descr-value">
+                                            <svg class="icon icon-fill">
+                                                <use href="img/sprite.svg#fill-minus-rec"></use>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
+                                        <div class="laser-tariff-slider__descr-title">Фирменный торт 2 кг</div>
+                                        <div class="laser-tariff-slider__descr-value">
+                                            <svg class="icon icon-fill">
+                                                <use href="img/sprite.svg#fill-minus-rec"></use>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--extra-fun">
+                                        <div class="laser-tariff-slider__descr-title">Дополнительные развлечения</div>
+                                        <div class="laser-tariff-slider__descr-value">Одно развлечение из списка Light</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="laser-tariff-slider__item">
+                                <div class="laser-tariff-slider__title h3">LASER <span class="tariff-name">MAX</span></div>
+                                <div class="laser-tariff-slider__descr">
+                                    <div class="laser-tariff-slider__descr-item">
+                                        <div class="laser-tariff-slider__descr-title">Длительность</div>
+                                        <div class="laser-tariff-slider__descr-value">3 часа</div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item">
+                                        <div class="laser-tariff-slider__descr-title">Кол-во человек</div>
+                                        <div class="laser-tariff-slider__descr-value">До 16 человек</div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--gap-more">
+                                        <div class="laser-tariff-slider__descr-price h3">от 16 600 ₽</div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--gap-more laser-tariff-slider__descr-item--hr">
+                                        <div class="laser-tariff-slider__descr-hr decor-bt decor-bt--mark decor-bt--mark-purple"></div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item">
+                                        <div class="laser-tariff-slider__descr-title">Знакомство, инструктаж, развлекательная программа с ведущим</div>
+                                        <div class="laser-tariff-slider__descr-value">30 минут</div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item">
+                                        <div class="laser-tariff-slider__descr-title">Лазертаг</div>
+                                        <div class="laser-tariff-slider__descr-value">4-5 игр</div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
+                                        <div class="laser-tariff-slider__descr-title">Торжественная часть</div>
+                                        <div class="laser-tariff-slider__descr-value">
+                                            <svg class="icon icon-fill plus">
+                                                <use href="img/sprite.svg#fill-plus-rec"></use>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
+                                        <div class="laser-tariff-slider__descr-title">Праздничная сервировка и оформление</div>
+                                        <div class="laser-tariff-slider__descr-value">
+                                            <svg class="icon icon-fill plus">
+                                                <use href="img/sprite.svg#fill-plus-rec"></use>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
+                                        <div class="laser-tariff-slider__descr-title">Пригласительные для гостей праздника</div>
+                                        <div class="laser-tariff-slider__descr-value">
+                                            <svg class="icon icon-fill plus">
+                                                <use href="img/sprite.svg#fill-plus-rec"></use>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
+                                        <div class="laser-tariff-slider__descr-title">Подарок имениннику</div>
+                                        <div class="laser-tariff-slider__descr-value">
+                                            <svg class="icon icon-fill plus">
+                                                <use href="img/sprite.svg#fill-plus-rec"></use>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
+                                        <div class="laser-tariff-slider__descr-title">Дискотека</div>
+                                        <div class="laser-tariff-slider__descr-value">
+                                            <svg class="icon icon-fill plus">
+                                                <use href="img/sprite.svg#fill-plus-rec"></use>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
+                                        <div class="laser-tariff-slider__descr-title">Фотограф <span class="caption fz-caption">До 200 фотогрфий</span></div>
+                                        <div class="laser-tariff-slider__descr-value">
+                                            <svg class="icon icon-fill plus">
+                                                <use href="img/sprite.svg#fill-plus-rec"></use>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
+                                        <div class="laser-tariff-slider__descr-title">Порционная еда <span class="caption fz-caption">Пицца, наггетсы, сок</span></div>
+                                        <div class="laser-tariff-slider__descr-value">
+                                            <svg class="icon icon-fill">
+                                                <use href="img/sprite.svg#fill-minus-rec"></use>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
+                                        <div class="laser-tariff-slider__descr-title">Фирменный торт 2 кг</div>
+                                        <div class="laser-tariff-slider__descr-value">
+                                            <svg class="icon icon-fill">
+                                                <use href="img/sprite.svg#fill-minus-rec"></use>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--extra-fun">
+                                        <div class="laser-tariff-slider__descr-title">Дополнительные развлечения</div>
+                                        <div class="laser-tariff-slider__descr-value">Одно развлечение из списков Light и Max</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="laser-tariff-slider__item">
+                                <div class="laser-tariff-slider__title h3">LASER <span class="tariff-name">MEGA</span></div>
+                                <div class="laser-tariff-slider__descr">
+                                    <div class="laser-tariff-slider__descr-item">
+                                        <div class="laser-tariff-slider__descr-title">Длительность</div>
+                                        <div class="laser-tariff-slider__descr-value">4 часа</div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item">
+                                        <div class="laser-tariff-slider__descr-title">Кол-во человек</div>
+                                        <div class="laser-tariff-slider__descr-value">До 30 человек</div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--gap-more">
+                                        <div class="laser-tariff-slider__descr-price h3">от 39 800 ₽</div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--gap-more laser-tariff-slider__descr-item--hr">
+                                        <div class="laser-tariff-slider__descr-hr decor-bt decor-bt--mark decor-bt--mark-purple"></div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item">
+                                        <div class="laser-tariff-slider__descr-title">Знакомство, инструктаж, развлекательная программа с ведущим</div>
+                                        <div class="laser-tariff-slider__descr-value">65 минут</div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item">
+                                        <div class="laser-tariff-slider__descr-title">Лазертаг</div>
+                                        <div class="laser-tariff-slider__descr-value">3-4 игр</div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
+                                        <div class="laser-tariff-slider__descr-title">Торжественная часть</div>
+                                        <div class="laser-tariff-slider__descr-value">
+                                            <svg class="icon icon-fill plus">
+                                                <use href="img/sprite.svg#fill-plus-rec"></use>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
+                                        <div class="laser-tariff-slider__descr-title">Праздничная сервировка и оформление</div>
+                                        <div class="laser-tariff-slider__descr-value">
+                                            <svg class="icon icon-fill ">
+                                                <use href="img/sprite.svg#fill-plus-rec"></use>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
+                                        <div class="laser-tariff-slider__descr-title">Пригласительные для гостей праздника</div>
+                                        <div class="laser-tariff-slider__descr-value">
+                                            <svg class="icon icon-fill plus">
+                                                <use href="img/sprite.svg#fill-plus-rec"></use>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
+                                        <div class="laser-tariff-slider__descr-title">Подарок имениннику</div>
+                                        <div class="laser-tariff-slider__descr-value">
+                                            <svg class="icon icon-fill plus">
+                                                <use href="img/sprite.svg#fill-plus-rec"></use>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
+                                        <div class="laser-tariff-slider__descr-title">Дискотека</div>
+                                        <div class="laser-tariff-slider__descr-value">
+                                            <svg class="icon icon-fill plus">
+                                                <use href="img/sprite.svg#fill-plus-rec"></use>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
+                                        <div class="laser-tariff-slider__descr-title">Фотограф <span class="caption fz-caption">До 200 фотогрфий</span></div>
+                                        <div class="laser-tariff-slider__descr-value">
+                                            <svg class="icon icon-fill plus">
+                                                <use href="img/sprite.svg#fill-plus-rec"></use>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
+                                        <div class="laser-tariff-slider__descr-title">Порционная еда <span class="caption fz-caption">Пицца, наггетсы, сок</span></div>
+                                        <div class="laser-tariff-slider__descr-value">
+                                            <svg class="icon icon-fill plus">
+                                                <use href="img/sprite.svg#fill-plus-rec"></use>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--check">
+                                        <div class="laser-tariff-slider__descr-title">Фирменный торт 2 кг</div>
+                                        <div class="laser-tariff-slider__descr-value">
+                                            <svg class="icon icon-fill plus">
+                                                <use href="img/sprite.svg#fill-plus-rec"></use>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="laser-tariff-slider__descr-item laser-tariff-slider__descr-item--extra-fun">
+                                        <div class="laser-tariff-slider__descr-title">Дополнительные развлечения</div>
+                                        <div class="laser-tariff-slider__descr-value">Два развлечения из списков Light и Max</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
 </div>
 
@@ -1727,7 +1828,7 @@
     </div>
 </div>
 
-<div class="">
+<div class="scroll-to-target" id="contacts">
     <div class="block bg-gray6">
         <div class="container">
             <div class="page-content">

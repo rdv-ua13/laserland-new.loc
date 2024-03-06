@@ -34,6 +34,7 @@
     "gulp-svgmin": "^4.1.0",
     "gulp-uglify": "^3.0.2",
     "gulp-webp": "^4.0.1",
+    "readmore-js": "^2.2.1",
     "sass": "^1.45.1",
     "webpack": "^5.65.0",
     "webpack-stream": "^7.0.0"
@@ -47,6 +48,7 @@
     "jquery-validation": "^1.19.3",
     "jquery.maskedinput": "^1.4.1",
     "just-validate": "^3.3.3",
+    "sound-play": "^1.1.0",
     "swiper": "^7.4.1",
     "tippy.js": "^6.3.7"
   }

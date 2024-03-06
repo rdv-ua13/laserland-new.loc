@@ -19,6 +19,9 @@ application.prototype.init = function () {
     this.initTooltips();
     this.initMaskedInput();
     this.initSwitchContent();
+    this.initSmoothScrollTo();
+    this.initReadmore();
+    this.initAudioPlayer();
 };
 
 // Initialization disable scroll
@@ -331,4 +334,443 @@ application.prototype.initSwitchContent = function () {
             $(this).addClass('active');
         }
     });
+};
+
+// Initialization switch content
+application.prototype.initSmoothScrollTo = function () {
+    $('.scroll-to-trigger').on('click', function () {
+        let currentId = $(this).data('href');
+
+        $('html, body').animate({
+            scrollTop: $(currentId).offset().top
+        }, 500);
+    });
+};
+
+// Initialization readmore plugin
+application.prototype.initReadmore = function () {
+    if ($('[data-spoiler]').length) {
+        const spoiler = $('[data-spoiler]');
+
+        spoiler.each(function (i) {
+            let currentMoreText = $(this).data('spoiler-more');
+            let currentLessText = $(this).data('spoiler-less');
+            let defaultHeight = null;
+            let defaultMoreText = 'Показать все';
+            let defaultLessText = 'Свернуть';
+            let currentElemHeight = spoiler.eq(i).data('collapsed-height');
+
+            if (window.matchMedia('(min-width: 992px)').matches) {
+                defaultHeight = 860;
+            } else if (window.matchMedia('(max-width: 991.98px)').matches) {
+                defaultHeight = 1000;
+            }
+
+            if ($(this).is('[data-spoiler-more]')) {
+                currentMoreText = currentMoreText;
+                currentLessText = defaultLessText;
+            } else if ($(this).is('[data-spoiler-less]')) {
+                currentMoreText = defaultMoreText;
+                currentLessText = currentLessText;
+            } else if (!$(this).is('[data-spoiler-more]') && !$(this).is('[data-spoiler-less]')) {
+                currentMoreText = defaultMoreText;
+                currentLessText = defaultLessText;
+            }
+
+            if (currentElemHeight === '' || currentElemHeight === null || currentElemHeight === undefined) {
+                currentElemHeight = defaultHeight;
+            }
+
+            spoiler.eq(i).addClass('spoiler-' + i);
+
+            setReadmore();
+            $(document).on('click', '.basic-tabs-trigger', function (e) {
+                setReadmore();
+            });
+
+            function setReadmore() {
+                $('.spoiler-' + i).readmore({
+                    collapsedHeight: currentElemHeight,
+                    embedCSS: false,
+                    moreLink: '<div class="spoiler-trigger-wrapper">' +
+                        '           <a class="btn-reset btn btn-secondary spoiler-trigger" href="javascript:;">\n' +
+                        '               <span class="btn__text">' + currentMoreText + '</span>\n' +
+                        '           </a>' +
+                        '       </div>',
+                    lessLink: '<a class="visually-hidden" href="javascript:;"></a>',
+                });
+            }
+        });
+    }
+};
+
+// Initialization audio player
+application.prototype.initAudioPlayer = function () {
+    {
+        class AudioPlayer extends HTMLElement {
+            playing = false;
+            volume = 2;
+            prevVolume = 2;
+            initialized = false;
+            bufferPercentage = 75;
+            nonAudioAttributes = new Set(['title', 'buffer-percentage']);
+
+            constructor() {
+                super();
+
+                this.attachShadow({mode: 'open'});
+                this.render();
+            }
+
+            static get observedAttributes() {
+                return [
+                    // audio tag attributes
+                    // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio
+                    'src', 'muted', 'crossorigin', 'loop', 'preload', 'autoplay',
+                    // the name of the audio
+                    'title',
+                    // the percentage of the frequency buffer data to represent
+                    // if the dataArray contains 1024 data points only a percentage of data will
+                    // be used to draw on the canvas
+                    'buffer-percentage'
+                ];
+            }
+
+            async attributeChangedCallback(name, oldValue, newValue) {
+                switch (name) {
+                    case 'src':
+                        this.initialized = false;
+                        this.render();
+                        this.initializeAudio();
+                        break;
+                    case 'muted':
+                        this.toggleMute(Boolean(this.audio?.getAttribute('muted')));
+                        break;
+                    case 'title':
+                        this.titleElement.textContent = newValue;
+                        break;
+                    case 'buffer-percentage':
+                        this.bufferPercentage = Number(newValue) || 75;
+                        break;
+                    default:
+                }
+
+                this.updateAudioAttributes(name, newValue);
+            }
+
+            updateAudioAttributes(name, value) {
+                if (!this.audio || this.nonAudioAttributes.has(name)) return;
+
+                // if the attribute was explicitly set on the audio-player tag
+                // set it otherwise remove it
+                if (this.attributes.getNamedItem(name)) {
+                    this.audio.setAttribute(name, value ?? '')
+                } else {
+                    this.audio.removeAttribute(name);
+                }
+            }
+
+            initializeAudio() {
+                if (this.initialized) return;
+
+                this.initialized = true;
+
+                this.audioCtx = new AudioContext();
+                this.gainNode = this.audioCtx.createGain();
+                this.analyserNode = this.audioCtx.createAnalyser();
+                this.track = this.audioCtx.createMediaElementSource(this.audio);
+
+                this.analyserNode.fftSize = 2048;
+                this.bufferLength = this.analyserNode.frequencyBinCount;
+                this.dataArray = new Uint8Array(this.bufferLength);
+                this.analyserNode.getByteFrequencyData(this.dataArray);
+
+                this.track
+                    .connect(this.gainNode)
+                    .connect(this.analyserNode)
+                    .connect(this.audioCtx.destination);
+
+                this.changeVolume();
+            }
+
+            attachEvents() {
+                this.volumeBar.parentNode.addEventListener('click', e => {
+                    if (e.target === this.volumeBar.parentNode) {
+                        this.toggleMute();
+                    }
+                }, false);
+
+                this.playPauseBtn.addEventListener('click', this.togglePlay.bind(this), false);
+
+                this.volumeBar.addEventListener('input', this.changeVolume.bind(this), false);
+
+                this.progressBar.addEventListener('input', (e) => this.seekTo(this.progressBar.value), false);
+
+                this.audio.addEventListener('loadedmetadata', () => {
+                    this.progressBar.max = this.audio.duration;
+                    this.durationEl.textContent = this.getTimeString(this.audio.duration);
+                    this.updateAudioTime();
+                });
+
+                this.audio.addEventListener('error', (e) => {
+                    this.titleElement.textContent = this.audio.error.message;
+                    this.playPauseBtn.disabled = true;
+                });
+
+                this.audio.addEventListener('timeupdate', () => {
+                    this.updateAudioTime(this.audio.currentTime);
+                });
+
+                this.audio.addEventListener('ended', () => {
+                    this.playing = false;
+                    this.playPauseBtn.textContent = 'play';
+                    this.playPauseBtn.classList.remove('playing');
+                }, false);
+
+                this.audio.addEventListener('pause', () => {
+                    this.playing = false;
+                    this.playPauseBtn.textContent = 'play';
+                    this.playPauseBtn.classList.remove('playing');
+                }, false);
+
+                this.audio.addEventListener('play', () => {
+                    this.playing = true;
+                    this.playPauseBtn.textContent = 'pause';
+                    this.playPauseBtn.classList.add('playing');
+                }, false);
+            }
+
+            async togglePlay() {
+                if (this.audioCtx.state === 'suspended') {
+                    await this.audioCtx.resume();
+                }
+
+                if (this.playing) {
+                    return this.audio.pause();
+                }
+
+                return this.audio.play();
+            }
+
+            getTimeString(time) {
+                const secs = `${parseInt(`${time % 60}`, 10)}`.padStart(2, '0');
+                const min = parseInt(`${(time / 60) % 60}`, 10);
+
+                return `${min}:${secs}`;
+            }
+
+            changeVolume() {
+                this.volume = Number(this.volumeBar.value);
+
+                if (Number(this.volume) > 1) {
+                    this.volumeBar.parentNode.className = 'volume-bar over';
+                } else if (Number(this.volume) > 0) {
+                    this.volumeBar.parentNode.className = 'volume-bar half';
+                } else {
+                    this.volumeBar.parentNode.className = 'volume-bar';
+                }
+
+                if (this.gainNode) {
+                    this.gainNode.gain.value = this.volume;
+                }
+            }
+
+            toggleMute(muted = null) {
+                this.volumeBar.value = muted || this.volume === 0 ? this.prevVolume : 0;
+                this.changeVolume();
+            }
+
+            seekTo(value) {
+                this.audio.currentTime = value;
+            }
+
+            updateAudioTime() {
+                this.progressBar.value = this.audio.currentTime;
+                this.currentTimeEl.textContent = this.getTimeString(this.audio.currentTime);
+            }
+
+            style() {
+                return `
+                    <style>
+                        :host {
+                            width: 100%;
+                        }
+                        
+                        * {
+                            box-sizing: border-box;
+                        }
+                        
+                        .audio-player {
+                            position: relative;
+                            display: flex;
+                            align-items: center;
+                            min-height: 48px;
+                            height: 48px;
+                            margin: 0;
+                            padding: 6px 16px 6px 8px;
+                            border-radius: 8px;
+                            background-color: var(--gray6-color);
+                            color: var(--white-color);
+                        }
+                        
+                        .play-btn {
+                            min-width: 36px;
+                            width: 36px;
+                            min-height: 36px;
+                            height: 36px;
+                            padding: 8px;
+                            overflow: hidden;
+                            border: none;
+                            background: url("img/fill-play-cyan.svg#fill-play-cyan") center center/20px 20px no-repeat;
+                            appearance: none;
+                            text-indent: -999999px;
+                            cursor: pointer;
+                        }
+                        
+                        .play-btn.playing {
+                            background: url("img/fill-pause-cyan.svg#fill-pause-cyan") center center/20px 20px no-repeat;
+                        }
+                        
+                        .progress-indicator {
+                            position: relative;
+                            display: flex;
+                            flex: 1;
+                            justify-content: flex-end;
+                            align-items: center;
+                            gap: 16px;
+                            min-height: 20px;
+                            height: 20px;
+                            line-height: 20px;
+                        }
+                        
+                        .progress-bar {
+                            z-index: 2;
+                            position: absolute;
+                            flex: 1;
+                            top: 50%;
+                            left: 0;
+                            transform: translateY(-50%);
+                            min-width: calc(100% - 56px);
+                            width: calc(100% - 56px);
+                            margin: 0;
+                            overflow: hidden;
+                            border-radius: 2px;
+                            background: var(--gray5-color);
+                            appearance: none;
+                            cursor: pointer;
+                        }
+                        
+                        .progress-bar::-webkit-slider-thumb {
+                            min-width: 0;
+                            width: 0;
+                            min-height: 2px;
+                            height: 2px;
+                            border-radius: 2px;
+                            box-shadow: -300px 0 0 300px #00BBDD;
+                            appearance: none;
+                        }
+                        
+                        .progress-bar::-moz-range-thumb {
+                            min-width: 0;
+                            width: 0;
+                            min-height: 2px;
+                            height: 2px;
+                            border-radius: 2px;
+                            box-shadow: -300px 0 0 300px #00BBDD;
+                            appearance: none;
+                        }
+                        
+                        .progress-bar::-ms-thumb {
+                            min-width: 0;
+                            width: 0;
+                            min-height: 2px;
+                            height: 2px;
+                            border-radius: 2px;
+                            box-shadow: -300px 0 0 300px #00BBDD;
+                            appearance: none;
+                        }
+                        
+                        .current-time {
+                            position: relative;
+                            z-index: 1;
+                            display:flex;
+                            justify-content: flex-end;
+                            align-items: center;
+                            min-width: 40px;
+                            width: 40px;
+                            color: var(--gray7-color);
+                            cursor: default;
+                        }
+                        
+                        .volume-bar,
+                        .duration,
+                        canvas {
+                            display: none;
+                        }
+                        
+                        @media (min-width: 992px) {
+                            .audio-player {
+                                min-height: 52px;
+                                height: 52px;
+                                padding: 8px 16px 8px 8px;
+                            }
+                            .progress-indicator {
+                                font-size: 14px;
+                            }
+                        }
+                        @media (max-width: 991.98px) {
+                            .progress-indicator {
+                                font-size: 12px;
+                            }
+                        }
+                    </style>
+                `
+            }
+
+            render() {
+                this.shadowRoot.innerHTML = `
+                    ${this.style()}
+                    <figure class="audio-player">
+                        <audio style="display: none"></audio>
+                        <button class="play-btn" type="button">play</button>
+                        <div class="progress-indicator">
+                            <span class="current-time">00:00</span>
+                            <input type="range" max="100" value="0" class="progress-bar">
+                            <span class="duration">00:00</span>
+                            <canvas class="visualizer"></canvas>
+                        </div>
+                        <div class="volume-bar">
+                            <input type="range" min="0" max="2" step="0.01" value="${this.volume}" class="volume-field">
+                        </div>
+                    </figure>
+                `;
+
+                this.audio = this.shadowRoot.querySelector('audio');
+                this.playPauseBtn = this.shadowRoot.querySelector('.play-btn');
+                this.volumeBar = this.shadowRoot.querySelector('.volume-field');
+                this.progressIndicator = this.shadowRoot.querySelector('.progress-indicator');
+                this.currentTimeEl = this.progressIndicator.children[0];
+                this.progressBar = this.progressIndicator.children[1];
+                this.durationEl = this.progressIndicator.children[2];
+                this.canvas = this.shadowRoot.querySelector('canvas');
+
+                this.canvasCtx = this.canvas.getContext("2d");
+                // support retina display on canvas for a more crispy/HD look
+                const scale = window.devicePixelRatio;
+                this.canvas.width = Math.floor(this.canvas.width* scale);
+                this.canvas.height = Math.floor(this.canvas.height * scale);
+                this.volumeBar.value = this.volume;
+
+                // if rendering or re-rendering all audio attributes need to be reset
+                for (let i = 0; i < this.attributes.length; i++) {
+                    const attr = this.attributes[i];
+                    this.updateAudioAttributes(attr.name, attr.value);
+                }
+
+                this.attachEvents();
+            }
+        }
+
+        customElements.define('audio-player', AudioPlayer);
+    }
 };

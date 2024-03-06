@@ -121,6 +121,7 @@ const includedJsBuild = () => {
             "node_modules/swiper/swiper-bundle.js",
             "node_modules/tippy.js/dist/tippy-bundle.umd.js",
             "node_modules/@fancyapps/ui/dist/fancybox.umd.js",
+            "node_modules/readmore-js/readmore.js",
         ]
     )
         .pipe(dest(path.build.js))
@@ -139,6 +140,7 @@ const libsJsBuild = () => {
             "node_modules/swiper/swiper-bundle.js",
             "node_modules/tippy.js/dist/tippy-bundle.umd.js",
             "node_modules/@fancyapps/ui/dist/fancybox.umd.js",
+            "node_modules/readmore-js/readmore.js",
         ]
     )
         .pipe(concat("libs.min.js"))

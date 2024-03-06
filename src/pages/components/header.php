@@ -31,6 +31,7 @@
     <script defer src="js/swiper-bundle.js"></script>       <!-- swiper -->
     <script defer src="js/tippy-bundle.umd.js"></script>    <!-- tippy -->
     <script defer src="js/fancybox.umd.js"></script>        <!-- fancybox -->
+    <script defer src="js/readmore.js"></script>            <!-- readmore -->
 
 	<?/* Подключение библиотек (объединённо)
     <script defer src="js/libs.min.js"></script> */?>
@@ -54,10 +55,10 @@
                 </a>
             </div>
             <div class="header-menu">
-                <a class="header-menu__item" href="javascript:;">Сценарии игры</a>
-                <a class="header-menu__item" href="javascript:;">Цены</a>
-                <a class="header-menu__item" href="javascript:;">Отзывы</a>
-                <a class="header-menu__item" href="javascript:;">Контакты</a>
+                <div class="header-menu__item scroll-to-trigger" data-href="#scenarios">Сценарии игры</div>
+                <div class="header-menu__item scroll-to-trigger" data-href="#prices">Цены</div>
+                <div class="header-menu__item scroll-to-trigger" data-href="#reviews">Отзывы</div>
+                <div class="header-menu__item scroll-to-trigger" data-href="#contacts">Контакты</div>
             </div>
             <div class="header-contacts">
                 <a class="header-contacts__tel" href="tel:+73022284258">

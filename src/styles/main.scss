@@ -1149,10 +1149,10 @@
 			flex: 1;
 			flex-direction: column;
 		}
-		.laser-review__player {
+		/*.laser-review__player {
 			border-radius: 8px;
 			background-color: var(--gray6-color);
-		}
+		}*/
 	}
 	&-text {
 		.laser-review__item {
@@ -1208,6 +1208,29 @@
 }
 @media (min-width: 992px) {
 	.laser-review {
+		&-spoiler {
+			max-height: 860px;
+		}
+		&-tabs {
+			.basic-tabs-content {
+				&__content {
+					max-width: var(--container-width);
+					width: 100%;
+					padding-right: var(--container-offset);
+					padding-left: var(--container-offset);
+					margin-right: auto;
+					margin-left: auto;
+				}
+			}
+			.spoiler-trigger {
+				&-wrapper {
+					min-height: 420px;
+					height: 420px;
+					padding-bottom: 120px;
+				}
+			}
+		}
+
 		&-audio {
 			display: grid;
 			gap: 48px;
@@ -1226,11 +1249,11 @@
 			.laser-review__content {
 				gap: 12px;
 			}
-			.laser-review__player {
+			/*.laser-review__player {
 				min-height: 52px;
 				height: 52px;
 				padding: 8px 8px 16px;
-			}
+			}*/
 		}
 		&-text {
 			column-gap: 20px;
@@ -1269,8 +1292,24 @@
 		}
 	}
 }
+@media (min-width: 1200px) {
+	.laser-review {
+		&-tabs {
+			.basic-tabs-container-wrapper {
+				padding-left: 325px;
+			}
+		}
+	}
+}
 @media (min-width: 1400px) {
 	.laser-review {
+		&-tabs {
+			.basic-tabs-content {
+				margin-right: calc(((100vw - 17px - 1280px) / 2) * -1);
+				margin-left: calc(((100vw - 17px - 1280px) / 2) * -1);
+			}
+		}
+
 		&-audio {
 			grid-template-columns: repeat(3, 1fr);
 		}
@@ -1289,6 +1328,19 @@
 }
 @media (max-width: 991.98px) {
 	.laser-review {
+		&-spoiler {
+			max-height: 1000px;
+		}
+		&-tabs {
+			.spoiler-trigger {
+				&-wrapper {
+					min-height: 150px;
+					height: 150px;
+					padding-bottom: 40px;
+				}
+			}
+		}
+
 		&-audio {
 			display: flex;
 			flex-direction: column;
@@ -1308,11 +1360,11 @@
 			.laser-review__content {
 				gap: 4px;
 			}
-			.laser-review__player {
+			/*.laser-review__player {
 				min-height: 48px;
 				height: 48px;
 				padding: 8px 6px 16px;
-			}
+			}*/
 		}
 		&-text {
 			display: flex;
@@ -1358,8 +1410,24 @@
 		}
 	}
 }
+@media (min-width: 992px) and (max-width: 1199.98px) {
+	.laser-review {
+		&-tabs {
+			.basic-tabs-container-wrapper {
+				padding-left: 300px;
+			}
+		}
+	}
+}
 @media (min-width: 992px) and (max-width: 1399.98px) {
 	.laser-review {
+		&-tabs {
+			.basic-tabs-content {
+				margin-right: -60px;
+				margin-left: -60px;
+			}
+		}
+
 		&-audio {
 			grid-template-columns: repeat(2, 1fr);
 		}
