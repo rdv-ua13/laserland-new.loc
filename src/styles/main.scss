@@ -51,6 +51,26 @@
 	&__descr {
 		position: relative;
 	}
+	&__booking {
+		&-input {
+
+		}
+		&-success {
+			.modal__form-item {
+				&:not(.success-msg) {
+					z-index: -1;
+					opacity: 0;
+					pointer-events: none;
+					user-select: none;
+				}
+			}
+			.success-msg {
+				&.animated {
+					animation: from-visible-to-hidden-animation 0.5s;
+				}
+			}
+		}
+	}
 }
 @media (min-width: 992px) {
 	.main-screen {
@@ -113,7 +133,6 @@
 		margin-bottom: 80px;
 
 		&__title {
-			line-height: 1;
 			letter-spacing: -0.2px;
 
 			&:not(:last-child) {
@@ -170,6 +189,7 @@
 			&__title {
 				font-weight: 500;
 				font-size: 72px;
+				line-height: 72px;
 			}
 		}
 	}
@@ -219,6 +239,7 @@
 			&__title {
 				font-weight: 700;
 				font-size: 48px;
+				line-height: 48px;
 			}
 		}
 	}

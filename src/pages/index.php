@@ -11,36 +11,49 @@
                 <div class="gap-xl">
                     <div class="main-screen__subtitle fz-md">Тебя ждут увлекательные лазерные бои, уникальные игровые аппараты и аттракционы, лучшие праздники и море веселья!</div>
                 </div>
-                <div class="main-screen__booking">
-                    <div class="gap-md">
-                        <div class="decor-bt decor-bt--mark">
-                            <div class="h3">Забронируйте игру с друзьями</div>
+                <form class="main-screen__booking static-modal decor-bt decor-bt--mark" action="#" method="">
+                    <div class="static-modal__item main-screen__booking-success success-msg">
+                        <div class="success-msg__view">
+                            <svg class="icon icon-fill icon-xl icon-green">
+                                <use href="img/sprite.svg#fill-checkbox-rec-1"></use>
+                            </svg>
+                        </div>
+                        <div class="success-msg__descr">
+                            <div class="success-msg__descr-item success-msg__title h3">Мы приняли вашу заявку</div>
+                            <div class="success-msg__descr-item gray7-color">В ближайшее время с вами свяжется менеджер для уточнения деталей</div>
+                            <div class="success-msg__descr-item"><a class="link link-tdu" href="javascript:;">Отправить еще одну</a></div>
                         </div>
                     </div>
-                    <div>
-                        <div class="titled-input">
-                            <div class="input-title">Номер телефона</div>
-                            <div class="input-wrapper input-wrapper-split has-icon-l">
-                                <input
-                                        class="input-reset input"
-                                        type="text"
-                                        name=""
-                                        value=""
-                                        placeholder="Номер телефона"
-                                        autocomplete="off"
-                                >
-                                <label class="input-icon input-icon-l">
-                                    <svg class="icon icon-sm icon-fill icon-cyan">
-                                        <use href="img/sprite.svg#fill-call-calling"></use>
-                                    </svg>
-                                </label>
-                                <button class="btn-reset btn btn-md btn-primary" type="button">
-                                    <span class="btn__text">Забронировать</span>
-                                </button>
+                    <div class="static-modal__item main-screen__booking-input">
+                        <div class="gap-md">
+                            <div class="h3">Забронируйте игру с друзьями</div>
+                        </div>
+                        <div>
+                            <div class="titled-input">
+                                <div class="input-title">Номер телефона</div>
+                                <div class="input-wrapper input-wrapper-split has-icon-l">
+                                    <input
+                                            class="input-reset input isPhone"
+                                            type="text"
+                                            name=""
+                                            value=""
+                                            placeholder="Номер телефона"
+                                            autocomplete="off"
+                                    >
+                                    <label class="input-icon input-icon-l">
+                                        <svg class="icon icon-sm icon-fill icon-cyan">
+                                            <use href="img/sprite.svg#fill-call-calling"></use>
+                                        </svg>
+                                    </label>
+                                    <button class="btn-reset btn btn-md btn-primary" type="button" data-form-success>
+                                        <span class="btn__text">Забронировать</span>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </form>
+
             </div>
         </div>
     </div>
@@ -232,13 +245,13 @@
                     <div class="gap-md">
                         <h2>Выбери свой <span class="cyan-color">сценарий игры</span></h2>
                     </div>
-                    <div class="laser-advantages-script">
+                    <div class="laser-advantages-script numbers">
                         <div class="laser-advantages-script__item">
-                            <div class="laser-advantages-script__title">14</div>
+                            <div class="laser-advantages-script__title as-hidden animated-counter" data-start-value="0" data-value="14">14</div> <?/*<span class="as-hidden">14</span>*/?>
                             <div class="laser-advantages-script__content fw-medium fz-sm decor-bt decor-bt--mark decor-bt--mark-orange decor-bt--md">Режимов игры с разными  правилами и сложностью</div>
                         </div>
                         <div class="laser-advantages-script__item">
-                            <div class="laser-advantages-script__title">35</div>
+                            <div class="laser-advantages-script__title as-hidden animated-counter" data-start-value="0" data-value="35">35</div>
                             <div class="laser-advantages-script__content fw-medium fz-sm decor-bt decor-bt--mark decor-bt--mark-orange decor-bt--md">Видов оружия от пистолетов  до тяжелого вооружения</div>
                         </div>
                     </div>
@@ -568,7 +581,7 @@
                                 </div>
                             </div>
                             <div class="laser-client-tag__action">
-                                <button class="btn-reset btn btn-primary">
+                                <button class="btn-reset btn btn-primary" type="button" data-fancybox data-src="#modal_test">
                                     <span class="btn__text">Забронировать мероприятие</span>
                                 </button>
                             </div>

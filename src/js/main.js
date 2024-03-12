@@ -22,6 +22,9 @@ application.prototype.init = function () {
     this.initSmoothScrollTo();
     this.initReadmore();
     this.initAudioPlayer();
+    this.initAnimatedCounter();
+    this.initFancyBehavior();
+    this.initFormSuccess();
 };
 
 // Initialization disable scroll
@@ -322,7 +325,21 @@ application.prototype.initTooltips = function () {
 
 // Initialization mobile number mask
 application.prototype.initMaskedInput = function () {
-    $(".isPhone").mask("+7-999-999-99-99", { autoclear: false });
+    $.fn.setCursorPosition = function(pos) {
+        if ($(this).get(0).setSelectionRange) {
+            $(this).get(0).setSelectionRange(pos, pos);
+        } else if ($(this).get(0).createTextRange) {
+            var range = $(this).get(0).createTextRange();
+            range.collapse(true);
+            range.moveEnd('character', pos);
+            range.moveStart('character', pos);
+            range.select();
+        }
+    };
+
+    $('.isPhone').click(function(){
+        $(this).setCursorPosition(3);
+    }).mask("+7-999-999-99-99", { completed: true });
 };
 
 // Initialization switch content
@@ -773,4 +790,81 @@ application.prototype.initAudioPlayer = function () {
 
         customElements.define('audio-player', AudioPlayer);
     }
+};
+
+// Initialization animated counter
+application.prototype.initAnimatedCounter = function () {
+    $(allInView);
+    $(window).scroll(allInView);
+    var viewed = false;
+
+    function isScrolledIntoView(elem) {
+        var docViewTop = $(window).scrollTop();
+        var docViewBottom = docViewTop + $(window).height();
+
+        var elemTop = $(elem).offset().top;
+        var elemBottom = elemTop + $(elem).height();
+
+        return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
+    }
+
+    function allInView() {
+        if (isScrolledIntoView($(".numbers")) && !viewed) {
+            viewed = true;
+            $('.animated-counter').each(function () {
+                $(this).removeClass('as-hidden');
+                $(this).prop('Counter', 0).animate({
+                    Counter: $(this).text()
+                }, {
+                    duration: 1000,
+                    easing: 'swing',
+                    step: function (now) {
+                        $(this).text(Math.ceil(now));
+                    }
+                });
+            });
+        }
+    }
+};
+
+// Initialization custom fancy behavior
+application.prototype.initFancyBehavior = function () {
+    const body = $('body');
+    const fancybox = $('[data-fancybox]');
+
+    fancybox.on('click', function () {
+        let currentSrc = $(this).data('src');
+
+        $('.modal').not(currentSrc).closest('.fancybox__container.is-animated').click();
+    });
+
+    $(document).on('click', function (e) {
+        if ($('.fancybox__slide.is-selected.has-inline').is(e.target) || $('.fancybox__slide .carousel__button.is-close').is(e.target)) {
+            body.removeClass('overflow-hidden');
+        }
+    });
+};
+
+// Initialization success notification when form is sended
+application.prototype.initFormSuccess = function () {
+    $('[data-form-success]').on("click", function () {
+        let modal = $(this).closest('.modal');
+        let staticModal = $(this).closest('.static-modal');
+
+        modal.addClass('success');
+        staticModal.addClass('success');
+
+        setTimeout(function () {
+            modal.find('.success-msg').addClass('animated');
+            staticModal.find('.success-msg').addClass('animated');
+        }, 3000);
+        setTimeout(function () {
+            modal.removeClass('success');
+            staticModal.removeClass('success');
+        }, 3490);
+        setTimeout(function () {
+            modal.find('.success-msg').removeClass('animated');
+            staticModal.find('.success-msg').removeClass('animated');
+        }, 3500);
+    });
 };
