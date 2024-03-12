@@ -39,13 +39,14 @@
                                             value=""
                                             placeholder="Номер телефона"
                                             autocomplete="off"
+                                            required
                                     >
                                     <label class="input-icon input-icon-l">
                                         <svg class="icon icon-sm icon-fill icon-cyan">
                                             <use href="img/sprite.svg#fill-call-calling"></use>
                                         </svg>
                                     </label>
-                                    <button class="btn-reset btn btn-md btn-primary" type="button" data-form-success>
+                                    <button class="btn-reset btn btn-md btn-primary" type="submit" data-form-success>
                                         <span class="btn__text">Забронировать</span>
                                     </button>
                                 </div>
@@ -245,13 +246,13 @@
                     <div class="gap-md">
                         <h2>Выбери свой <span class="cyan-color">сценарий игры</span></h2>
                     </div>
-                    <div class="laser-advantages-script numbers">
+                    <div class="laser-advantages-script">
                         <div class="laser-advantages-script__item">
-                            <div class="laser-advantages-script__title as-hidden animated-counter" data-start-value="0" data-value="14">14</div> <?/*<span class="as-hidden">14</span>*/?>
+                            <div class="laser-advantages-script__title numbers as-hidden animated-counter">14</div>
                             <div class="laser-advantages-script__content fw-medium fz-sm decor-bt decor-bt--mark decor-bt--mark-orange decor-bt--md">Режимов игры с разными  правилами и сложностью</div>
                         </div>
                         <div class="laser-advantages-script__item">
-                            <div class="laser-advantages-script__title as-hidden animated-counter" data-start-value="0" data-value="35">35</div>
+                            <div class="laser-advantages-script__title numbers as-hidden animated-counter">35</div>
                             <div class="laser-advantages-script__content fw-medium fz-sm decor-bt decor-bt--mark decor-bt--mark-orange decor-bt--md">Видов оружия от пистолетов  до тяжелого вооружения</div>
                         </div>
                     </div>
@@ -710,7 +711,7 @@
                                         <div class="laser-review__content">
                                             <div class="laser-review__title fw-medium fz-sm">Name Name</div>
                                             <div class="laser-review__player">
-                                                <audio-player src="demo.mp3" preload></audio-player>
+                                                <audio-player src="audio_1.ogg" preload></audio-player>
                                             </div>
                                         </div>
                                     </div>
@@ -726,7 +727,7 @@
                                         <div class="laser-review__content">
                                             <div class="laser-review__title fw-medium fz-sm">Name Name</div>
                                             <div class="laser-review__player">
-                                                <audio-player src="demo2.mp3" preload></audio-player>
+                                                <audio-player src="audio_2.m4a" preload></audio-player>
                                             </div>
                                         </div>
                                     </div>

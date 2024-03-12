@@ -30,6 +30,7 @@
                                 value=""
                                 placeholder="Ваше имя"
                                 autocomplete="off"
+                                required
                         >
                         <label for="ui-input-search-example-1" class="input-icon input-icon-l c-pointer">
                             <svg class="icon icon-sm icon-fill icon-cyan">
@@ -51,6 +52,7 @@
                                 value=""
                                 placeholder="Номер телефона"
                                 autocomplete="off"
+                                required
                         >
                         <label for="ui-input-search-example-1" class="input-icon input-icon-l c-pointer">
                             <svg class="icon icon-sm icon-fill icon-cyan">

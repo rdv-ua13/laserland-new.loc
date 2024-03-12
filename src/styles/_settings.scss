@@ -1901,6 +1901,17 @@ input.disabled {
 			position: relative;
 		}
 	}
+
+	ul,
+	ol {
+		margin: 0;
+
+		li {
+			&:not(:last-child) {
+				margin-bottom: 20px;
+			}
+		}
+	}
 }
 @media (min-width: 992px) {
 	.accordion {

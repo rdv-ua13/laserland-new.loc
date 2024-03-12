@@ -809,7 +809,7 @@ application.prototype.initAnimatedCounter = function () {
     }
 
     function allInView() {
-        if (isScrolledIntoView($(".numbers")) && !viewed) {
+        if (isScrolledIntoView($('.numbers')) && !viewed) {
             viewed = true;
             $('.animated-counter').each(function () {
                 $(this).removeClass('as-hidden');
@@ -847,11 +847,72 @@ application.prototype.initFancyBehavior = function () {
 
 // Initialization success notification when form is sended
 application.prototype.initFormSuccess = function () {
-    $('[data-form-success]').on("click", function () {
+    $('[data-form-success]').on('click', function () {
         let modal = $(this).closest('.modal');
         let staticModal = $(this).closest('.static-modal');
 
-        modal.addClass('success');
+        if($(this).closest('form').find('input[required]')) {
+            console.log($(this));
+            if($(this).val() == "") {
+                console.log("success");
+                /*console.log($(this));*/
+                console.log('= ' + $(this).closest('form').find('input[required]').val());
+                /*$(':input[required=""],:input[required]').bind('focusout', function(){
+                    if ($(this).val() == ""){
+                        $(this).focus();
+                        //and show some error in whatever way you want
+                    }
+                });*/
+
+
+
+
+            } else {
+                console.log("success222");
+            }
+        }
+
+        /*
+        $(document).on('submit', '.js-register-final', function (e) {
+        e.preventDefault();
+        let $currentForm = $(this);
+        let userType = $currentForm.data('user-type');
+
+
+        let formData = getFormData($currentForm);
+        let $submitBtn = $currentForm.find('[type="submit"]');
+
+        let $step1form = $('.js-register-step-1[data-user-type="' + userType + '"]');
+        let step1formData = getFormData($step1form);
+
+        let merged = {...step1formData, ...formData};
+
+        BX.ajax.runAction('dev:core.registration.checkAllAndRegister', {
+            data: {
+                'post': merged,
+            }
+        }).then(
+            response => {
+                console.log(response.data);
+                if (response.data.result === 'success') {
+                    if (response.data.redirect) {
+                        window.location.href = response.data.redirect;
+                    }
+                } else {
+                    // errors
+                }
+            },
+            error => {
+                //сюда будут приходить все ответы, у которых status !== 'success'
+                console.log(error);
+            }
+        );
+        return false;
+    });
+        */
+
+
+        /*modal.addClass('success');
         staticModal.addClass('success');
 
         setTimeout(function () {
@@ -865,6 +926,6 @@ application.prototype.initFormSuccess = function () {
         setTimeout(function () {
             modal.find('.success-msg').removeClass('animated');
             staticModal.find('.success-msg').removeClass('animated');
-        }, 3500);
+        }, 3500);*/
     });
 };
