@@ -532,6 +532,8 @@ body:not(.is-using-mouse) {
 }
 
 .bg-light {
+	z-index: 2;
+	position: relative;
 	background-color: var(--white-color)!important;
 	color: var(--black-color);
 }

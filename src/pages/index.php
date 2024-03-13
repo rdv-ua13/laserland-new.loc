@@ -1,7 +1,8 @@
 <?php include($_SERVER["DOCUMENT_ROOT"] . "/build/" . "components/header.php"); ?>
 
 <div class="gap-xxl">
-    <div class="main-screen top-screen">
+    <div class="main-screen top-screen decor-wrapper">
+        <div class="decor decor-circle decor-circle-cyan"></div>
         <div class="main-screen__bgi" style="background-image: url('img/bg-picture-1.png');"></div>
         <div class="container">
             <div class="main-screen__descr">
@@ -54,14 +55,14 @@
                         </div>
                     </div>
                 </form>
-
             </div>
         </div>
     </div>
 </div>
 
 <div class="gap-lg">
-    <div class="container">
+    <div class="container laser-about decor-wrapper">
+        <div class="decor decor-circle decor-circle-purple"></div>
         <div class="page-content">
             <div class="page-content__side">
                 <div class="flex-inline decor-bt fw-medium fz-sm">Что такое лазертаг</div>
@@ -176,7 +177,8 @@
 </div>
 
 <div class="gap-xl">
-    <div class="container">
+    <div class="container laser-advantages-cards-wrapper decor-wrapper">
+        <div class="decor decor-circle decor-circle-cyan"></div>
         <div class="page-content">
             <div class="page-content__side desktop-only"></div>
             <div class="page-content__content">
@@ -463,7 +465,8 @@
 
 <div class="gap-xl">
     <div class="container">
-        <div class="gap-lg">
+        <div class="gap-lg laser-event-wrapper decor-wrapper">
+            <div class="decor decor-circle decor-circle-green"></div>
             <div class="page-content">
                 <div class="page-content__side">
                     <div class="flex-inline decor-bt fw-medium fz-sm">Когда подойдет<br class="desktop-only"> лазертаг</div>
@@ -525,7 +528,8 @@
                 </div>
             </div>
         </div>
-        <div class="gap-lg">
+        <div class="gap-lg laser-client-tag-wrapper decor-wrapper">
+            <div class="decor decor-circle decor-circle--lg decor-circle-cyan"></div>
             <div class="gap-xxxs">
                 <div class="page-content">
                     <div class="page-content__side desktop-only"></div>
@@ -662,7 +666,8 @@
 
 <div class="scroll-to-target" id="reviews">
     <div class="block bg-gray1">
-        <div class="container">
+        <div class="container laser-review-wrapper decor-wrapper">
+            <div class="decor decor-circle decor-circle--sm decor-circle-cyan"></div>
             <div class="gap-xs">
                 <div class="page-content">
                     <div class="page-content__side">
@@ -1134,7 +1139,8 @@
 <div class="gap-xl scroll-to-target" id="prices">
     <div class="block block-top">
         <div class="container">
-            <div class="gap-lg">
+            <div class="gap-lg laser-tariff-header-wrapper decor-wrapper">
+                <div class="decor decor-circle decor-circle--lg decor-circle-purple"></div>
                 <div class="page-content">
                     <div class="page-content__side">
                         <div class="flex-inline decor-bt fw-medium fz-sm">Тарифы</div>
@@ -1145,7 +1151,8 @@
                 </div>
             </div>
 
-            <div class="slider-out laser-tariff-slider-wrapper">
+            <div class="slider-out laser-tariff-slider-wrapper decor-wrapper">
+                <div class="decor decor-circle decor-circle--lg decor-circle-cyan"></div>
                 <div class="laser-tariff-slider swiper">
                     <div class="swiper-wrapper reset-slider-list">
                         <div class="swiper-slide slide-desktop-sidebar">
@@ -1595,7 +1602,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
@@ -1709,7 +1715,8 @@
 </div>
 
 <div class="gap-xl">
-    <div class="container">
+    <div class="container laser-faq-wrapper decor-wrapper">
+        <div class="decor decor-circle decor-circle-cyan"></div>
         <div class="page-content">
             <div class="page-content__side">
                 <div class="flex-inline decor-bt fw-medium fz-sm">Вопросы и ответы</div>
@@ -1844,7 +1851,9 @@
 
 <div class="scroll-to-target" id="contacts">
     <div class="block bg-gray6">
-        <div class="container">
+        <div class="container laser-contacts-wrapper decor-wrapper">
+            <div class="decor decor-circle decor-circle-green"></div>
+            <div class="decor decor-right decor-circle decor-circle-cyan"></div>
             <div class="page-content">
                 <div class="page-content__side">
                     <div class="flex-inline decor-bt fw-medium fz-sm">Контакты</div>
@@ -1925,12 +1934,7 @@
 
 <div class="">
     <div class="contact-map">
-        <img
-            loading="lazy"
-            class="image"
-            src="img/map.png"
-            alt="Изображение блока"
-        >
+        <div class="contact-map__content" data-x="45.035273" data-y="39.051463"></div>
     </div>
 </div>
 

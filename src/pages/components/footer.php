@@ -1,6 +1,7 @@
     </main>
 
-    <footer class="footer">
+    <footer class="footer decor-wrapper">
+        <div class="decor decor-circle decor-circle--lg decor-circle-cyan"></div>
 		<div class="logo logo--footer">
             <img
                     loading="lazy"

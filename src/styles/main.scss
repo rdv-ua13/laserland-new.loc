@@ -82,6 +82,36 @@
 			min-width: 530px;
 			width: 530px;
 		}
+
+		.decor {
+			top: -150px;
+			left: -560px;
+		}
+	}
+}
+@media (max-width: 991.98px) {
+	.main-screen {
+		.decor {
+			top: 0;
+			left: -180px;
+		}
+	}
+}
+
+@media (min-width: 992px) {
+	.laser-about {
+		.decor {
+			top: -280px;
+			right: -500px;
+		}
+	}
+}
+@media (max-width: 991.98px) {
+	.laser-about {
+		.decor {
+			top: 0;
+			right: -160px;
+		}
 	}
 }
 
@@ -155,6 +185,13 @@
 			display: grid;
 			gap: 20px;
 
+			&-wrapper {
+				.decor {
+					top: 90px;
+					left: -600px;
+				}
+			}
+
 			.laser-advantages__item {
 				flex-direction: column;
 				gap: 20px;
@@ -216,6 +253,13 @@
 			display: flex;
 			flex-direction: column;
 			gap: 12px;
+
+			&-wrapper {
+				.decor {
+					top: -110px;
+					left: -160px;
+				}
+			}
 
 			.laser-advantages__item {
 				align-items: center;
@@ -328,6 +372,13 @@
 }
 @media (min-width: 992px) {
 	.laser-event {
+		&-wrapper {
+			.decor {
+				top: -300px;
+				right: -500px;
+			}
+		}
+
 		.reset-slider-list {
 			display: grid;
 			gap: 20px;
@@ -347,6 +398,13 @@
 }
 @media (max-width: 991.98px) {
 	.laser-event {
+		&-wrapper {
+			.decor {
+				top: 0;
+				right: -200px;
+			}
+		}
+
 		&__item.swiper-slide,
 		&__bg {
 			min-width: 223px;
@@ -391,6 +449,13 @@
 }
 @media (min-width: 992px) {
 	.laser-client-tag {
+		&-wrapper {
+			.decor {
+				top: -340px;
+				left: -800px;
+			}
+		}
+
 		&__board {
 			flex: 1;
 		}
@@ -414,6 +479,13 @@
 @media (max-width: 991.98px) {
 	.laser-client-tag {
 		flex-wrap: wrap;
+
+		&-wrapper {
+			.decor {
+				top: -140px;
+				left: -160px;
+			}
+		}
 
 		&__board,
 		&__action {
@@ -558,6 +630,19 @@
 }
 @media (min-width: 992px) {
 	.laser-contacts {
+		&-wrapper {
+			.decor {
+				top: 150px;
+				left: -660px;
+
+				&-right {
+					top: -440px;
+					right: -470px;
+					left: unset;
+				}
+			}
+		}
+
 		&__base {
 			gap: 16px;
 		}
@@ -578,6 +663,17 @@
 }
 @media (max-width: 991.98px) {
 	.laser-contacts {
+		&-wrapper {
+			.decor {
+				top: 0;
+				left: -200px;
+
+				&-right {
+					display: none;
+				}
+			}
+		}
+
 		&__base {
 			gap: 12px;
 		}
@@ -598,23 +694,31 @@
 }
 
 .contact-map {
-	.image {
-		min-width: 100%;
+	position: relative;
+	overflow: hidden;
+	min-width: 100%;
+	width: 100%;
+
+	&__content {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
 		width: 100%;
+		height: 100%;
 	}
 }
 @media (min-width: 992px) {
 	.contact-map {
-		.image {
-			aspect-ratio: 16/6;
-		}
+		min-height: 560px;
+		height: 560px;
 	}
 }
 @media (max-width: 991.98px) {
 	.contact-map {
-		.image {
-			aspect-ratio: 12/16;
-		}
+		min-height: 420px;
+		height: 420px;
 	}
 }
 
@@ -844,10 +948,10 @@
 	}
 }
 
-.laser-tariff-slider-wrapper {
-	position: relative;
-}
 .laser-tariff-slider {
+	&-wrapper {
+		position: relative;
+	}
 	&__item {
 		display: flex;
 		flex-direction: column;
@@ -902,14 +1006,29 @@
 	}
 }
 @media (min-width: 992px) {
-	.laser-tariff-slider-wrapper {
-		&.slider-out {
-			.swiper {
-				overflow: visible;
+	.laser-tariff {
+		&-header-wrapper {
+			.decor {
+				top: 50px;
+				left: -800px;
 			}
 		}
 	}
+
 	.laser-tariff-slider {
+		&-wrapper {
+			.decor {
+				top: 750px;
+				right: -650px;
+			}
+
+			&.slider-out {
+				.swiper {
+					overflow: visible;
+				}
+			}
+		}
+
 		.reset-slider-list {
 			display: grid;
 			gap: 20px;
@@ -1035,8 +1154,24 @@
 	}
 }
 @media (max-width: 991.98px) {
+	.laser-tariff {
+		&-header-wrapper {
+			.decor {
+				top: -100px;
+				left: -200px;
+			}
+		}
+	}
+
 	.laser-tariff-slider {
 		cursor: grab;
+
+		&-wrapper {
+			.decor {
+				top: 570px;
+				right: -160px;
+			}
+		}
 
 		.swiper-slide {
 			width: auto;
@@ -1170,10 +1305,6 @@
 			flex: 1;
 			flex-direction: column;
 		}
-		/*.laser-review__player {
-			border-radius: 8px;
-			background-color: var(--gray6-color);
-		}*/
 	}
 	&-text {
 		.laser-review__item {
@@ -1229,6 +1360,13 @@
 }
 @media (min-width: 992px) {
 	.laser-review {
+		&-wrapper {
+			.decor {
+				top: 100px;
+				right: -250px;
+			}
+		}
+
 		&-spoiler {
 			max-height: 860px;
 		}
@@ -1349,6 +1487,13 @@
 }
 @media (max-width: 991.98px) {
 	.laser-review {
+		&-wrapper {
+			.decor {
+				top: 230px;
+				right: -250px;
+			}
+		}
+
 		&-spoiler {
 			max-height: 1000px;
 		}
@@ -1462,6 +1607,105 @@
 		}
 		&-video {
 			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+}
+
+@media (min-width: 992px) {
+	.laser-faq {
+		&-wrapper {
+			.decor {
+				top: -500px;
+				left: -550px;
+			}
+		}
+	}
+}
+@media (max-width: 991.98px) {
+	.laser-faq {
+		&-wrapper {
+			.decor {
+				top: 100px;
+				right: -280px;
+			}
+		}
+	}
+}
+
+.decor {
+	z-index: 1;
+	position: absolute;
+	border-radius: 50%;
+	opacity: 0.2;
+
+	&-wrapper {
+		position: relative;
+
+		.container {
+			z-index: 1;
+			position: relative;
+		}
+	}
+	&-circle {
+		&-cyan {
+			background-color: var(--cyan1-color);
+		}
+		&-green {
+			background-color: var(--green-color);
+		}
+		&-purple {
+			background-color: var(--purple-color);
+		}
+	}
+}
+@media (min-width: 992px) {
+	.decor {
+		filter: blur(300px);
+
+		&-circle {
+			&:not(.decor-circle--sm, .decor-circle--lg),
+			&--md {
+				min-width: 800px;
+				width: 800px;
+				min-height: 800px;
+				height: 800px;
+			}
+			&--sm {
+				min-width: 500px;
+				width: 500px;
+				min-height: 500px;
+				height: 500px;
+			}
+			&--lg {
+				min-width: 1000px;
+				width: 1000px;
+				min-height: 1000px;
+				height: 1000px;
+			}
+		}
+	}
+}
+@media (max-width: 575.98px) {
+	.decor {
+		filter: blur(200px);
+
+		&-circle {
+			min-width: 320px;
+			width: 320px;
+			min-height: 320px;
+			height: 320px;
+		}
+	}
+}
+@media (min-width: 576px) and (max-width: 991.98px) {
+	.decor {
+		filter: blur(250px);
+
+		&-circle {
+			min-width: 500px;
+			width: 500px;
+			min-height: 500px;
+			height: 500px;
 		}
 	}
 }

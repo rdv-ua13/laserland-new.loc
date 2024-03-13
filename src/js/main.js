@@ -24,6 +24,7 @@ application.prototype.init = function () {
     this.initAudioPlayer();
     this.initAnimatedCounter();
     this.initFancyBehavior();
+    this.initContactsMap();
     this.initFormSuccess();
 };
 
@@ -843,6 +844,63 @@ application.prototype.initFancyBehavior = function () {
             body.removeClass('overflow-hidden');
         }
     });
+};
+
+// Initialization contacts map
+application.prototype.initContactsMap = function () {
+    if ($('.contact-map').length) {
+        ymaps.ready(init);
+
+        let map,
+            placemark,
+            mapItem = $('.contact-map__content');
+
+        function init () {
+            mapItem.each(function (i) {
+                mapItem.eq(i).attr('id', 'contactMap' + i);
+
+                let coordX = $(this).data('x'),
+                    coordY = $(this).data('y'),
+                    hint = $(this).data('hint'),
+                    zoomControl = new ymaps.control.ZoomControl({
+                        options: {
+                            size: 'large',
+                            float: 'none',
+                            position: {
+                                top: 50,
+                                right: 10,
+                                left: 'auto',
+                            },
+                        }
+                    });
+
+                // Параметры карты можно задать в конструкторе.
+                map = new ymaps.Map(
+                    // ID DOM-элемента, в который будет добавлена карта.
+                    'contactMap' + i,
+                    // Параметры карты.
+                    {
+                        // Географические координаты центра отображаемой карты.
+                        center: [
+                            coordX,
+                            coordY
+                        ],
+                        // Масштаб.
+                        zoom: 15,
+                        controls: ['fullscreenControl'],
+                    }, {
+                        // Поиск по организациям.
+                        searchControlProvider: 'yandex#search'
+                    }
+                );
+
+                placemark = new ymaps.Placemark([coordX, coordY]);
+
+                map.geoObjects.add(placemark);
+                map.controls.add(zoomControl);
+            });
+        }
+    }
 };
 
 // Initialization success notification when form is sended

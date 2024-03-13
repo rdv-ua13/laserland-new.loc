@@ -2,8 +2,14 @@
 	position: relative;
 	flex: 0 0 auto;
 	min-width: 320px;
+	overflow: hidden;
 	background-color: var(--black-color);
 	color: var(--white-color);
+
+	.decor {
+		left: 50%;
+		transform: translateX(-50%);
+	}
 
 	.logo {
 		display: flex;
@@ -31,6 +37,10 @@
 		padding-top: 80px;
 		padding-bottom: 80px;
 
+		.decor {
+			bottom: -670px;
+		}
+
 		.logo {
 			&:not(:last-child) {
 				margin-bottom: 48px;
@@ -42,6 +52,10 @@
 	.footer {
 		padding-top: 60px;
 		padding-bottom: 60px;
+
+		.decor {
+			bottom: -250px;
+		}
 
 		.logo {
 			&:not(:last-child) {
