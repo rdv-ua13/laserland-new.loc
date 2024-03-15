@@ -12,21 +12,9 @@
                 <div class="gap-xl">
                     <div class="main-screen__subtitle fz-md">Тебя ждут увлекательные лазерные бои, уникальные игровые аппараты и аттракционы, лучшие праздники и море веселья!</div>
                 </div>
-                <form class="main-screen__booking static-modal decor-bt decor-bt--mark" action="#" method="">
-                    <div class="static-modal__item main-screen__booking-success success-msg">
-                        <div class="success-msg__view">
-                            <svg class="icon icon-fill icon-xl icon-green">
-                                <use href="img/sprite.svg#fill-checkbox-rec-1"></use>
-                            </svg>
-                        </div>
-                        <div class="success-msg__descr">
-                            <div class="success-msg__descr-item success-msg__title h3">Мы приняли вашу заявку</div>
-                            <div class="success-msg__descr-item gray7-color">В ближайшее время с вами свяжется менеджер для уточнения деталей</div>
-                            <div class="success-msg__descr-item"><a class="link link-tdu" href="javascript:;">Отправить еще одну</a></div>
-                        </div>
-                    </div>
-                    <div class="static-modal__item main-screen__booking-input">
-                        <div class="gap-md">
+                <div class="main-screen__booking inline-form-request-wrapper decor-bt decor-bt--mark">
+                    <form class="inline-form-request" action="#" method="">
+                        <div class="gap-xxs">
                             <div class="h3">Забронируйте игру с друзьями</div>
                         </div>
                         <div>
@@ -36,7 +24,7 @@
                                     <input
                                             class="input-reset input isPhone"
                                             type="text"
-                                            name=""
+                                            name="phone"
                                             value=""
                                             placeholder="Номер телефона"
                                             autocomplete="off"
@@ -47,14 +35,30 @@
                                             <use href="img/sprite.svg#fill-call-calling"></use>
                                         </svg>
                                     </label>
-                                    <button class="btn-reset btn btn-md btn-primary" type="submit" data-form-success>
+                                    <button class="btn-reset btn btn-md btn-primary" type="submit">
                                         <span class="btn__text">Забронировать</span>
                                     </button>
                                 </div>
                             </div>
                         </div>
+                    </form>
+                    <div class="inline-form-success visually-hidden">
+                        <div class="success-msg">
+                            <div class="success-msg__view">
+                                <svg class="icon icon-fill icon-xl icon-green">
+                                    <use href="img/sprite.svg#fill-checkbox-rec-1"></use>
+                                </svg>
+                            </div>
+                            <div class="success-msg__descr">
+                                <div class="success-msg__descr-item success-msg__title h3">Мы приняли вашу заявку</div>
+                                <div class="success-msg__descr-item gray7-color">В ближайшее время с вами свяжется менеджер для уточнения деталей</div>
+                                <div class="success-msg__descr-item">
+                                    <a class="link link-tdu jsInlineFormReset" href="javascript:;">Отправить еще одну</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>

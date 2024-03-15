@@ -484,12 +484,12 @@ body:not(.is-using-mouse) {
 
 .visually-hidden {
 	position: absolute !important;
-	overflow: hidden !important;
-	margin: -1px !important;
-	border: 0 !important;
-	padding: 0 !important;
 	width: 1px !important;
 	height: 1px !important;
+	margin: -1px !important;
+	padding: 0 !important;
+	overflow: hidden !important;
+	border: 0 !important;
 	clip: rect(0 0 0 0) !important;
 }
 
@@ -1988,42 +1988,6 @@ input.disabled {
 		flex-direction: column;
 		gap: 20px;
 	}
-
-	&:not(.success) {
-		.success-msg {
-			width: 1px;
-			height: 1px;
-			margin: -1px;
-			padding: 0;
-			overflow: hidden;
-			opacity: 0;
-			border: 0;
-			clip: rect(0 0 0 0);
-			pointer-events: none;
-			user-select: none;
-		}
-	}
-	&.success {
-		.modal__header {
-			z-index: -1;
-			opacity: 0;
-			pointer-events: none;
-			user-select: none;
-		}
-		.modal__form-item {
-			&:not(.success-msg) {
-				z-index: -1;
-				opacity: 0;
-				pointer-events: none;
-				user-select: none;
-			}
-		}
-		.success-msg {
-			&.animated {
-				animation: from-visible-to-hidden-animation 0.5s;
-			}
-		}
-	}
 }
 @media (min-width: 992px) {
 	.modal {
@@ -2031,13 +1995,6 @@ input.disabled {
 		min-width: 540px;
 		width: 540px;
 		padding: 60px 70px;
-
-		.success-msg {
-			top: 60px;
-			right: 70px;
-			bottom: 60px;
-			left: 70px;
-		}
 	}
 }
 @media (max-width: 991.98px) {
@@ -2054,13 +2011,6 @@ input.disabled {
 		min-width: 288px;
 		width: 288px;
 		padding: 24px;
-
-		.success-msg {
-			top: 24px;
-			right: 24px;
-			bottom: 24px;
-			left: 24px;
-		}
 	}
 }
 @media (min-width: 375px) and (max-width: 991.98px) {
@@ -2068,84 +2018,10 @@ input.disabled {
 		min-width: 343px;
 		width: 343px;
 		padding: 32px;
-
-		.success-msg {
-			top: 32px;
-			right: 32px;
-			bottom: 32px;
-			left: 32px;
-		}
-	}
-}
-
-.static-modal {
-	position: relative;
-
-	.success-msg {
-		top: 32px;
-		align-items: flex-start;
-
-		&__descr {
-			align-items: flex-start;
-		}
-	}
-	&:not(.success) {
-		.success-msg {
-			width: 1px;
-			height: 1px;
-			margin: -1px;
-			padding: 0;
-			overflow: hidden;
-			opacity: 0;
-			border: 0;
-			clip: rect(0 0 0 0);
-			pointer-events: none;
-			user-select: none;
-		}
-	}
-	&.success {
-		.static-modal__item {
-			&:not(.success-msg) {
-				z-index: -1;
-				opacity: 0;
-				pointer-events: none;
-				user-select: none;
-			}
-		}
-		.success-msg {
-			&.animated {
-				animation: from-visible-to-hidden-animation 0.5s;
-			}
-		}
-	}
-}
-@media (min-width: 992px) {
-	.static-modal {
-		.success-msg {
-			flex-direction: row;
-			gap: 40px;
-
-			&__descr {
-				gap: 16px;
-			}
-		}
-	}
-}
-@media (max-width: 991.98px) {
-	.static-modal {
-		.success-msg {
-			gap: 24px;
-		}
 	}
 }
 
 .success-msg {
-	z-index: 1;
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -2162,14 +2038,63 @@ input.disabled {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+
+		&-item {
+			text-align: center;
+		}
 	}
 }
-@keyframes from-visible-to-hidden-animation {
-	from {
-		opacity: 1;
+.inline-form-request {
+	transition: var(--transition);
+
+	&-wrapper {
+		&:not(.success) {
+			.inline-form-success {
+				position: absolute !important;
+				width: 1px !important;
+				height: 1px !important;
+				margin: -1px !important;
+				padding: 0 !important;
+				overflow: hidden !important;
+				border: 0 !important;
+				opacity: 0;
+				clip: rect(0 0 0 0) !important;
+			}
+		}
+		&.success {
+			.inline-form-request {
+				position: absolute !important;
+				width: 1px !important;
+				height: 1px !important;
+				margin: -1px !important;
+				padding: 0 !important;
+				overflow: hidden !important;
+				border: 0 !important;
+				opacity: 0;
+				clip: rect(0 0 0 0) !important;
+			}
+		}
 	}
-	to {
-		opacity: 0;
+}
+.inline-form-success {
+	transition: var(--transition);
+
+	.success-msg {
+		justify-content: flex-start;
+		align-items: flex-start;
+
+		&__view {
+			justify-content: flex-start;
+			align-items: flex-start;
+		}
+		&__descr {
+			justify-content: flex-start;
+			align-items: flex-start;
+
+			&-item {
+				text-align: left;
+			}
+		}
 	}
 }
 @media (min-width: 992px) {
@@ -2178,11 +2103,30 @@ input.disabled {
 			gap: 24px;
 		}
 	}
+	.inline-form-success {
+		.success-msg {
+			flex-direction: row;
+			gap: 40px;
+
+			&__descr {
+				gap: 16px;
+			}
+		}
+	}
 }
 @media (max-width: 991.98px) {
 	.success-msg {
 		&__descr {
 			gap: 16px;
+		}
+	}
+	.inline-form-success {
+		.success-msg {
+			gap: 24px;
+
+			&__descr {
+				gap: 16px;
+			}
 		}
 	}
 }
