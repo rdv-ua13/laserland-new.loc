@@ -284,33 +284,23 @@ application.prototype.initBasicTabs = function () {
 // Initialization accordion
 application.prototype.initAccordion = function () {
     if ($(".accordion").length) {
-        initAccordionResponsive();
-        $(window).on("resize", initAccordionResponsive, reloadAccordionResponsive);
+        $(".accordion__collapse").hide();
 
-        function reloadAccordionResponsive() {
-            setTimeout(function () {
-                location.reload();
-            }, 300);
-        }
-        function initAccordionResponsive() {
-            $(".accordion__collapse").hide();
-
-            $(".js-accordion-btn").on("click", function () {
-                if (!$(this).hasClass("open")) {
-                    $(this).addClass("open");
-                    $(this).closest(".accordion__item").addClass("active");
-                    $(this).closest(".accordion__item").find(".accordion__collapse").removeClass("collapsed");
-                    $(this).closest(".accordion__item").find(".accordion__collapse").slideDown(160);
-                } else if ($(this).hasClass("open")) {
-                    $(this).removeClass("open");
-                    $(this).closest(".accordion__item").removeClass("active");
-                    $(this).closest(".accordion__item").find(".accordion__collapse").slideUp(160);
-                    setTimeout(function () {
-                        $(this).closest(".accordion__item").find(".accordion__collapse").addClass("collapsed");
-                    }, 160);
-                }
-            });
-        }
+        $(".js-accordion-btn").on("click", function () {
+            if (!$(this).hasClass("open")) {
+                $(this).addClass("open");
+                $(this).closest(".accordion__item").addClass("active");
+                $(this).closest(".accordion__item").find(".accordion__collapse").removeClass("collapsed");
+                $(this).closest(".accordion__item").find(".accordion__collapse").slideDown(150);
+            } else if ($(this).hasClass("open")) {
+                $(this).removeClass("open");
+                $(this).closest(".accordion__item").removeClass("active");
+                $(this).closest(".accordion__item").find(".accordion__collapse").slideUp(150);
+                setTimeout(function () {
+                    $(this).closest(".accordion__item").find(".accordion__collapse").addClass("collapsed");
+                }, 150);
+            }
+        });
     }
 };
 
