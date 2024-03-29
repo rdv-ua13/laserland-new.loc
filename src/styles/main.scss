@@ -1109,19 +1109,6 @@
 				padding-right: 20px;
 			}
 		}
-		.swiper-slide {
-			&:not(.slide-desktop-sidebar) {
-				.laser-tariff-slider__descr {
-					&-title {
-						margin-right: calc((285px - (((100vw - 120px) - 305px - 80px) / 4)) * -1);
-					}
-					&-value {
-						min-width: calc(((100vw - 120px) - 305px - 80px) / 4);
-						width: calc(((100vw - 120px) - 305px - 80px) / 4);
-					}
-				}
-			}
-		}
 
 		&__descr {
 			&-item {
@@ -1144,6 +1131,19 @@
 					&::before {
 						min-width: calc(1280px - 20px);
 						width: calc(1280px - 20px);
+					}
+				}
+			}
+		}
+		.swiper-slide {
+			&:not(.slide-desktop-sidebar) {
+				.laser-tariff-slider__descr {
+					&-title {
+						margin-right: calc((285px - ((1280px - 305px - 80px) / 4)) * -1);
+					}
+					&-value {
+						min-width: calc((1280px - 305px - 80px) / 4);
+						width: calc((1280px - 305px - 80px) / 4);
 					}
 				}
 			}
@@ -1274,6 +1274,23 @@
 					&::before {
 						min-width: calc(100vw - 120px - 20px);
 						width: calc(100vw - 120px - 20px);
+					}
+				}
+			}
+		}
+	}
+}
+@media (min-width: 1200px) and (max-width: 1399.98px) {
+	.laser-tariff-slider {
+		.swiper-slide {
+			&:not(.slide-desktop-sidebar) {
+				.laser-tariff-slider__descr {
+					&-title {
+						margin-right: calc((285px - (((100vw - 120px) - 305px - 80px) / 4)) * -1);
+					}
+					&-value {
+						min-width: calc(((100vw - 120px) - 305px - 80px) / 4);
+						width: calc(((100vw - 120px) - 305px - 80px) / 4);
 					}
 				}
 			}
