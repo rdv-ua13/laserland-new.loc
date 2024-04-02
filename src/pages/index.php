@@ -688,23 +688,65 @@
                     <div class="basic-tabs-container basic-slider swiper" data-tab="tab-review" data-tabs-slider>
                         <div class="basic-tabs-slider-list swiper-wrapper reset-slider-list">
                             <div class="basic-tabs-item swiper-slide">
-                                <span class="tab basic-tabs-trigger active" data-target="0">Аудио отзывы</span>
+                                <span class="tab basic-tabs-trigger active" data-target="video">Видео</span>
                             </div>
                             <div class="basic-tabs-item swiper-slide">
-                                <span class="tab basic-tabs-trigger selected" data-target="1">Отзывы</span>
+                                <span class="tab basic-tabs-trigger" data-target="audio">Аудио отзывы</span>
                             </div>
                             <div class="basic-tabs-item swiper-slide">
-                                <span class="tab basic-tabs-trigger selected" data-target="2">Фото</span>
+                                <span class="tab basic-tabs-trigger" data-target="review">Отзывы</span>
                             </div>
                             <div class="basic-tabs-item swiper-slide">
-                                <span class="tab basic-tabs-trigger selected" data-target="3">Видео</span>
+                                <span class="tab basic-tabs-trigger" data-target="photo">Фото</span>
                             </div>
+
                         </div>
                     </div>
                 </div>
 
                 <div class="basic-tabs-content" data-tab-content="tab-review">
-                    <div class="basic-tabs-content__panel active" data-id="0">
+                    <div class="basic-tabs-content__panel active" data-id="video">
+                        <div class="spoiler laser-review-spoiler" data-spoiler data-spoiler-more="Хочу больше отзывов">
+                            <div class="spoiler-content basic-tabs-content__content">
+                                <div class="laser-review laser-review-video">
+                                    <a class="laser-review__item media-video" href="https://www.youtube.com/embed/i8u2YpaOA58?si=9eAv-rYr8o0fZALe" data-fancybox="">
+										<?/*<video
+                                                class="media-video__item"
+                                                src="demo.mp4"
+                                                preload="auto"
+                                                poster=""
+                                        ></video>*/?>
+                                        <iframe
+                                                class="media-video__item"
+                                                src="https://www.youtube.com/embed/i8u2YpaOA58?si=9eAv-rYr8o0fZALe"
+                                                title="YouTube video player"
+                                                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                                allowfullscreen
+                                        ></iframe>
+                                    </a>
+                                    <a class="laser-review__item media-video" href="https://www.youtube.com/embed/T-rVTFZpxZQ?si=J6ocUWxjRLtOPGmm" data-fancybox="">
+                                        <iframe
+                                                class="media-video__item"
+                                                src="https://www.youtube.com/embed/T-rVTFZpxZQ?si=J6ocUWxjRLtOPGmm"
+                                                title="YouTube video player"
+                                                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                                allowfullscreen
+                                        ></iframe>
+                                    </a>
+                                    <a class="laser-review__item media-video" href="https://www.youtube.com/embed/b24iawP7gDk?si=aQINo0E7mLe01M-o" data-fancybox="">
+                                        <iframe
+                                                class="media-video__item"
+                                                src="https://www.youtube.com/embed/b24iawP7gDk?si=aQINo0E7mLe01M-o"
+                                                title="YouTube video player"
+                                                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                                allowfullscreen
+                                        ></iframe>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="basic-tabs-content__panel" data-id="audio">
                         <div class="spoiler laser-review-spoiler" data-spoiler data-spoiler-more="Хочу больше отзывов">
                             <div class="spoiler-content basic-tabs-content__content">
                                 <div class="laser-review laser-review-audio">
@@ -720,7 +762,7 @@
                                         <div class="laser-review__content">
                                             <div class="laser-review__title fw-medium fz-sm">Name Name</div>
                                             <div class="laser-review__player">
-                                                <audio-player src="audio_1.ogg" preload></audio-player>
+                                                <audio-player src="audio_1.mp3" preload></audio-player>
                                             </div>
                                         </div>
                                     </div>
@@ -736,7 +778,7 @@
                                         <div class="laser-review__content">
                                             <div class="laser-review__title fw-medium fz-sm">Name Name</div>
                                             <div class="laser-review__player">
-                                                <audio-player src="audio_2.m4a" preload></audio-player>
+                                                <audio-player src="audio_2.mp3" preload></audio-player>
                                             </div>
                                         </div>
                                     </div>
@@ -752,7 +794,7 @@
                                         <div class="laser-review__content">
                                             <div class="laser-review__title fw-medium fz-sm">Name Name</div>
                                             <div class="laser-review__player">
-                                                <audio-player src="demo.mp3" preload></audio-player>
+                                                <audio-player src="audio_3.mp3" preload></audio-player>
                                             </div>
                                         </div>
                                     </div>
@@ -768,7 +810,7 @@
                                         <div class="laser-review__content">
                                             <div class="laser-review__title fw-medium fz-sm">Name Name</div>
                                             <div class="laser-review__player">
-                                                <audio-player src="demo2.mp3" preload></audio-player>
+                                                <audio-player src="audio_4.mp3" preload></audio-player>
                                             </div>
                                         </div>
                                     </div>
@@ -776,7 +818,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="basic-tabs-content__panel" data-id="1">
+                    <div class="basic-tabs-content__panel" data-id="review">
                         <div class="spoiler laser-review-spoiler" data-spoiler data-spoiler-more="Хочу больше отзывов">
                             <div class="spoiler-content basic-tabs-content__content">
                                 <div class="laser-review laser-review-text">
@@ -1013,7 +1055,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="basic-tabs-content__panel" data-id="2">
+                    <div class="basic-tabs-content__panel" data-id="photo">
                         <div class="spoiler laser-review-spoiler" data-spoiler data-spoiler-more="Хочу больше отзывов">
                             <div class="spoiler-content basic-tabs-content__content">
                                 <div class="slider-out basic-slider-wrap">
@@ -1091,45 +1133,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="basic-tabs-content__panel" data-id="3">
-                        <div class="spoiler laser-review-spoiler" data-spoiler data-spoiler-more="Хочу больше отзывов">
-                            <div class="spoiler-content basic-tabs-content__content">
-                                <div class="laser-review laser-review-video">
-                                    <?/* //todo - preview или video? */?>
-                                    <a class="laser-review__item media-video" href="demo.mp4" data-fancybox="review-video">
-                                        <?/*<img
-                                                    loading="lazy"
-                                                    class="image"
-                                                    src="img/gallery-1.jpg"
-                                                    alt="Изображение блока"
-                                            >*/?>
-                                        <video
-                                                class="media-video__item"
-                                                src="demo.mp4"
-                                                preload="auto"
-                                                poster=""
-                                        ></video>
-                                    </a>
-                                    <a class="laser-review__item media-video" href="demo.mp4" data-fancybox="review-video">
-                                        <video
-                                                class="media-video__item"
-                                                src="demo.mp4"
-                                                preload="auto"
-                                                poster=""
-                                        ></video>
-                                    </a>
-                                    <a class="laser-review__item media-video" href="demo.mp4" data-fancybox="review-video">
-                                        <video
-                                                class="media-video__item"
-                                                src="demo.mp4"
-                                                preload="auto"
-                                                poster=""
-                                        ></video>
-                                    </a>
                                 </div>
                             </div>
                         </div>

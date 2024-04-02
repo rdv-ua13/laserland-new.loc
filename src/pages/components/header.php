@@ -157,10 +157,10 @@
             </div>
 
             <ul class="list-reset mobile-menu-list">
-                <li><a class="mobile-menu__item" href="javascript:;">Сценарии игры</a></li>
-                <li><a class="mobile-menu__item" href="javascript:;">Цены</a></li>
-                <li><a class="mobile-menu__item" href="javascript:;">Отзывы</a></li>
-                <li><a class="mobile-menu__item" href="javascript:;">Контакты</a></li>
+                <li><a class="mobile-menu__item scroll-to-trigger" href="#scenarios">Сценарии игры</a></li>
+                <li><a class="mobile-menu__item scroll-to-trigger" href="#prices">Цены</a></li>
+                <li><a class="mobile-menu__item scroll-to-trigger" href="#reviews">Отзывы</a></li>
+                <li><a class="mobile-menu__item scroll-to-trigger" href="#contacts">Контакты</a></li>
             </ul>
 
             <div class="mobile-menu-footer">

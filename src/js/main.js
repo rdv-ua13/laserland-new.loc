@@ -25,7 +25,7 @@ application.prototype.init = function () {
     this.initAnimatedCounter();
     this.initFancyBehavior();
     this.initContactsMap();
-    this.initFormSuccess();
+    /*this.initFormSuccess();*/
 };
 
 // Initialization disable scroll
@@ -347,11 +347,37 @@ application.prototype.initSwitchContent = function () {
 // Initialization switch content
 application.prototype.initSmoothScrollTo = function () {
     $('.scroll-to-trigger').on('click', function () {
-        let currentId = $(this).data('href');
+        const body = document?.querySelector('body');
+        const burger = document?.querySelector('[data-menu-spoiler]');
+        const menu = document?.querySelector('[data-menu]');
 
-        $('html, body').animate({
-            scrollTop: $(currentId).offset().top
-        }, 500);
+        if (window.matchMedia('(min-width: 992px)').matches) {
+            let currentId = $(this).data('href');
+
+            $('html, body').animate({
+                scrollTop: $(currentId).offset().top
+            }, 500);
+        } else if (window.matchMedia('(max-width: 991.98px)').matches) {
+            let $elem = $('a[href="' + window.location.hash + '"]');
+
+            burger?.setAttribute('aria-expanded', 'false');
+            burger?.setAttribute('aria-label', 'Открыть меню');
+            burger?.classList.remove('active');
+            menu?.classList.remove('active');
+            body?.classList.remove('overflow-hidden');
+            $('.overlay').remove();
+            return application.prototype.enableScroll();
+
+            $elem.closest('ul').find('a').removeClass('active');
+            $elem.addClass('active');
+
+            $('html, body')
+                .stop()
+                .animate(
+                    { scrollTop: $(window.location.hash).offset().top },
+                    1000
+                );
+        }
     });
 };
 
@@ -549,6 +575,11 @@ application.prototype.initAudioPlayer = function () {
             }
 
             async togglePlay() {
+                $('audio-player').each(function(i,el) {
+                    el.audio.pause();
+                    el.audio.currentTime = 0;
+                });
+
                 if (this.audioCtx.state === 'suspended') {
                     await this.audioCtx.resume();
                 }
@@ -780,6 +811,15 @@ application.prototype.initAudioPlayer = function () {
         }
 
         customElements.define('audio-player', AudioPlayer);
+
+        $(document).on('click', '.laser-review-tabs .tab', function (e) {
+            if (!$("[data-target='audio']").is(e.target)) {
+                $('audio-player').each(function(i,el) {
+                    el.audio.pause();
+                    el.audio.currentTime = 0;
+                });
+            }
+        });
     }
 };
 
@@ -891,89 +931,4 @@ application.prototype.initContactsMap = function () {
             });
         }
     }
-};
-
-// Initialization success notification when form is sended
-application.prototype.initFormSuccess = function () {
-    $('[data-form-success]').on('click', function () {
-        let modal = $(this).closest('.modal');
-        let staticModal = $(this).closest('.static-modal');
-
-        if($(this).closest('form').find('input[required]')) {
-            console.log($(this));
-            if($(this).val() == "") {
-                console.log("success");
-                /*console.log($(this));*/
-                console.log('= ' + $(this).closest('form').find('input[required]').val());
-                /*$(':input[required=""],:input[required]').bind('focusout', function(){
-                    if ($(this).val() == ""){
-                        $(this).focus();
-                        //and show some error in whatever way you want
-                    }
-                });*/
-
-
-
-
-            } else {
-                console.log("success222");
-            }
-        }
-
-        /*
-        $(document).on('submit', '.js-register-final', function (e) {
-        e.preventDefault();
-        let $currentForm = $(this);
-        let userType = $currentForm.data('user-type');
-
-
-        let formData = getFormData($currentForm);
-        let $submitBtn = $currentForm.find('[type="submit"]');
-
-        let $step1form = $('.js-register-step-1[data-user-type="' + userType + '"]');
-        let step1formData = getFormData($step1form);
-
-        let merged = {...step1formData, ...formData};
-
-        BX.ajax.runAction('dev:core.registration.checkAllAndRegister', {
-            data: {
-                'post': merged,
-            }
-        }).then(
-            response => {
-                console.log(response.data);
-                if (response.data.result === 'success') {
-                    if (response.data.redirect) {
-                        window.location.href = response.data.redirect;
-                    }
-                } else {
-                    // errors
-                }
-            },
-            error => {
-                //сюда будут приходить все ответы, у которых status !== 'success'
-                console.log(error);
-            }
-        );
-        return false;
-    });
-        */
-
-
-        /*modal.addClass('success');
-        staticModal.addClass('success');
-
-        setTimeout(function () {
-            modal.find('.success-msg').addClass('animated');
-            staticModal.find('.success-msg').addClass('animated');
-        }, 3000);
-        setTimeout(function () {
-            modal.removeClass('success');
-            staticModal.removeClass('success');
-        }, 3490);
-        setTimeout(function () {
-            modal.find('.success-msg').removeClass('animated');
-            staticModal.find('.success-msg').removeClass('animated');
-        }, 3500);*/
-    });
 };

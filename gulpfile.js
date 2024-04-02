@@ -37,7 +37,7 @@ const path = {
         php:                "src/pages/**/*.php",
         mainJs:             "src/js/main.js",
         styles:             "src/styles/main.scss",
-        stylesVendor:       "src/styles/vendor/**/*.*",
+        stylesVendor:       "src/styles/vendors/**/*.*",
         img:                "src/img",
         svg:                "src/img/svg/**.svg",
         resources:          "src/resources/**/*.*",
